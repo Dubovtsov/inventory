@@ -1,0 +1,28 @@
+ru:
+  enumerize:
+    product:
+      type:
+        software: "ПО"
+        hardware: "Оборудование"
+
+  software: "ПО"
+  hardware: "Оборудование"
+  ransack:
+    asc: ascending
+    desc: descending
+    predicates:
+      cont: contains
+      not_cont: not contains
+      start: starts with
+      end: ends with
+      gt: greater than
+      lt: less than
+    models:
+      person: Passenger
+    attributes:
+      product:
+        title: Наименование
+        accepted_at: Дата принятия
+      article:
+        title: Article Title
+        body: Main Content

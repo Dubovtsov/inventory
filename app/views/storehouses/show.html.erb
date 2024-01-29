@@ -1,0 +1,70 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto mb-2">
+
+    <%= render @storehouse %>
+
+    <%= link_to "Edit this storehouse", edit_storehouse_path(@storehouse), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this storehouse", storehouse_path(@storehouse), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+    <%= link_to 'Назад', :back, class: "mt-2 shadow rounded-lg py-3 px-5 bg-gray-50 hover:bg-white inline-block font-medium" %>
+  </div>
+</div>
+<div>
+   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Наименование
+        </th>
+        <th scope="col" class="px-6 py-3">
+            Описание
+        </th>
+        <th scope="col" class="px-6 py-3">
+            Серийный номер
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Инв. номер
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Дата принятия
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Тип
+        </th>
+        <th scope="col" class="px-6 py-3">
+            <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white max-w-[500px]">
+            <%= link_to product.title, product %>
+          </th>
+          <td class="px-6 py-4">
+              <%= product.description.truncate(200) %>
+          </td>
+          <td class="px-6 py-4">
+              <%= product.serial_number %>
+          </td>
+          <td class="px-6 py-4">
+              <%= product.inventory_number %>
+          </td>
+          <td class="px-6 py-4">
+              <%= product.accepted_at %>
+          </td>
+          <td class="px-6 py-4">
+            <div class="p-2 rounded text-center text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
+              <%= I18n.t(product.type_product, locale: :ru) %>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-right">
+            <%= link_to "Edit", edit_product_path(product), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

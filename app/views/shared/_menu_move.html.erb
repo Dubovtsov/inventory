@@ -1,0 +1,24 @@
+<button data-action="click->menu#toggle" onblur="hide(this);" data-menu-target="button" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-gray-100 rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-50" type="button"> 
+  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path></svg>
+</button>
+
+<!-- Dropdown menu -->
+<div data-menu-target="menu" class="z-10 fade-in-down origin-top-right fixed right-2 hidden bg-amber-50 divide-y divide-gray-100 rounded-lg shadow-lg w-44">
+  <ul class="pb-2 text-sm text-gray-700">
+    <li class="px-4 py-2 text-center text-white bg-amber-500 font-bold tracking-widest border-b-2 border-amber-100 rounded-t-lg">Переместить</li>
+    <% Storehouse.all.each do |storehouse| %>
+      <li>
+        <%= button_to storehouse.title, move_to_storehouse_product_url(product, new_storehouse_id: storehouse.id), method: :post, class: "block text-start px-4 py-2 w-full hover:bg-amber-100" %>
+        <%#= link_to "Редактировать", send("edit_#{model.class.name.downcase}_path", model), data: { turbo_frame: 'modal' }, class:"block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<script>
+  function hide(el) {
+    setTimeout(() => { 
+      el.nextElementSibling.classList.add("hidden")
+     }, 250);
+  }
+</script>

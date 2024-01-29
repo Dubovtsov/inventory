@@ -1,0 +1,65 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="font-bold text-gray-700 text-2xl">Products</h1>
+    <%= link_to new_product_path, class: "rounded-full flex justify-center items-center text-3xl text-center  w-8 h-8 bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 font-medium" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-amber-50">
+        <script xmlns=""/><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+        <style xmlns="" type="text/css" id="igtranslator-color"/>
+      </svg>
+    <% end %>
+  </div>
+  <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
+    <div class="relative">
+        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+        <%= search_form_for @q do |f| %>
+          <%= f.search_field :title_or_description_cont, class:"block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Search..." %>
+          <%= f.submit "Найти", class:"cursor-pointer text-white absolute end-[-70px] bottom-[1px] bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+        <% end %>
+    </div>
+  </div>
+  <div id="products" class="min-w-full" data-controller="menu">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              <%= sort_link(@q, :title, default_order: :desc) %>
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Описание
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Серийный номер
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Инв. номер
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <%= sort_link(@q, :accepted_at, default_order: :desc) %>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Тип
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Склад
+            </th>
+            <th scope="col" class="px-6 py-3">
+                <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @products %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

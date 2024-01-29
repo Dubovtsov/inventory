@@ -1,0 +1,39 @@
+<div id="<%= dom_id product %>">
+  <% if action_name != "show" %>
+    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+      <td class="px-6 py-4 font-medium text-gray-900 dark:text-white max-w-[500px]">
+        <%= link_to product.title, product %>
+      </td>
+      <td class="px-6 py-4">
+          <%= product.description.truncate(200) %>
+      </td>
+      <td class="px-6 py-4">
+          <%= product.serial_number %>
+      </td>
+      <td class="px-6 py-4">
+          <%= product.inventory_number %>
+      </td>
+      <td class="px-6 py-4">
+          <%= product.accepted_at %>
+      </td>
+      <td class="px-6 py-4">
+        <div class="p-2 rounded text-center text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
+          <%= I18n.t(product.type_product, locale: :ru) %>
+        </div>
+      </td>
+      <td class="px-6 py-4">
+        <div class="p-2 bg-amber-100 rounded text-xs text-center text-amber-800 font-semibold">
+          <%= link_to product.storehouse.title, storehouse_url(product.storehouse.id) %>
+        </div>
+      </td>
+      <td class="px-6 py-4 text-right">
+        <%= link_to "Edit", edit_product_path(product), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
+      </td>
+      <td class="px-6 py-4 text-right">
+        <%= render "shared/menu_move", product: product %>
+      </td>
+    </tr>
+  <% else %>
+    <%= render 'product_card', product: product %>
+  <% end %>
+</div>

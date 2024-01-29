@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_storehouse: one
+  to_storehouse: one
+  product: one
+  quantity: 1
+  date_movement: 2024-01-23
+
+two:
+  from_storehouse: two
+  to_storehouse: two
+  product: two
+  quantity: 1
+  date_movement: 2024-01-23

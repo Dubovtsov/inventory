@@ -1,0 +1,13 @@
+<div id="<%= dom_id vendor %>">
+  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+    <td class="px-6 py-4">
+      <%= link_to vendor.title, vendor, class: "px-6 py-4" %>
+    </td>
+    <td class="px-6 py-4">
+        <%= vendor.manager %>
+    </td>
+    <td class="px-6 py-4 text-right">
+      <%= link_to "Edit", edit_vendor_path(vendor), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
+    </td>
+  </tr>
+</div>

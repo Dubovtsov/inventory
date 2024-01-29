@@ -1,0 +1,96 @@
+<%= form_with(model: product, class: "contents") do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label "Наименование", class:"font-semibold text-sm" %>
+    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label "Описание", class:"font-semibold text-sm" %>
+    <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="flex flex-row gap-3">
+    <div class="my-3 w-1/2">
+      <%= form.label "Серийный номер", class:"font-semibold text-sm" %>
+      <%= form.text_field :serial_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+    </div>
+    <div class="my-3 w-1/2">
+      <%= form.label "Инвентарный номер", class:"font-semibold text-sm" %>
+      <%= form.text_field :inventory_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+    </div>
+  </div>
+  <div class="flex flex-row gap-3">
+    <div class="my-3 w-1/2">
+      <%= form.label "Дата принятия на склад", class:"font-semibold text-sm" %>
+      <%= form.date_field :accepted_at, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-3 w-1/2">
+      <%= form.label "Тип", class:"font-semibold text-sm" %>
+      <%= form.select :type_product, Product.type_product.values.map{ |s| [I18n.t(s, locale: :ru), s] }, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-3 w-1/2">
+      <%= form.label "Склад", class:"font-semibold text-sm" %>
+      <%= form.collection_select :storehouse_id, Storehouse.order(:employee), :id, :title, {:include_blank => false}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
+    </div>
+  </div>
+
+  <div class="flex flex-row gap-3">
+    <div class="my-3 w-1/3">
+      <%= form.label "Дата окончания поверки/лицензии", class:"font-semibold text-sm" %>
+      <%= form.date_field :end_date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-3 w-1/3">
+      <%= form.label "Покупатель", class:"font-semibold text-sm" %>
+      <%= form.text_field :customer, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+
+    <div class="my-3 w-1/3">
+      <%= form.label "Поставщик", class:"font-semibold text-sm" %>
+      <%= form.collection_select :vendor_id, Vendor.order(:title), :id, :title, {:include_blank => true}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
+    </div>
+  </div>
+
+  <div class="flex flex-row justify-between gap-3">
+    <div class="my-3">
+      <%= form.label "В аренду", class:"font-semibold text-sm" %>
+      <%= form.check_box :rent %>
+    </div>
+    <div class="my-3">
+      <%= form.label "Отгруженно", class:"font-semibold text-sm" %>
+      <%= form.check_box :shipped %>
+    </div>
+    <div class="my-3">
+      <%= form.label "Количество", class:"font-semibold text-sm" %>
+      <%= form.text_field :amount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+  </div>
+
+  <div class="my-5">
+    <%= form.file_field :picture %>
+  </div>
+
+  <% if action_name == "edit" %>
+    <div class="inline">
+      <%= form.submit "Обновить", class: "rounded-lg py-2 px-3 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+  <% else %>
+    <div class="inline">
+      <%= form.submit "Создать", class: "rounded-lg py-2 px-3 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+  <% end %>
+<% end %>

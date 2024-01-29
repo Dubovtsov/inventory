@@ -1,0 +1,42 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="font-bold text-gray-700 text-2xl">Передвижения по складам</h1>
+    <%= link_to "New product movement", new_product_movement_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="product_movements" class="min-w-full">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              Из склада
+            </th>
+            <th scope="col" class="px-6 py-3">
+            </th>
+            <th scope="col" class="px-6 py-3">
+              На склад
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Продукт
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Количество
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Дата
+            </th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @product_movements %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
