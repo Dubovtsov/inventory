@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_24_143047) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_29_140614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -93,7 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_24_143047) do
     t.date "accepted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "storehouse_id"
+    t.bigint "storehouse_id", default: 1, null: false
     t.string "type_product"
     t.bigint "vendor_id"
     t.date "end_date"
@@ -101,6 +101,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_24_143047) do
     t.boolean "rent", default: false
     t.boolean "shipped", default: false
     t.integer "amount", default: 1
+    t.boolean "deleted", default: false
     t.index ["storehouse_id"], name: "index_products_on_storehouse_id"
     t.index ["vendor_id"], name: "index_products_on_vendor_id"
   end
