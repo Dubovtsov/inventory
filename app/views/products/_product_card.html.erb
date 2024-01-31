@@ -37,6 +37,19 @@
         <div class="inline-block ml-2 text-xs">
           <%= link_to "Удалить", @product, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Really?' }, class: "mt-2 rounded-lg text-red-500 font-medium hover:underline" %>
         </div>
+        <span class="px-1 text-gray-200">|</span>
+        <div class="inline-block ml-2 text-xs">
+          <%= button_to "Клонировать", clone_product_path(@product), method: :post, class: "text-green-500 hover:underline" %>
+        </div>
+        <!-- <div class="inline-block ml-2 text-xs pt-2">
+          <%= button_to clone_product_path(@product), method: :post, class: "text-green-500 hover:underline" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20" fill="currentColor">
+              <script xmlns=""/>
+              <path d="M760-200H320q-33 0-56.5-23.5T240-280v-560q0-33 23.5-56.5T320-920h247q16 0 30.5 6t25.5 17l194 194q11 11 17 25.5t6 30.5v367q0 33-23.5 56.5T760-200Zm0-440L560-840v140q0 25 17.5 42.5T620-640h140ZM160-40q-33 0-56.5-23.5T80-120v-520q0-17 11.5-28.5T120-680q17 0 28.5 11.5T160-640v520h400q17 0 28.5 11.5T600-80q0 17-11.5 28.5T560-40H160Z"/>
+              <style xmlns="" type="text/css" id="igtranslator-color"/>
+            </svg>
+          <% end %>
+        </div> -->
       </div>
       <div class="p-4 border-2 border-gray-200 bg-gray-100 border-dashed rounded-lg dark:border-gray-700 w-1/3">
         <% if product.picture.attached? %>

@@ -1,5 +1,5 @@
 <div id="<%= dom_id product_movement %>">
-  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 <%= "bg-red-200" if product_movement.deleted_at.present? %>">
     <td class="px-6 py-4 font-medium text-gray-900 dark:text-white max-w-[500px]">
       <%= product_movement.from_storehouse.title %>
     </td>
@@ -10,7 +10,7 @@
         <%= product_movement.to_storehouse.title %>
     </td>
     <td class="px-6 py-4">
-        <%= product_movement.product.title %>
+        <%= product_movement.product_including_deleted.title %>
     </td>
     <td class="px-6 py-4">
         <%= product_movement.quantity %>

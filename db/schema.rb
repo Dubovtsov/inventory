@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_29_140614) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_30_074313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_140614) do
     t.date "date_movement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_product_movements_on_deleted_at"
     t.index ["from_storehouse_id"], name: "index_product_movements_on_from_storehouse_id"
     t.index ["product_id"], name: "index_product_movements_on_product_id"
     t.index ["to_storehouse_id"], name: "index_product_movements_on_to_storehouse_id"
@@ -102,6 +104,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_29_140614) do
     t.boolean "shipped", default: false
     t.integer "amount", default: 1
     t.boolean "deleted", default: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["storehouse_id"], name: "index_products_on_storehouse_id"
     t.index ["vendor_id"], name: "index_products_on_vendor_id"
   end

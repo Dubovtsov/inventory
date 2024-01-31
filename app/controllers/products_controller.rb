@@ -1,10 +1,12 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy move_to_storehouse ]
+  include Pagy::Backend
+  before_action :set_product, only: %i[ show edit update destroy move_to_storehouse clone ]
 
   # GET /products or /products.json
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
+    @pagy, @products = pagy(@q.result(distinct: true), items: 8)
   end
 
   def show
@@ -17,12 +19,6 @@ class ProductsController < ApplicationController
   def edit
   end
 
-  def move_to_user
-    @employee = Employee.find(params[:employee_id])
-    @product.update(employee_id: @employee.id, storehouse_id: nil)
-    redirect_to products_url, notice: 'Product was successfully moved to the user.'
-  end
-
   def move_to_storehouse
     new_storehouse = Storehouse.find(params[:new_storehouse_id])
     @product.move_to(new_storehouse, 1)
@@ -31,12 +27,23 @@ class ProductsController < ApplicationController
     end
   end
 
+  def clone
+    @clone = @product.dup
+    @clone.update(serial_number: "-", inventory_number: "-")
+    if @clone.save
+      flash[:notice] = "Product cloned successfully"
+      redirect_to @clone
+    else
+      flash[:alert] = "Product cloning failed"
+      redirect_to products_url
+    end
+  end
+
   def create
     @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
+        format.html { redirect_to product_url(@product), notice: "Позиция создана успешно" }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }

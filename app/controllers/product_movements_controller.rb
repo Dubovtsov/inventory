@@ -3,7 +3,7 @@ class ProductMovementsController < ApplicationController
 
   # GET /product_movements or /product_movements.json
   def index
-    @product_movements = ProductMovement.all
+    @product_movements = ProductMovement.with_deleted
   end
 
   # GET /product_movements/1 or /product_movements/1.json

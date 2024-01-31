@@ -15,7 +15,8 @@ gem 'kaminari'
 gem 'ransack'
 gem "devise", "~> 4.9"
 gem 'faker'
-
+gem 'acts_as_paranoid'
+gem 'pagy'
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 

@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://cdn.tailwindcss.com"></script>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.turbo.min.js"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -16,7 +17,7 @@
     <div class="main">
       <div class="content h-screen">
         <div class="p-4 h-full">
-          <div class="p-4 border-2 border-gray-200 bg-gray-100 border-dashed rounded-lg dark:border-gray-700 h-full">
+          <div class="p-4 border-2 border-gray-200 bg-gray-100 border-dashed rounded-lg dark:border-gray-700 h-full overflow-auto">
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
             <%= yield %>

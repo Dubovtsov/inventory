@@ -17,12 +17,12 @@
           <%= product.accepted_at %>
       </td>
       <td class="px-6 py-4">
-        <div class="p-2 rounded text-center text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
+        <div class="p-2 rounded text-center border border-amber-400 text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
           <%= I18n.t(product.type_product, locale: :ru) %>
         </div>
       </td>
       <td class="px-6 py-4">
-        <div class="p-2 bg-amber-100 rounded text-xs text-center text-amber-800 font-semibold">
+        <div class="p-2 bg-amber-100 border border-amber-400 rounded text-xs text-center text-amber-800 font-semibold">
           <%= link_to product.storehouse.title, storehouse_url(product.storehouse.id) %>
         </div>
       </td>

@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   resources :products do
     member do
       post :move_to_storehouse
+      post :clone
     end
   end
+
   devise_for :administrators
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

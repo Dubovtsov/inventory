@@ -12,7 +12,7 @@
       </svg>
     <% end %>
   </div>
-  <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
+  <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4">
     <div class="relative">
         <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -26,6 +26,7 @@
     </div>
   </div>
   <div id="products" class="min-w-full" data-controller="menu">
+  <%== pagy_nav(@pagy) %>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -52,7 +53,10 @@
               Склад
             </th>
             <th scope="col" class="px-6 py-3">
-                <span class="sr-only">Edit</span>
+              <span class="sr-only">Edit</span>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <span class="sr-only">Перемещение</span>
             </th>
           </tr>
         </thead>
