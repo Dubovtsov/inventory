@@ -3,9 +3,10 @@
 </button>
 
 <!-- Dropdown menu -->
-<div data-menu-target="menu" class="z-10 fade-in-down origin-top-right fixed h-[300px] right-2 hidden bg-amber-50 divide-y divide-gray-100 rounded-lg shadow-lg w-44 overflow-y-auto">
+<div data-menu-target="menu" class="drawer fixed top-0 left-0 z-40 h-screen overflow-y-auto transition-transform -translate-x-full bg-amber-200 w-80 dark:bg-gray-800">
+  <div class="text-center text-white bg-amber-500 font-bold tracking-widest border-b-2 border-amber-500 p-4">Переместить</div>
   <ul class="pb-2 text-sm text-gray-700">
-    <li class="px-4 py-2 text-center text-white bg-amber-500 font-bold tracking-widest border-b-2 border-amber-100 rounded-t-lg">Переместить</li>
+    
     <% Storehouse.all.each do |storehouse| %>
       <li>
         <%= button_to storehouse.title, move_to_storehouse_product_url(product, new_storehouse_id: storehouse.id), method: :post, class: "block text-start px-4 py-2 w-full hover:bg-amber-100" %>
@@ -18,7 +19,8 @@
 <script>
   function hide(el) {
     setTimeout(() => { 
-      el.nextElementSibling.classList.add("hidden")
+      el.nextElementSibling.classList.remove("-translate-x-0")
+      el.nextElementSibling.classList.add("-translate-x-full")
      }, 250);
   }
 </script>

@@ -9,9 +9,10 @@ export default class extends Controller {
     let button =  event.currentTarget
     this.menuTargets.forEach((el) => {
       if(el == button.nextElementSibling) {
-        el.classList.toggle("hidden")
+        el.classList.toggle("-translate-x-0")
+        el.classList.toggle("-translate-x-full")
       } else {
-        el.classList.add("hidden")
+        el.classList.add("-translate-x-full")
       }
     })
   }
