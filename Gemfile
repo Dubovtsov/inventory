@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.0"
+ruby "3.1.2"
 gem "rails", "~> 7.1.2"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
@@ -17,6 +17,7 @@ gem "devise", "~> 4.9"
 gem 'faker'
 gem 'acts_as_paranoid'
 gem 'pagy'
+gem 'error_highlight'
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 

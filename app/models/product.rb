@@ -10,7 +10,7 @@ class Product < ApplicationRecord
 
   enumerize :type_product, in: [ :software, :hardware ], default: :hardware, i18n_scope: "type_product", scope: :shallow
 
-  after_save :create_product_movement
+  after_create :create_product_movement
 
   def move_to(new_storehouse, amount)
     # Начинаем транзакцию

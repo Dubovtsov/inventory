@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_30_074313) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_31_203620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,7 +95,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_074313) do
     t.date "accepted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "storehouse_id", default: 1, null: false
+    t.bigint "storehouse_id"
     t.string "type_product"
     t.bigint "vendor_id"
     t.date "end_date"
@@ -116,6 +116,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_30_074313) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.boolean "employee", default: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_storehouses_on_deleted_at"
   end
 
   create_table "vendors", force: :cascade do |t|
