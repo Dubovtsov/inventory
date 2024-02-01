@@ -1,9 +1,5 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
+<div class="md:w-full lg:w-full w-full flex">
+  <div class="mx-auto w-full">
     <%= render @product %>
     <%= link_to 'Назад', products_path, class: "mt-2 shadow rounded-lg py-3 px-5 bg-gray-50 hover:bg-white inline-block font-medium" %>
   </div>

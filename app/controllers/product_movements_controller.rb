@@ -1,9 +1,10 @@
 class ProductMovementsController < ApplicationController
+  include Pagy::Backend
   before_action :set_product_movement, only: %i[ show edit update destroy ]
 
   # GET /product_movements or /product_movements.json
   def index
-    @product_movements = ProductMovement.with_deleted
+    @pagy, @product_movements = pagy(ProductMovement.with_deleted.order(created_at: :desc), items: 12)
   end
 
   # GET /product_movements/1 or /product_movements/1.json

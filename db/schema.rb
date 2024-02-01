@@ -95,7 +95,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_31_203620) do
     t.date "accepted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "storehouse_id"
+    t.bigint "storehouse_id", default: 1, null: false
     t.string "type_product"
     t.bigint "vendor_id"
     t.date "end_date"

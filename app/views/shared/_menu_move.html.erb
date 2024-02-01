@@ -9,7 +9,9 @@
     
     <% Storehouse.all.each do |storehouse| %>
       <li>
-        <%= button_to storehouse.title, move_to_storehouse_product_url(product, new_storehouse_id: storehouse.id), method: :post, class: "block text-start px-4 py-2 w-full hover:bg-amber-100" %>
+        <%= button_to move_to_storehouse_product_url(product, new_storehouse_id: storehouse.id), method: :post, class: "block text-start px-4 py-2 w-full hover:bg-amber-100" do %>
+          ➡️ <%= storehouse.title %>
+        <% end %>
         <%#= link_to "Редактировать", send("edit_#{model.class.name.downcase}_path", model), data: { turbo_frame: 'modal' }, class:"block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition" %>
       </li>
     <% end %>

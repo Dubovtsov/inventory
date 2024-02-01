@@ -1,31 +1,46 @@
 <div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
   <div class="flex justify-between items-center mb-4">
     <h1 class="font-bold text-gray-700 text-2xl">Передвижения по складам</h1>
-    <%= link_to "New product movement", new_product_movement_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%#= link_to "New product movement", new_product_movement_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
-
+  <%== pagy_nav(@pagy) %>
   <div id="product_movements" class="min-w-full">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th scope="col" class="px-6 py-3">
-              Из склада
+          <tr class="text-amber-800">
+            <th scope="col" class="px-6 py-3 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 -960 960 960" width="24" class="text-amber-500"><script xmlns=""/>
+                <path d="M240-160q-50 0-85-35t-35-85H80q-17 0-28.5-11.5T40-320v-400q0-33 23.5-56.5T120-800h480q33 0 56.5 23.5T680-720v80h80q19 0 36 8.5t28 23.5l88 117q4 5 6 11t2 13v147q0 17-11.5 28.5T880-280h-40q0 50-35 85t-85 35q-50 0-85-35t-35-85H360q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T280-280q0-17-11.5-28.5T240-320q-17 0-28.5 11.5T200-280q0 17 11.5 28.5T240-240Zm480 0q17 0 28.5-11.5T760-280q0-17-11.5-28.5T720-320q-17 0-28.5 11.5T680-280q0 17 11.5 28.5T720-240Zm-40-200h170l-90-120h-80v120Z"/><style xmlns="" type="text/css" id="igtranslator-color"/>
+              </svg>
+              <span class="ms-3">Из склада</span>
             </th>
             <th scope="col" class="px-6 py-3">
             </th>
             <th scope="col" class="px-6 py-3">
-              На склад
+              <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 -960 960 960" width="24" class="text-amber-500"><script xmlns=""/>
+                  <path d="M200-800h560q17 0 28.5 11.5T800-760q0 17-11.5 28.5T760-720H200q-17 0-28.5-11.5T160-760q0-17 11.5-28.5T200-800Zm0 640q-17 0-28.5-11.5T160-200v-200h-7q-19 0-31-14.5t-8-33.5l40-200q3-14 14-23t25-9h574q14 0 25 9t14 23l40 200q4 19-8 33.5T807-400h-7v200q0 17-11.5 28.5T760-160q-17 0-28.5-11.5T720-200v-200H560v200q0 17-11.5 28.5T520-160H200Zm40-80h240v-160H240v160Z"/><style xmlns="" type="text/css" id="igtranslator-color"/>
+                </svg>
+                <span class="ms-3">На склад</span>
+              </div>
             </th>
+          
             <th scope="col" class="px-6 py-3">
-              Продукт
+              <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 -960 960 960" width="24" class="text-amber-500"><script xmlns=""/>
+                  <path d="M360-640h240v-80H360v80ZM120-160q-17 0-28.5-11.5T80-200v-160h160q0 17 11.5 28.5T280-320q17 0 28.5-11.5T320-360h320q0 17 11.5 28.5T680-320q17 0 28.5-11.5T720-360h160v160q0 17-11.5 28.5T840-160H120ZM80-400v-160q0-33 23.5-56.5T160-640h120v-80q0-33 23.5-56.5T360-800h240q33 0 56.5 23.5T680-720v80h120q33 0 56.5 23.5T880-560v160H720v-40q0-17-11.5-28.5T680-480q-17 0-28.5 11.5T640-440v40H320v-40q0-17-11.5-28.5T280-480q-17 0-28.5 11.5T240-440v40H80Z"/><style xmlns="" type="text/css" id="igtranslator-color"/><script xmlns=""/>
+                </svg>
+                <span class="ms-3">Продукт</span>
+              </div>
             </th>
-            <th scope="col" class="px-6 py-3">
-              Количество
+            <th scope="col" class="px-6 py-3 text-center">
+              <div class="flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 -960 960 960" width="24" class="text-amber-500"><script xmlns=""/>
+                  <path d="M500-480 253-708q-6-6-9.5-13.5T240-737v-23q0-17 11.5-28.5T280-800h380q25 0 42.5 17.5T720-740q0 25-17.5 42.5T660-680H431l184 171q13 12 13 29t-13 29L431-280h229q25 0 42.5 17.5T720-220q0 25-17.5 42.5T660-160H269q-12 0-20.5-8.5T240-189v-38q0-6 2-11.5t7-10.5l251-231Z"/><style xmlns="" type="text/css" id="igtranslator-color"/>
+                </svg>
+                <span class="ms-3">Кол-во</span>
+              </div>
             </th>
             <th scope="col" class="px-6 py-3">
               Дата
