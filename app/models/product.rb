@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   has_many :product_movements, class_name: "ProductMovement", dependent: :destroy
   belongs_to :storehouse
   belongs_to :vendor
+  belongs_to :client
 
   enumerize :type_product, in: [ :software, :hardware ], default: :hardware, i18n_scope: "type_product", scope: :shallow
 

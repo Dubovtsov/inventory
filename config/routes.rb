@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :clients
   get 'backups/create_backup'
   resources :prices
   resources :product_movements

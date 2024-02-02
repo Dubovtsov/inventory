@@ -1,0 +1,16 @@
+<%= form_with(model: client, class: "contents flex items-center") do |form| %>
+  <% if client.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+        <% client.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.text_field :title, class: "w-full px-4 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:border-blue-500" %>
+  <%= form.submit class: "ml-2 px-4 py-2 bg-blue-500 text-white rounded shadow-sm hover:bg-blue-600 focus:outline-none" %>
+<% end %>
