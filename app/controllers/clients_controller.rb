@@ -35,6 +35,13 @@ class ClientsController < ApplicationController
         format.html { redirect_to client_url(@client), notice: "Client was successfully created." }
         format.json { render :show, status: :created, location: @client }
       else
+        format.turbo_stream do
+          helpers.fields model: Product.new do |form|
+            render turbo_stream: turbo_stream.update(
+              :new_client_form, partial: "products/client_select", locals: {form: form}
+            )
+          end
+        end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end

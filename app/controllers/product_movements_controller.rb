@@ -4,7 +4,7 @@ class ProductMovementsController < ApplicationController
 
   # GET /product_movements or /product_movements.json
   def index
-    @pagy, @product_movements = pagy(ProductMovement.with_deleted.order(created_at: :desc), items: 12)
+    @pagy, @product_movements = pagy(ProductMovement.with_deleted.order(created_at: :desc), items: 16)
   end
 
   # GET /product_movements/1 or /product_movements/1.json

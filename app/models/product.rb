@@ -9,8 +9,12 @@ class Product < ApplicationRecord
   belongs_to :vendor
   belongs_to :client
 
+  validates :title, presence: true
+  validates :inventory_number, uniqueness: true
+
   enumerize :type_product, in: [ :software, :hardware ], default: :hardware, i18n_scope: "type_product", scope: :shallow
 
+  before_create :set_inventory_number
   after_create :create_product_movement
 
   def move_to(new_storehouse, amount)
@@ -23,15 +27,28 @@ class Product < ApplicationRecord
     end
   end
 
-  def create_product_movement
-    # Создаем новый объект ProductMovement с параметрами
-    product_movements.create!(from_storehouse: Storehouse.find_by(title: "Покупка"), to_storehouse: Storehouse.find_by(id: storehouse_id), quantity: amount, date_movement: DateTime.current.to_date)
-  end
-
   def self.ransackable_attributes(auth_object = nil)
     ["accepted_at", "created_at", "description", "id", "id_value", "inventory_number", "serial_number", "storehouse_id", "title", "type_product", "updated_at"]
   end
   def self.ransackable_associations(auth_object = nil)
     ["storehouse"]
+  end
+
+  private
+
+  def create_product_movement
+    # Создаем новый объект ProductMovement с параметрами
+    product_movements.create!(from_storehouse: Storehouse.find_by(title: "Покупка"), to_storehouse: Storehouse.find_by(id: storehouse_id), quantity: amount, date_movement: DateTime.current.to_date)
+  end
+
+  def set_inventory_number
+    if !Product.maximum(:inventory_number).present?
+      self.inventory_number = 1001
+    else
+      last_number = Product.maximum(:inventory_number)
+      if last_number.present?
+        self.inventory_number = last_number.to_i + 1
+      end
+    end
   end
 end
