@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
+  resources :invoice_products
+  resources :invoices
   resources :clients
   get 'backups/create_backup'
   resources :prices
   resources :product_movements
   resources :vendors
-  resources :storehouses
+  resources :storehouses do
+    member do
+      post :invoice_create
+    end
+  end
   resources :employees
   resources :products do
     member do

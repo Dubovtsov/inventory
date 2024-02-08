@@ -1,0 +1,2 @@
+module InvoiceProductsHelper
+end

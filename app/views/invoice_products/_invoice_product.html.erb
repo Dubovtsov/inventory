@@ -1,0 +1,22 @@
+<div id="<%= dom_id invoice_product %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Product:</strong>
+    <%= invoice_product.product_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Invoice:</strong>
+    <%= invoice_product.invoice_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Closed:</strong>
+    <%= invoice_product.closed %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this invoice product", invoice_product, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this invoice product", edit_invoice_product_path(invoice_product), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 <div class="w-full">
   <div class="flex justify-between items-center mb-4">
-    <h1 class="font-bold text-gray-700 text-2xl">Products</h1>
+    <h1 class="font-bold text-gray-700 text-2xl">Products | <span class="text-gray-400">Всего позиции: <%= Product.all.count %></span></h1>
     <%= link_to new_product_path, class: "rounded-full flex justify-center items-center text-3xl text-center  w-8 h-8 text-amber-700 bg-amber-300 hover:bg-amber-400 font-medium" do %>
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-amber-50">
         <script xmlns=""/><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
@@ -16,7 +16,7 @@
             </svg>
         </div>
         <%= search_form_for @q do |f| %>
-          <%= f.search_field :title_or_description_cont, class:"block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Search..." %>
+          <%= f.search_field :title_or_description_cont, class:"block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-[20px] w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Search..." %>
           <%= f.submit "Найти", class:"cursor-pointer absolute end-[-70px] bottom-[1px] text-amber-700 bg-amber-300 hover:bg-amber-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
         <% end %>
     </div>
@@ -38,6 +38,9 @@
             </th>
             <th scope="col" class="px-6 py-3 border-x border-gray-200">
               <%= sort_link(@q, :accepted_at, default_order: :desc) %>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Кол-во
             </th>
             <th scope="col" class="px-6 py-3">
               Тип

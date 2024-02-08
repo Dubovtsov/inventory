@@ -13,6 +13,9 @@
       <td class="px-4 py-2 border-x border-gray-200 border-dotted">
           <%= product.accepted_at %>
       </td>
+      <td class="px-4 py-2 border-x border-gray-200 border-dotted text-center">
+        <%= product.amount %>
+      </td>
       <td class="px-4 py-2">
         <div class="p-2 rounded text-center border border-amber-400 text-[0.7rem] <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
           <%= I18n.t(product.type_product, locale: :ru) %>

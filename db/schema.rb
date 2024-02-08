@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_02_105719) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_08_082442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_105719) do
     t.string "middle_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invoice_products", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "invoice_id", null: false
+    t.boolean "closed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_invoice_products_on_invoice_id"
+    t.index ["product_id"], name: "index_invoice_products_on_product_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "invoiceable_type"
+    t.bigint "invoiceable_id"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoiceable_type", "invoiceable_id"], name: "index_invoices_on_invoiceable"
   end
 
   create_table "prices", force: :cascade do |t|
@@ -136,6 +155,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_105719) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "invoice_products", "invoices"
+  add_foreign_key "invoice_products", "products"
   add_foreign_key "prices", "vendors"
   add_foreign_key "product_movements", "products"
   add_foreign_key "product_movements", "storehouses", column: "from_storehouse_id"

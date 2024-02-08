@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invoiceable: one
+  product: one
+  date: 2024-02-06 10:49:34
+
+two:
+  invoiceable: two
+  product: two
+  date: 2024-02-06 10:49:34

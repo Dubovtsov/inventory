@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
-    @pagy, @products = pagy(@q.result(distinct: true), items: 8)
+    @pagy, @products = pagy(@q.result(distinct: true).order(created_at: :desc), items: 8)
   end
 
   def show
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
 
   def clone
     @clone = @product.dup
-    @clone.update(serial_number: "-", inventory_number: "-")
+    @clone.update(serial_number: "-", inventory_number: @clone.set_inventory_number)
     if @clone.save
       flash[:notice] = "Product cloned successfully"
       redirect_to @clone

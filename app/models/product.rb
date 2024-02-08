@@ -5,6 +5,7 @@ class Product < ApplicationRecord
 
   has_one_attached :picture
   has_many :product_movements, class_name: "ProductMovement", dependent: :destroy
+  has_many :invoices, through: :invoice_products
   belongs_to :storehouse
   belongs_to :vendor
   belongs_to :client
@@ -18,11 +19,8 @@ class Product < ApplicationRecord
   after_create :create_product_movement
 
   def move_to(new_storehouse, amount)
-    # Начинаем транзакцию
     ActiveRecord::Base.transaction do
-      # Создаем новый объект ProductMovement с параметрами
       product_movements.create!(from_storehouse: storehouse, to_storehouse: new_storehouse, quantity: amount, date_movement: DateTime.current.to_date)
-      # Изменяем атрибут warehouse_id продукта, если весь продукт перемещается
       update!(storehouse_id: new_storehouse.id) if amount == self.amount
     end
   end
@@ -34,11 +32,14 @@ class Product < ApplicationRecord
     ["storehouse"]
   end
 
-  private
+  def add_to_invoice(invoice)
+    invoice.products << product
+  end
 
-  def create_product_movement
-    # Создаем новый объект ProductMovement с параметрами
-    product_movements.create!(from_storehouse: Storehouse.find_by(title: "Покупка"), to_storehouse: Storehouse.find_by(id: storehouse_id), quantity: amount, date_movement: DateTime.current.to_date)
+  def add_product(product)
+    # Здесь предполагаем, что product - это уже существующий экземпляр Product
+    # Если ассоциация прямая, то можно использовать оператор << для добавления продукта
+    self.products << product
   end
 
   def set_inventory_number
@@ -50,5 +51,12 @@ class Product < ApplicationRecord
         self.inventory_number = last_number.to_i + 1
       end
     end
+  end
+
+  private
+
+  def create_product_movement
+    # Создаем новый объект ProductMovement с параметрами
+    product_movements.create!(from_storehouse: Storehouse.find_by(title: "Покупка"), to_storehouse: Storehouse.find_by(id: storehouse_id), quantity: amount, date_movement: DateTime.current.to_date)
   end
 end
