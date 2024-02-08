@@ -14,10 +14,10 @@
   </head>
 
   <body>
-    <div class="main">
+    <div class="main bg-stone-300">
       <div class="content h-screen">
         <div class="p-4 h-full">
-          <div class="p-4 border-2 border-gray-200 bg-gray-100 border-dashed rounded-lg dark:border-gray-700 h-full overflow-auto">
+          <div class="p-6  bg-stone-200 border-dashed rounded-[20px] dark:border-gray-700 h-full overflow-auto">
             <% if notice.present? || alert.present? %>
               <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
               <p class="alert py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
@@ -27,7 +27,7 @@
         </div>
       </div>
       <aside class="aside h-screen">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-stone-300 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
               <li>
                 <%= link_to product_movements_path, class:"flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" do %>

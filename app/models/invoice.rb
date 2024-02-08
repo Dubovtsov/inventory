@@ -6,8 +6,4 @@ class Invoice < ApplicationRecord
   def add_product(product)
     self.products << product
   end
-
-  def self.select_partners
-    partners = Client.all + Storehouse.all
-  end
 end
