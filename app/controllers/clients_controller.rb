@@ -1,5 +1,5 @@
 class ClientsController < ApplicationController
-  before_action :set_client, only: %i[ show edit update destroy ]
+  before_action :set_client, only: %i[ show edit update destroy invoice_create ]
 
   # GET /clients or /clients.json
   def index
@@ -19,6 +19,12 @@ class ClientsController < ApplicationController
   def edit
   end
 
+  def invoice_create
+    @invoice = @client.invoices.create!
+    respond_to do |format|
+      format.html { redirect_to invoice_url(@invoice), notice: "invoice was successfully created." }
+    end
+  end
   # POST /clients or /clients.json
   def create
     @client = Client.new(client_params)

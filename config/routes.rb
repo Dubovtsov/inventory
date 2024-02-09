@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :invoice_products
   resources :invoices
-  resources :clients
+  resources :clients do
+    member do
+      post :invoice_create
+    end
+  end
   get 'backups/create_backup'
   resources :prices
   resources :product_movements

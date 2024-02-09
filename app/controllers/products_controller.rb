@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true)
     @pagy, @products = pagy(@q.result(distinct: true).order(created_at: :desc), items: 8)
+    @partners = Client.all + Storehouse.all
   end
 
   def show

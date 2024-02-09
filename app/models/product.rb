@@ -6,6 +6,10 @@ class Product < ApplicationRecord
   has_one_attached :picture
   has_many :product_movements, class_name: "ProductMovement", dependent: :destroy
   has_many :invoices, through: :invoice_products
+
+  # has_many :podcasts, through: :subscriptions, source: :subscribable, source_type: 'Podcast'
+  # has_many :newspapers, through: :subscriptions, source: :subscribable, source_type: 'Newspaper'
+
   belongs_to :storehouse
   belongs_to :vendor
   belongs_to :client

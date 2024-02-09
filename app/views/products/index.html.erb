@@ -1,7 +1,7 @@
 <div class="w-full">
   <div class="flex justify-between items-center mb-4">
-    <h1 class="font-bold text-gray-700 text-2xl">Products | <span class="text-gray-400">Всего позиции: <%= Product.all.count %></span></h1>
-    <%= link_to new_product_path, class: "rounded-full flex justify-center items-center text-3xl text-center  w-8 h-8 text-amber-700 bg-amber-300 hover:bg-amber-400 font-medium" do %>
+    <h1 class="font-bold text-gray-700 text-2xl">Оборудовние и ПО | <span class="text-gray-400">Всего позиции: <%= Product.all.count %></span></h1>
+    <%= link_to new_product_path, class: "rounded-[10px] flex justify-center items-center text-3xl text-center  w-8 h-8 text-amber-800 bg-amber-400 hover:bg-amber-500 font-medium" do %>
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-amber-50">
         <script xmlns=""/><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
         <style xmlns="" type="text/css" id="igtranslator-color"/>
@@ -11,9 +11,9 @@
   <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4">
     <div class="relative">
         <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
+          <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+          </svg>
         </div>
         <%= search_form_for @q do |f| %>
           <%= f.search_field :title_or_description_cont, class:"block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-[15px] w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder: "Search..." %>
@@ -23,7 +23,7 @@
   </div>
   <div id="products" class="min-w-full" data-controller="menu">
   <%== pagy_nav(@pagy) %>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-2xl mt-2">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
