@@ -1,9 +1,9 @@
 <div id="<%= dom_id storehouse %>" class="">
-  <%= link_to storehouse, class:"flex flex-col items-center bg-slate-100 border border-slate-200 transition rounded-3xl md:flex-row md:max-w-xl hover:bg-slate-300 hover:border-white dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700" do %>
+  <%= link_to storehouse, class:"flex flex-col items-center bg-slate-200 border border-slate-300 transition rounded-3xl md:flex-row md:max-w-xl hover:bg-slate-300 hover:border-slate-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700" do %>
     <% if storehouse.image.attached? %>
       <%= image_tag storehouse.image, class: "object-cover w-full rounded-s-3xl h-96 md:h-auto md:w-48 " %>
     <% else %>
-      <div class="ml-4 w-20 h-20 rounded-full border border-slate-200 bg-slate-50 flex items-center justify-center">
+      <div class="ml-4 w-20 h-20 rounded-full border border-slate-300 bg-slate-50 flex items-center justify-center">
         <div class="text-sky-900 font-bold uppercase"><%= storehouse.title[0] + storehouse.title[1] %></div>
       </div>
     <% end %>

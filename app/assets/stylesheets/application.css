@@ -17,15 +17,33 @@
  html, body { 
   font-family: 'Montserrat', sans-serif;
  }
-.main {  display: grid;
+/* .main {  display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 0.1fr 1.9fr; 
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
+      "nav nav nav nav nav nav";
       "aside content content content content content";
   }
   
 .content { grid-area: content; }
 
 .aside { grid-area: aside; }
+
+header {
+  grid-area: nav;
+} */
+
+.main {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 0.1fr 1.9fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "nav nav nav nav nav nav"
+    "aside content content content content content"; 
+}
+.aside { grid-area: aside; }
+.nav { grid-area: nav; }
+.content { grid-area: content; }

@@ -20,19 +20,19 @@ class InvoicesController < ApplicationController
   end
 
   # # POST /invoices or /invoices.json
-  # def create
-  #   @invoice = Invoice.new(invoice_params)
+  def create
+    @invoice = Invoice.new(invoice_params)
 
-  #   respond_to do |format|
-  #     if @invoice.save
-  #       format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully created." }
-  #       format.json { render :show, status: :created, location: @invoice }
-  #     else
-  #       format.html { render :new, status: :unprocessable_entity }
-  #       format.json { render json: @invoice.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+    respond_to do |format|
+      if @invoice.save
+        format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully created." }
+        format.json { render :show, status: :created, location: @invoice }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @invoice.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /invoices/1 or /invoices/1.json
   def update
@@ -65,6 +65,6 @@ class InvoicesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invoice_params
-      params.require(:invoice).permit(:invoiceable, :date)
+      params.require(:invoice).permit(:storehouse_id, :user_id, :client_id, :date)
     end
 end

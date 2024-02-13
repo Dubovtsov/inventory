@@ -1,7 +1,10 @@
 class Invoice < ApplicationRecord
-  belongs_to :invoiceable, polymorphic: true
+  # belongs_to :invoiceable, polymorphic: true
   has_many :invoice_products
   has_many :products, through: :invoice_products
+  belongs_to :user
+  belongs_to :client
+  belongs_to :storehouse
 
   def add_product(product)
     self.products << product

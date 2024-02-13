@@ -1,7 +1,7 @@
 <div id="<%= dom_id invoice %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Invoiceable:</strong>
-    <%= invoice.invoiceable.title %>
+    <strong class="block font-medium mb-1">Number:</strong>
+    <%= invoice.id %>
   </p>
   <p class="my-5">
     <strong class="block font-medium mb-1">Date:</strong>
@@ -9,8 +9,10 @@
   </p>
 
   <p>
-    <%= invoice.invoiceable.title %>
+    <%= invoice.client.title %>
   </p>
+  <%= invoice.storehouse.title %>
+  <%= invoice.user.email %>
 
   <% if action_name != "show" %>
     <%= link_to "Show this invoice", invoice, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
