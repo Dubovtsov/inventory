@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   include Pagy::Backend
-  before_action :set_product, only: %i[ show edit update destroy move_to_storehouse clone ]
-
+  before_action :set_product, only: %i[ show edit update destroy move_to_storehouse clone add_to_invoice remove_from_invoice ]
+  before_action :set_invoice, only: %i[ add_to_invoice remove_from_invoice ]
   # GET /products or /products.json
   def index
     @q = Product.ransack(params[:q])
@@ -19,6 +19,26 @@ class ProductsController < ApplicationController
 
   def edit
   end
+
+
+  def add_to_invoice
+    @product.add_to_invoice(@invoice)
+    new_storehouse = @invoice.storehouse
+    @product.move_to(new_storehouse, 1)
+    respond_to do |format|
+      format.html { redirect_to invoice_url(@invoice), notice: "Product was successfully added." }
+    end
+  end
+
+  def remove_from_invoice
+    @product.remove_from_invoice(@invoice)
+    old_storehouse = @product.product_movements.last.from_storehouse
+    @product.move_to(old_storehouse, 1)
+    respond_to do |format|
+      format.html { redirect_to invoice_url(@invoice), notice: "Product was successfully removed." }
+    end
+  end
+
 
   def move_to_storehouse
     new_storehouse = Storehouse.find(params[:new_storehouse_id])
@@ -80,6 +100,10 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def set_invoice
+      @invoice = Invoice.find(params[:invoice_id])
     end
 
     # Only allow a list of trusted parameters through.

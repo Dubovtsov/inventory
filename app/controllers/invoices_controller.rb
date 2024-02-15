@@ -8,6 +8,11 @@ class InvoicesController < ApplicationController
 
   # GET /invoices/1 or /invoices/1.json
   def show
+    if params[:query]
+      @products = Product.search(params[:query])
+    else
+      @products = Product.all
+    end
   end
 
   # GET /invoices/new

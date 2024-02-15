@@ -3,9 +3,9 @@
     <div class="flex gap-2">
       <%= link_to "Редактировать", edit_storehouse_path(@storehouse), class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500 inline-block" %>
       <div class="">
-        <%= button_to "Удалить", storehouse_path(@storehouse), method: :delete, class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500" %>
+        <%= button_to "Удалить", storehouse_path(@storehouse), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500" %>
       </div>
-      <%= button_to "Создать накладную", invoice_create_storehouse_path(@storehouse), class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500 inline-block", method: :post %>
+      <%#= button_to "Создать накладную", invoice_create_storehouse_path(@storehouse), class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500 inline-block", method: :post %>
       <%= link_to 'Назад', :back, class: "mt-2 shadow rounded-lg py-1 px-4 bg-gray-50 hover:bg-white inline-block" %>
     </div>
 

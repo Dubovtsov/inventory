@@ -37,13 +37,11 @@ class Product < ApplicationRecord
   end
 
   def add_to_invoice(invoice)
-    invoice.products << product
+    invoice.products << self
   end
 
-  def add_product(product)
-    # Здесь предполагаем, что product - это уже существующий экземпляр Product
-    # Если ассоциация прямая, то можно использовать оператор << для добавления продукта
-    self.products << product
+  def remove_from_invoice(invoice)
+    invoice.products.delete(self)
   end
 
   def set_inventory_number

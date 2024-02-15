@@ -2,24 +2,18 @@ Rails.application.routes.draw do
   devise_for :users
   resources :invoice_products
   resources :invoices
-  resources :clients do
-    member do
-      post :invoice_create
-    end
-  end
+  resources :clients
   get 'backups/create_backup'
   resources :prices
   resources :product_movements
   resources :vendors
-  resources :storehouses do
-    member do
-      post :invoice_create
-    end
-  end
+  resources :storehouses
   resources :employees
   resources :products do
     member do
       post :move_to_storehouse
+      post :add_to_invoice
+      post :remove_from_invoice
       post :clone
     end
   end

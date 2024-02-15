@@ -1,5 +1,5 @@
 <div id="<%= dom_id product_movement %>">
-  <tr class="bg-stone-50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 <%= "bg-red-200" if product_movement.deleted_at.present? %>">
+  <tr class="bg-slate-50 border-b hover:bg-slate-200 <%= "bg-red-200" if product_movement.deleted_at.present? %>">
     <td class="px-6 py-2 font-medium text-gray-900 dark:text-white max-w-[500px]">
       <%= product_movement.from_storehouse_including_deleted.title %>
     </td>

@@ -5,8 +5,5 @@ class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :client
   belongs_to :storehouse
-
-  def add_product(product)
-    self.products << product
-  end
+  after_update_commit -> { broadcast_replace_to "products" }
 end

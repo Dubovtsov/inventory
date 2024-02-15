@@ -1,10 +1,7 @@
-<div id="<%= dom_id client %>" class="bg-stone-100 px-6 py-6 rounded-[30px]">
-  <p class="">
-    <%= link_to client.title, client, class: "rounded-lg py-3 px-5 inline-block font-medium" %>
-  </p>
-  <hr class="mb-6 border border-stone-200">
+<div id="<%= dom_id client %>" class="bg-slate-200 px-6 py-6 rounded-[30px]">
+  <%= link_to client.title, client, class: "rounded-lg py-3 px-5 inline-block font-semibold text-center" %>
+  <hr class="mb-6 border border-slate-300">
   <% if action_name != "show" %>
-    <%= link_to "Edit this client", edit_client_path(client), class: "rounded-[15px] py-3 ml-2 px-5 hover:bg-stone-200 border border-stone-300 text-stone-800 inline-block font-medium" %>
-    
+    <%= link_to "Редактировать", edit_client_path(client), class: "transition rounded-[15px] py-3 ml-2 px-5 bg-slate-300 hover:border-slate-400 border border-slate-300 text-slate-800 inline-block text-sm font-medium" %>
   <% end %>
 </div>

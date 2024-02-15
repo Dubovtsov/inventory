@@ -1,17 +1,14 @@
 class StorehousesController < ApplicationController
   before_action :set_storehouse, only: %i[ show edit update destroy invoice_create ]
 
-  # GET /storehouses or /storehouses.json
   def index
     @storehouses = Storehouse.all.order(:employee)
   end
 
-  # GET /storehouses/1 or /storehouses/1.json
   def show
     @products = @storehouse.products
   end
 
-  # GET /storehouses/new
   def new
     @storehouse = Storehouse.new
   end
@@ -22,11 +19,10 @@ class StorehousesController < ApplicationController
       format.html { redirect_to invoice_url(@invoice), notice: "Storehouse was successfully created." }
     end
   end
-  # GET /storehouses/1/edit
+
   def edit
   end
 
-  # POST /storehouses or /storehouses.json
   def create
     @storehouse = Storehouse.new(storehouse_params)
 

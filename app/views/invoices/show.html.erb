@@ -1,23 +1,84 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @invoice %>
-
-    <%= link_to "Edit this invoice", edit_invoice_path(@invoice), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this invoice", invoice_path(@invoice), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<div class="mx-auto w-full flex gap-6 justify-between">
+  <div class="max-w-[595px] min-w-[595px] bg-white shadow-md border border-gray-200 px-7 py-6">
+    <div id="<%= dom_id @invoice %>">
+      <div class="flex justify-between px-6">
+        <div>
+          <h1 class="text-xl">Накладная № <%= @invoice.id %></h1>
+          <p class="text-sm">на отпуск позиций</p>
+        </div>
+        <div class="text-xs font-semibold"><%= @invoice.created_at.to_date %></div>
+      </div>
+      
+      <div class="grid grid-cols-3 grid-rows-3 my-6 text-sm">
+        <div class="col-span-1">
+          Со склада
+        </div>
+        <div class="col-span-2 border-b border-b-gray-200 px-6">
+          <% @invoice.products.each do |product| %>
+            [<%= product.product_movements.last.from_storehouse.title %>] 
+          <% end %>
+        </div>
+        <div class="col-span-1">
+          Кому:
+        </div>
+        <div class="col-span-2 border-b border-gray-200 px-6">
+          <%= @invoice.storehouse.title %>
+        </div>
+        <div class="col-span-1">
+          Для кого:
+        </div>
+        <div class="col-span-2 border-b border-gray-200 px-6">
+          <%= @invoice.client.title %>
+        </div>
+      </div>
     </div>
-    <%= link_to "Back to invoices", invoices_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 
-    <ul>
-      <% @invoice.products.each do |p| %>
-      <li>
-        <%= p.title %>
-      </li>
-      <% end %>
-    </ul>
+    <%= link_to "Edit this invoice", edit_invoice_path(@invoice), class: "mt-2 rounded-lg py-1 px-2 bg-gray-100 inline-block text-xs font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this invoice", invoice_path(@invoice), method: :delete, class: "mt-2 rounded-lg py-1 px-2 bg-gray-100 text-xs font-medium" %>
+    </div>
+    <%= link_to "Back to invoices", invoices_path, class: "ml-2 rounded-lg py-1 px-2 bg-gray-100 inline-block text-xs font-medium" %>
+
+    <table class="text-xs border-collapse w-full">
+      <tbody>
+        <tr>
+          <th class="border border-slate-200 px-1">#</th>
+          <th class="border border-slate-200 px-1">Наименование</th>
+          <th class="border border-slate-200 px-1">Инв. №</th>
+          <th class="border border-slate-200 px-1">Кол-во</th>
+          <th class="border border-slate-200 px-1"></th>
+        </tr>
+        <% n = 0 %>
+        <% @invoice.products.each do |product| %>
+          <tr class="border border-slate-200">
+            <td class="border border-slate-200 px-1"><%= n += 1 %></td>
+            <td class="border border-slate-200 px-1"><%= product.title %></td>
+            <td class="border border-slate-200 px-1 text-end"><%= product.inventory_number %></td>
+            <td class="border border-slate-200 px-1 text-end"><%= product.amount %></td>
+            <td class="px-4"><%= button_to "✖", remove_from_invoice_product_path(product), params: {invoice_id: @invoice}, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :post ,class: "transition px-2 text-amber-500 hover:underline" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="w-2/3" data-controller="search">
+    <input data-remote='true' data-search-target="source" 
+              data-action="input->search#filter" 
+              type="search" 
+              class="search border border-gray-200 rounded" 
+              placeholder="Поиск.." />
+    <div id="products" class="bg-white scrollbar border mt-3 rounded h-[60vh] overflow-auto" data-search-target="results" >
+      <table class="text-xs border-collapse">
+        <% @products.each do |p| %>
+
+          <tr class="border border-slate-200 text-sm" data-search-target="filterable" data-search-key='<%= "#{p.title}".downcase %>'>
+            <td class="px-4"><%= p.title %></td>
+            <td class="text-slate-400 px-4"><%= p.storehouse.title %></td>
+            <td class="px-4"><%= button_to "добавить", add_to_invoice_product_path(p), params: {invoice_id: @invoice}, method: :post ,class: "transition px-2 text-amber-500 hover:underline" %></td>
+          </tr>
+
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>
