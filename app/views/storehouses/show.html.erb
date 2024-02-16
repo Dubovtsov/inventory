@@ -1,18 +1,20 @@
 <div class="mx-auto w-full grid mb-2">
     <%= render @storehouse %>
     <div class="flex gap-2">
-      <%= link_to "Редактировать", edit_storehouse_path(@storehouse), class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500 inline-block" %>
-      <div class="">
-        <%= button_to "Удалить", storehouse_path(@storehouse), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500" %>
-      </div>
+      <% if current_user.admin? %>
+        <%= link_to "Редактировать", edit_storehouse_path(@storehouse), class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500 inline-block" %>
+        <div class="">
+          <%= button_to "Удалить", storehouse_path(@storehouse), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500" %>
+        </div>
+      <% end  %>
       <%#= button_to "Создать накладную", invoice_create_storehouse_path(@storehouse), class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500 inline-block", method: :post %>
-      <%= link_to 'Назад', :back, class: "mt-2 shadow rounded-lg py-1 px-4 bg-gray-50 hover:bg-white inline-block" %>
+      <%= link_to 'Назад', :back, class: "mt-2 border border-slate-300 rounded-lg py-1 px-4 bg-slate-50 hover:bg-white text-slate-500 inline-block" %>
     </div>
 
 </div>
-<div class="shadow-md sm:rounded-2xl">
+<div class="relative overflow-x-auto border border-slate-300 sm:rounded-xl">
    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-100">
       <tr>
         <th scope="col" class="px-6 py-3">
           Наименование
@@ -36,25 +38,25 @@
     </thead>
     <tbody>
       <% @products.each do |product| %>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white max-w-[500px]">
+        <tr class="bg-white border-b hover:bg-gray-50 text-sm">
+          <th scope="row" class="px-6 py-1 font-medium text-gray-900 dark:text-white max-w-[500px]">
             <%= link_to product.title, product %>
           </th>
-          <td class="px-6 py-4">
+          <td class="px-6 py-1">
               <%= product.description.truncate(200) %>
           </td>
-          <td class="px-6 py-4">
+          <td class="px-6 py-1">
               <%= product.inventory_number %>
           </td>
-          <td class="px-6 py-4">
+          <td class="px-6 py-1">
               <%= product.accepted_at %>
           </td>
-          <td class="px-6 py-4">
+          <td class="px-6 py-1">
             <div class="p-2 rounded text-center text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
               <%= I18n.t(product.type_product, locale: :ru) %>
             </div>
           </td>
-          <td class="px-6 py-4 text-right">
+          <td class="px-6 py-1 text-right">
             <%= link_to "Edit", edit_product_path(product), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
           </td>
         </tr>

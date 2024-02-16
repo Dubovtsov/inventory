@@ -4,7 +4,7 @@
       <%= link_to invoice.id, invoice, class: "rounded-lg py-1 px-4 bg-gray-100 inline-block font-medium" %>
     </td>
     <td class="px-4 py-1 border-x border-gray-200 border-dotted">
-        <span class="<%= invoice.user == current_user ? "bg-green-300 px-2 py-1 rounded text-green-800 font-medium" : "" %>"><%= invoice.user.email %></span>
+        <span class="<%= invoice.user == current_user ? "bg-green-300  border border-green-400 px-2 py-1 rounded text-green-800 font-medium" : "" %>"><%= invoice.user.email %></span>
     </td>
     <td class="px-4 py-1 border-x border-gray-200 border-dotted">
         <%= invoice.client.title %>

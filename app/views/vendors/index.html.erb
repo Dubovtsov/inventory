@@ -1,36 +1,26 @@
 <div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
   <div class="flex justify-between items-center mb-4">
-    <h1 class="font-bold text-4xl">Поставщики</h1>
-    <%= link_to new_vendor_path, class: "rounded-full transition-colors duration-300 ease-in-out flex justify-center items-center text-3xl text-center  w-8 h-8 bg-gradient-to-b from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 font-medium" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-amber-50">
+    <h1 class="font-bold text-3xl text-slate-500">Поставщики</h1>
+    <%= link_to new_vendor_path, class: "rounded-full flex shadow justify-center items-center text-4xl w-8 h-8 border border-amber-400 transition text-amber-900 bg-amber-300 hover:bg-amber-400 font-medium" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-amber-900">
         <script xmlns=""/><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
         <style xmlns="" type="text/css" id="igtranslator-color"/>
       </svg>
     <% end %>
   </div>
 
-  <div id="vendors" class="min-w-full p-6 bg-stone-100 rounded-[30px] ">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 rounded-[30px] bg-stone-300 uppercase">
-        <tr class="rounded-[30px]">
-          <th scope="col" class="px-6 py-3">
-            Наименование
-          </th>
-          <th scope="col" class="px-6 py-3">
-            Менеджер
-          </th>
-          <th scope="col" class="px-6 py-3">
-            Action
-          </th>
+  <div class="relative border-collapse overflow-x-auto border border-slate-300 sm:rounded-2xl">
+    <table class="text-xs w-full border">
+      <thead class=" text-gray-700 uppercase bg-slate-300">
+        <tr>
+          <th class="px-6 py-3">Наименование</th>
+          <th class="px-6 py-3">Менеджер</th>
+          <th class="px-6 py-3"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="bg-slate-50">
         <%= render @vendors %>
       </tbody>
-    </table>
+    </table> 
   </div>
 </div>
