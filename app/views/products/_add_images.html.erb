@@ -11,11 +11,8 @@
     </div>
   <% end %>
 
-  <div class="my-5">
+  <div class="inline my-5 p-4 border border-amber-300 ">
     <%= form.file_field :images, multiple: true %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit "ОК", class: "rounded-lg py-2 px-3 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit "Добавить файлы", class: "px-6 py-2 transition text-slate-900 bg-amber-300 hover:bg-amber-400 font-medium cursor-pointer" %>
   </div>
 <% end %>

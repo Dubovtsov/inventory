@@ -2,7 +2,7 @@ span.font-size-13.font-weight-bold.mt-2 Прикрепленные файлы:
 
 - resource.images.each do |image|
   = content_tag(:div, id: "attached-file-#{image.id}", class: "")
-    div.flex.w-full.my-2.rounded-lg.border-2.border-orange-100.items-center.px-3.py-2.bg-white
+    div.flex.w-full.my-2.rounded-lg.border-2.border-amber-300.items-center.px-3.py-2.bg-white
       div.flex.w-16.h-16.bg-indigo-50.justify-center.font-bold.border.border-white.items-center.flex-shrink-0.rounded-full.mr-4
         = File.extname("#{image.filename}").delete('.')
 
