@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   acts_as_paranoid
 
   has_one_attached :picture
+  has_many_attached :images
   has_many :product_movements, class_name: "ProductMovement", dependent: :destroy
   has_many :invoices, through: :invoice_products
 

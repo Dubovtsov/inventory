@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.3.0"
 gem "rails", "~> 7.1.2"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
@@ -20,6 +20,7 @@ gem 'pagy'
 gem 'error_highlight'
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
+gem "slim"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

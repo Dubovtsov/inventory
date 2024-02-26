@@ -76,6 +76,14 @@
       <%= form.check_box :shipped %>
     </div>
     <div class="my-3">
+      <%= form.label "Розничная цена", class:"font-semibold text-sm" %>
+      <%= form.text_field :retail_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-3">
+      <%= form.label "Закупочная цена", class:"font-semibold text-sm" %>
+      <%= form.text_field :purchase_price, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-3">
       <%= form.label "Количество", class:"font-semibold text-sm" %>
       <%= form.text_field :amount, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     </div>

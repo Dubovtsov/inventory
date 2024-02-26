@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       post :clone
     end
   end
-
+  resources :attachments, only: :destroy
   devise_for :administrators
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

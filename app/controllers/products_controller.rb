@@ -110,6 +110,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:title, :description, :serial_number, :inventory_number,
                                       :accepted_at, :storehouse_id, :type_product, :picture, :vendor_id, :end_date,
-                                      :rent, :shipped, :amount, :client_id)
+                                      :rent, :shipped, :amount, :client_id, :retail_price, :purchase_price, images: [])
     end
 end

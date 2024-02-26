@@ -36,14 +36,14 @@ header {
 } */
 
 .main {
-  display: grid; 
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
   grid-template-rows: 0.1fr 1.9fr; 
   gap: 0px 0px; 
   grid-template-areas: 
     "nav nav nav nav nav nav"
-    "aside content content content content content"; 
+    "aside content-main content-main content-main content-main content-main"
 }
 .aside { grid-area: aside; }
 .nav { grid-area: nav; }
-.content { grid-area: content; }
+.content { grid-area: content-main; }
