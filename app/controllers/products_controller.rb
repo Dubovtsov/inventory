@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   include Pagy::Backend
-  before_action :set_product, only: %i[ show edit update destroy move_to_storehouse clone add_to_invoice remove_from_invoice ]
+  before_action :set_product, only: %i[ show edit update destroy move_to_storehouse clone add_to_invoice remove_from_invoice add_files ]
   before_action :set_invoice, only: %i[ add_to_invoice remove_from_invoice ]
   # GET /products or /products.json
   def index
@@ -20,7 +20,6 @@ class ProductsController < ApplicationController
   def edit
   end
 
-
   def add_to_invoice
     @product.add_to_invoice(@invoice)
     new_storehouse = @invoice.storehouse
@@ -38,7 +37,6 @@ class ProductsController < ApplicationController
       format.html { redirect_to invoice_url(@invoice), notice: "Product was successfully removed." }
     end
   end
-
 
   def move_to_storehouse
     new_storehouse = Storehouse.find(params[:new_storehouse_id])
@@ -73,7 +71,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1 or /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -86,7 +83,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1 or /products/1.json
   def destroy
     @product.destroy!
 
@@ -96,8 +92,19 @@ class ProductsController < ApplicationController
     end
   end
 
+  def add_files
+    if product_params[:images]
+      product_params[:images].each do |image|
+        @product.images.attach(image)
+      end
+      redirect_to @product, notice: "Файлы успешно добавлены"
+    else
+      redirect_to @product, alert: "Не выбрано ни одного файла"
+    end
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_product
       @product = Product.find(params[:id])
     end
@@ -106,7 +113,6 @@ class ProductsController < ApplicationController
       @invoice = Invoice.find(params[:invoice_id])
     end
 
-    # Only allow a list of trusted parameters through.
     def product_params
       params.require(:product).permit(:title, :description, :serial_number, :inventory_number,
                                       :accepted_at, :storehouse_id, :type_product, :picture, :vendor_id, :end_date,

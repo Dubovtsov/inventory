@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post :add_to_invoice
       post :remove_from_invoice
       post :clone
+      post :add_files
     end
   end
   resources :attachments, only: :destroy
