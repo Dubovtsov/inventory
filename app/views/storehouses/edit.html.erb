@@ -1,8 +1,7 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing storehouse</h1>
+<div class="mx-auto md:w-2/3 lg:w-1/3 sm:w-full border bg-slate-200 border-slate-300 p-4 rounded-xl">
+  <h1 class="font-bold text-center text-slate-700 text-2xl">Редактирование склада</h1>
 
   <%= render "form", storehouse: @storehouse %>
 
-  <%= link_to "Show this storehouse", @storehouse, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to 'Назад', :back, class: "mt-2 shadow rounded-lg py-3 px-5 bg-gray-50 hover:bg-white inline-block font-medium" %>
+  <%= link_to 'Назад', :back, class: "ml-2 border border-slate-300 rounded-lg py-2 px-4 bg-slate-100 hover:bg-slate-300 inline-block font-semibold text-sm" %>
 </div>

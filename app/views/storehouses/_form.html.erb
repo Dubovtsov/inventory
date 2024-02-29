@@ -12,21 +12,24 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label "Название" %>
-    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label "Название", class: "font-semibold text-sm text-slate-600" %>
+    <%= form.text_field :title, class: "block rounded-xl border border-slate-300 outline-none px-3 py-2 w-full" %>
   </div>
   <div class="my-5">
-    <%= form.label "Описание" %>
-    <%= form.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label "Описание", class: "font-semibold text-sm text-slate-600" %>
+    <%= form.text_field :description, class: "block rounded-xl border border-slate-300 outline-none px-3 py-2 w-full" %>
   </div>
+  <div class="border-b border-slate-300"></div>
   <div class="my-5">
     <%= form.file_field :image %>
   </div>
+  <div class="border-b border-slate-300"></div>
   <div class="my-5">
-    <%= form.label "Сотрудник?" %>
+    <%= form.label "Сотрудник?", class: "font-semibold text-sm" %>
     <%= form.check_box :employee %>
   </div>
+  <div class="border-b-2 border-amber-300 mb-4"></div>
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit "Сохранить", class: "px-4 py-2 transition rounded-lg text-slate-900 bg-amber-300 hover:bg-amber-400 border border-amber-400 font-semibold text-sm cursor-pointer" %>
   </div>
 <% end %>
