@@ -4,9 +4,11 @@ ru:
       type:
         software: "ПО"
         hardware: "Оборудование"
+        office: "Офис"
 
   software: "ПО"
   hardware: "Оборудование"
+  office: "Офис"
   ransack:
     asc: ascending
     desc: descending

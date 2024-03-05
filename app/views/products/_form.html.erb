@@ -13,45 +13,45 @@
 
   <div class="my-5">
     <%= form.label "Наименование", class:"font-semibold text-sm" %>
-    <%= form.text_field :title, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full", autofocus: true %>
+    <%= form.text_field :title, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full", autofocus: true %>
   </div>
 
   <div class="my-5">
     <%= form.label "Описание", class:"font-semibold text-sm" %>
-    <%= form.text_area :description, rows: 4, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+    <%= form.text_area :description, rows: 4, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
   </div>
 
   <div class="flex flex-row gap-3">
     <div class="my-3 w-1/2">
       <%= form.label "Серийный номер", class:"font-semibold text-sm" %>
-      <%= form.text_field :serial_number, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+      <%= form.text_field :serial_number, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
     <div class="my-3 w-1/2">
       <%= form.label "Инвентарный номер", class:"font-semibold text-sm" %>
-      <%= form.text_field :inventory_number, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+      <%= form.text_field :inventory_number, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
   </div>
   <div class="flex flex-row gap-3">
     <div class="my-3 w-1/2">
       <%= form.label "Дата принятия на склад", class:"font-semibold text-sm" %>
-      <%= form.date_field :accepted_at, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+      <%= form.date_field :accepted_at, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
 
     <div class="my-3 w-1/2">
       <%= form.label "Тип", class:"font-semibold text-sm" %>
-      <%= form.select :type_product, Product.type_product.values.map{ |s| [I18n.t(s, locale: :ru), s] }, {}, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+      <%= form.select :type_product, Product.type_product.values.map{ |s| [I18n.t(s, locale: :ru), s] }, {}, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
 
     <div class="my-3 w-1/2">
       <%= form.label "Склад", class:"font-semibold text-sm" %>
-      <%= form.collection_select :storehouse_id, Storehouse.order(:employee), :id, :title, {:include_blank => false}, { class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" } %>
+      <%= form.collection_select :storehouse_id, Storehouse.order(:employee), :id, :title, {:include_blank => false}, { class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" } %>
     </div>
   </div>
 
   <div class="flex flex-row gap-3">
     <div class="my-3 w-1/3">
       <%= form.label "Дата окончания поверки/лицензии", class:"font-semibold text-sm" %>
-      <%= form.date_field :end_date, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+      <%= form.date_field :end_date, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
 
     <div class="my-3 w-1/3">
@@ -62,7 +62,7 @@
 
     <div class="my-3 w-1/3">
       <%= form.label "Поставщик", class:"font-semibold text-sm" %>
-      <%= form.collection_select :vendor_id, Vendor.order(:title), :id, :title, {:include_blank => true}, { class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" } %>
+      <%= form.collection_select :vendor_id, Vendor.order(:title), :id, :title, {:include_blank => true}, { class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" } %>
     </div>
   </div>
 
@@ -77,15 +77,15 @@
     </div>
     <div class="my-3">
       <%= form.label "Розничная цена", class:"font-semibold text-sm" %>
-      <%= form.text_field :retail_price, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+      <%= form.text_field :retail_price, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
     <div class="my-3">
       <%= form.label "Закупочная цена", class:"font-semibold text-sm" %>
-      <%= form.text_field :purchase_price, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+      <%= form.text_field :purchase_price, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
     <div class="my-3">
       <%= form.label "Количество", class:"font-semibold text-sm" %>
-      <%= form.text_field :amount, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
+      <%= form.text_field :amount, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
   </div>
 

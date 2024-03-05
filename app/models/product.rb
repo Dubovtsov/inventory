@@ -18,7 +18,7 @@ class Product < ApplicationRecord
   validates :title, presence: true
   validates :inventory_number, uniqueness: true
 
-  enumerize :type_product, in: [ :software, :hardware ], default: :hardware, i18n_scope: "type_product", scope: :shallow
+  enumerize :type_product, in: [ :software, :hardware, :office ], default: :hardware, i18n_scope: "type_product", scope: :shallow
 
   before_create :set_inventory_number
   after_create :create_product_movement
@@ -53,6 +53,17 @@ class Product < ApplicationRecord
       if last_number.present?
         self.inventory_number = last_number.to_i + 1
       end
+    end
+  end
+
+  def type_product_style
+    case self.type_product
+    when "office"
+      "bg-sky-200 text-sky-800 border border-sky-300"
+    when "hardware"
+      "bg-orange-200 text-orange-800 border border-orange-300"
+    when "software"
+      "bg-green-200 text-green-800 border border-green-300"
     end
   end
 

@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label "Наименование" %>
-    <%= form.text_field :title, class: "block  bg-stone-50 rounded-xl border border-stone-300 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label "Наименование", class: "font-semibold text-xs" %>
+    <%= form.text_field :title, class: "block  bg-stone-50 rounded-xl border border-stone-300 outline-none px-3 py-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label "Менеджер" %>
-    <%= form.text_field :manager, class: "block  bg-stone-50 rounded-xl border border-gray-300 focus:border-1 focus:border-stone-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label "Менеджер", class: "font-semibold text-xs" %>
+    <%= form.text_field :manager, class: "block  bg-stone-50 rounded-xl border border-gray-300 focus:border-1 focus:border-stone-400 outline-none px-3 py-2 w-full" %>
   </div>
-
+  <div class="border-b-2 border-amber-300 mb-4"></div>
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit "Сохранить", class: "px-4 py-2 transition rounded-lg text-slate-900 bg-amber-300 hover:bg-amber-400 border border-amber-400 font-semibold text-sm cursor-pointer" %>
   </div>
 <% end %>

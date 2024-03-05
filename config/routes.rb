@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :invoice_products
   resources :invoices
   resources :clients
-  get 'backups/create_backup'
   resources :prices
   resources :product_movements
   resources :vendors

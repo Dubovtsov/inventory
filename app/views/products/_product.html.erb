@@ -17,7 +17,7 @@
         <%= product.amount %>
       </td>
       <td class="px-4 py-2">
-        <div class="p-2 rounded text-center border border-amber-400 text-[0.7rem] <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
+        <div class="p-2 rounded text-center text-[0.7rem] <%= product.type_product_style %> font-semibold">
           <%= I18n.t(product.type_product, locale: :ru) %>
         </div>
       </td>
@@ -29,9 +29,11 @@
       <td class="px-4 py-2 text-right">
         <%= link_to "Edit", edit_product_path(product), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
       </td>
-      <td class="px-4 py-2 text-right">
-        <%= render "shared/menu_move", product: product %>
-      </td>
+      <% if current_user.admin? %>
+        <td class="px-4 py-2 text-right">
+          <%= render "shared/menu_move", product: product %>
+        </td>
+      <% end %>
     </tr>
   <% else %>
     <%= render 'product_card', product: product %>

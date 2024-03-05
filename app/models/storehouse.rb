@@ -8,4 +8,15 @@ class Storehouse < ApplicationRecord
 
   # нельзя удалить склад если на нем есть остатки
   # добавить чекбокс склад в архиве
+
+  before_destroy :ensure_no_products
+
+  private
+
+  def ensure_no_products
+    unless products.empty?
+      errors.add(:base, "Сначала переместите все позиции на другой склад")
+      throw(:abort)
+    end
+  end
 end

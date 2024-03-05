@@ -1,6 +1,6 @@
 <div class="mx-auto w-full grid mb-2">
     <%= render @storehouse %>
-    <div class="flex gap-2">
+    <div class="flex gap-2 text-sm">
       <% if current_user.admin? %>
         <%= link_to "Редактировать", edit_storehouse_path(@storehouse), class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500 inline-block" %>
         <div class="">

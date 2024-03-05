@@ -1,15 +1,14 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="mx-auto md:w-2/3 lg:w-1/3 sm:w-full border bg-slate-200 border-slate-300 p-4 rounded-xl">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
     <%= render @vendor %>
-
-    <%= link_to "Edit this vendor", edit_vendor_path(@vendor), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="border-b-2 border-amber-300 my-4"></div>
     <div class="inline-block ml-2">
-      <%= button_to "Destroy this vendor", vendor_path(@vendor), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to "Удалить", vendor_path(@vendor), method: :delete, class: "transition ml-2 border border-red-300 rounded-lg py-2 px-4 bg-red-200 hover:bg-red-300 text-red-800 inline-block font-semibold text-xs" %>
     </div>
-    <%= link_to "Back to vendors", vendors_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Назад", vendors_path, class: "transition ml-2 border border-slate-300 rounded-lg py-2 px-4 bg-slate-100 hover:bg-slate-300 inline-block font-semibold text-xs" %>
   </div>
 </div>
