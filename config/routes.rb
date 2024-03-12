@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :invoice_products
-  resources :invoices
+  resources :invoices do
+    member do
+      patch :complete
+      get :to_print
+    end
+  end
   resources :clients
   resources :prices
   resources :product_movements

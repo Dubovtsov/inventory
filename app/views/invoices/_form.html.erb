@@ -11,14 +11,19 @@
     </div>
   <% end %>
 
-  <div class="my-3 ">
+  <div class="my-3">
     <%= form.label "Кому", class:"font-semibold text-sm" %>
     <%= form.collection_select :storehouse_id, Storehouse.all, :id, :title, {:include_blank => true}, { class: "block rounded-xl border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
 
-  <div class="my-3 ">
-    <%= form.label "Клиент", class:"font-semibold text-sm" %>
+  <div class="my-3">
+    <%= form.label "Контрагент", class:"font-semibold text-sm" %>
     <%= form.collection_select :client_id, Client.all, :id, :title, {:include_blank => true}, { class: "block rounded-xl border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
+  </div>
+
+  <div class="my-3">
+    <%= form.label "Номер документа-основания", class:"font-semibold text-sm" %>
+    <%= form.text_field :document_number, class: "block rounded-xl border border-gray-200 outline-none px-3 py-2 mt-2 w-full"%>
   </div>
 
   <div class="hidden">

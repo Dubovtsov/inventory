@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: %i[ show edit update destroy ]
+  before_action :set_invoice, only: %i[ show edit update destroy complete to_print]
 
   def index
     if current_user.admin?
@@ -10,11 +10,16 @@ class InvoicesController < ApplicationController
   end
 
   def show
+    @current_user = current_user
     if params[:query]
       @products = Product.search(params[:query])
     else
       @products = Product.all
     end
+  end
+
+  def to_print
+
   end
 
   def new
@@ -41,8 +46,21 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to invoices_url, notice: "Invoice was successfully updated." }
+        format.html { redirect_to @invoice, notice: "Накладная обновлена" }
         format.json { render :show, status: :ok, location: @invoice }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @invoice.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def complete
+    respond_to do |format|
+      if @invoice.update(invoice_params)
+        format.html { redirect_to @invoice, notice: "Накладная обновлена" }
+        format.json { render :show, status: :ok, location: @invoice }
+        # TODO send email
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
@@ -65,6 +83,6 @@ class InvoicesController < ApplicationController
     end
 
     def invoice_params
-      params.require(:invoice).permit(:storehouse_id, :user_id, :client_id, :date)
+      params.require(:invoice).permit(:storehouse_id, :user_id, :client_id, :date, :completed, :document_number)
     end
 end

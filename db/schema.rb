@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_26_084332) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_12_091146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,6 +85,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_26_084332) do
     t.bigint "storehouse_id", null: false
     t.bigint "user_id", null: false
     t.bigint "client_id", null: false
+    t.boolean "completed", default: false
+    t.string "document_number"
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["storehouse_id"], name: "index_invoices_on_storehouse_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
@@ -135,6 +137,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_26_084332) do
     t.bigint "client_id"
     t.decimal "retail_price"
     t.decimal "purchase_price"
+    t.boolean "booking", default: false
     t.index ["client_id"], name: "index_products_on_client_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["storehouse_id"], name: "index_products_on_storehouse_id"

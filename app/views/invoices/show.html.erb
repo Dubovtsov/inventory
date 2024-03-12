@@ -16,7 +16,7 @@
       </div>
       
       <div class="grid grid-cols-3 grid-rows-3 my-6 text-sm">
-        <div class="col-span-1">
+        <div class="col-span-1 font-medium text-xs">
           Со склада
         </div>
         <div class="col-span-2 border-b border-b-gray-200 px-6">
@@ -24,17 +24,23 @@
             [<%= product.product_movements.last.from_storehouse.title %>] 
           <% end %>
         </div>
-        <div class="col-span-1">
+        <div class="col-span-1 font-medium text-xs">
           Кому:
         </div>
         <div class="col-span-2 border-b border-gray-200 px-6">
           <%= @invoice.storehouse.title %>
         </div>
-        <div class="col-span-1">
-          Для кого:
+        <div class="col-span-1 font-medium text-xs">
+          Контрагент:
         </div>
         <div class="col-span-2 border-b border-gray-200 px-6">
           <%= @invoice.client.title %>
+        </div>
+        <div class="col-span-1 font-medium text-xs">
+          Документ-основание №:
+        </div>
+        <div class="col-span-2 border-b border-gray-200 px-6">
+          <%= @invoice.document_number %>
         </div>
       </div>
     </div>
@@ -60,6 +66,15 @@
         <% end %>
       </tbody>
     </table>
+
+    <% if @invoice.completed == true %>
+      <button disabled class="border border-gray-200 disabled:bg-slate-50 rounded px-2 py-1">Проведено</button>
+    <% else %>
+      <%= button_to complete_invoice_path(@invoice, invoice: {completed: true}), class: "px-4 py-2 transition rounded-lg text-slate-900 bg-amber-300 hover:bg-amber-400 border border-amber-400 font-semibold text-sm cursor-pointer", method: :patch do %>
+        Провести
+      <% end %>
+    <% end %>
+    
   </div>
   <div class="col-span-2 " data-controller="search">
     <input data-remote='true' data-search-target="source" 
