@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[ show edit update destroy complete to_print]
+  layout false, only: [:to_print]
 
   def index
     if current_user.admin?
