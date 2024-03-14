@@ -1,7 +1,18 @@
-<div id="<%= dom_id client %>" class="bg-slate-200 px-6 py-6 rounded-[30px]">
-  <%= link_to client.title, client, class: "rounded-lg py-3 px-5 inline-block font-semibold text-center" %>
-  <hr class="mb-6 border border-slate-300">
-  <% if action_name != "show" %>
-    <%= link_to "Редактировать", edit_client_path(client), class: "transition rounded-[15px] py-3 ml-2 px-5 bg-slate-300 hover:border-slate-400 border border-slate-300 text-slate-800 inline-block text-sm font-medium" %>
-  <% end %>
+<div id="<%= dom_id client %>" class="rounded-lg p-3 pb-4 pl-5 relative overflow-hidden" style="background-color: rgb(253, 229, 138);">
+  <div class="absolute w-1.5 top-0 bottom-0 left-0" style="background-color: rgb(216, 118, 7);"></div>
+  <div class="flex justify-between items-center">
+    <div class="font-medium text-sm text-amber-950 hover:text-amber-800"><%= link_to client.title, client, class: "rounded-lg py-3 px-5 inline-block font-semibold text-center" %></div>
+    <% if action_name != "show" %>
+      
+        <%= link_to edit_client_path(client), class: "text-amber-950 hover:text-amber-800" do %>
+          <span class="w-6 h-6 rounded-lg flex items-center justify-center text-amber-950 hover:text-amber-800">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+              <path d="M400-360q-17 0-28.5-11.5T360-400v-97q0-16 6-30.5t17-25.5l344-344q12-12 27-18t30-6q16 0 30.5 6t26.5 18l56 57q11 12 17 26.5t6 29.5q0 15-5.5 29.5T897-728L553-384q-11 11-25.5 17.5T497-360h-97Zm384-368 57-56-56-56-57 56 56 56ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h260q14 0 23 7t14 18q5 11 3.5 22T489-772L303-586q-11 11-17 25.5t-6 30.5v170q0 33 23.5 56.5T360-280h169q16 0 30.5-6t25.5-17l187-187q10-10 21-11.5t22 3.5q11 5 18 14t7 23v261q0 33-23.5 56.5T760-120H200Z"/><style xmlns="" type="text/css" id="igtranslator-color"/><script xmlns=""/>
+            </svg>
+          </span>
+        <% end %>
+      
+    <% end %>
+  </div>
 </div>
+

@@ -23,35 +23,35 @@
   </div>
   <div id="products" class="min-w-full" data-controller="menu">
   <%== pagy_nav(@pagy) %>
-    <div class="relative overflow-x-auto border border-slate-300 sm:rounded-2xl mt-2">
+    <div class="relative overflow-x-auto mt-2">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-slate-300">
+        <thead class="text-xs font-bold text-gray-700 uppercase bg-slate-300">
           <tr>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-4 py-3">
               <%= sort_link(@q, :title, default_order: :desc) %>
             </th>
-            <th scope="col" class="px-6 py-3 border-x border-gray-200">
+            <th scope="col" class="px-4 py-3 border-gray-200">
                 Описание
             </th>
-            <th scope="col" class="px-6 py-3 border-x border-gray-200">
+            <th scope="col" class="px-4 py-3 border-gray-200">
               Инв. номер
             </th>
-            <th scope="col" class="px-6 py-3 border-x border-gray-200">
+            <th scope="col" class="px-4 py-3 border-gray-200">
               <%= sort_link(@q, :accepted_at, default_order: :desc) %>
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-4 py-3">
               Кол-во
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-4 py-3">
               Тип
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-4 py-3">
               Склад
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-4 py-3">
               <span class="sr-only">Edit</span>
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-4 py-3">
               <span class="sr-only">Перемещение</span>
             </th>
           </tr>

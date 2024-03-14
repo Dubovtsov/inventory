@@ -12,8 +12,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <%= javascript_importmap_tags %>
   </head>
 
@@ -62,7 +62,19 @@
         <div class="p-4">
           <div class="overflow-auto">
             <% if notice.present? %>
-              <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+              <div id="notice" data-controller="hide" data-hide-target="parent" class="fixed top-1 left-1/2 -translate-x-1/2 p-2 bg-green-400 items-center text-indigo-100 leading-none lg:rounded-full flex gap-2 lg:inline-flex" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="text-green-900">
+                    <path d="m424-408-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l114 114q12 12 28 12t28-12l226-226q11-11 11-28t-11-28q-11-11-28-11t-28 11L424-408Zm56 328q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+                    <style xmlns="" type="text/css" id="igtranslator-color"/>
+                </svg>
+                <span class="font-semibold mr-2 text-left flex-auto text-green-900"><%= notice %></span>
+                <button class="bg-red-400 rounded-full p-1 text-xl cursor-pointer" data-action="hide#hideEl">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
+                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                    <style xmlns="" type="text/css" id="igtranslator-color"/>
+                  </svg>
+                </button>
+              </div>
             <% elsif alert.present? %>
               <p class="alert py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
             <% end %>
@@ -72,11 +84,11 @@
       </div>
       <aside class="aside bg-slate-100">
         <div class="h-full px-4 py-4 overflow-y-auto ">
-            <ul class="space-y-2 font-medium">
+            <ul class="space-y-2 font-medium text-slate-500">
               <li>
-                <%= link_to product_movements_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg hover:bg-amber-300 group" do %>
+                <%= link_to product_movements_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-300 group" do %>
                   <span class="flex gap-3">
-                    <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+                    <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                       analytics
                     </span>
                     Dashboard
@@ -84,10 +96,9 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to invoices_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg dark:text-white hover:bg-amber-300 dark:hover:bg-amber-700 #{current_page?(controller: 'invoices') ? 'bg-amber-300' : ''} group" do %>
-                  
+                <%= link_to invoices_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-300 #{current_page?(controller: 'invoices') ? 'bg-amber-300 text-slate-900' : ''} group" do %>
                   <span class="flex gap-3">
-                    <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+                    <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                       receipt_long
                     </span>
                     Накладные
@@ -95,9 +106,9 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to products_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg dark:text-white hover:bg-amber-300 #{current_page?(controller: 'products') ? 'bg-amber-300' : ''} group" do %>
+                <%= link_to products_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-300 #{current_page?(controller: 'products') ? 'bg-amber-300 text-slate-900' : ''} group" do %>
                   <span class="flex gap-3 whitespace-nowrap">
-                    <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+                    <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                       shopping_cart
                     </span>
                     Продукты
@@ -105,9 +116,9 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to storehouses_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg hover:bg-amber-300 #{current_page?(controller: 'storehouses') ? 'bg-amber-300' : ''} group" do %>
+                <%= link_to storehouses_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-300 #{current_page?(controller: 'storehouses') ? 'bg-amber-300 text-slate-900' : ''} group" do %>
                   <span class="flex gap-3 whitespace-nowrap">
-                    <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+                    <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                       store
                     </span>
                     Склады
@@ -115,22 +126,24 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to vendors_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg dark:text-white hover:bg-amber-300 dark:hover:bg-amber-700 #{current_page?(controller: 'vendors') ? 'bg-amber-300' : ''} group" do %>
+                <%= link_to vendors_path, class:"transition flex items-center p-2 hover:text-slate-900 
+                                                rounded-lg hover:bg-amber-300 
+                                                #{current_page?(controller: 'vendors') ? 'bg-amber-300 text-slate-900' : ''} 
+                                                group" do %>
                   <span class="flex gap-3 whitespace-nowrap">
-                    <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
+                    <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
                     Поставщики
                   </span>
                 <% end %>
               </li>
               <li>
                 <%= link_to clients_path, class:"transition flex items-center 
-                                                p-2 text-slate-900 rounded-lg dark:text-white 
-                                                hover:bg-amber-300 dark:hover:bg-amber-700 
-                                                #{current_page?(controller: 'clients') ? 'bg-amber-300' : ''} 
+                                                p-2 hover:text-slate-900 rounded-lg 
+                                                hover:bg-amber-300  
+                                                #{current_page?(controller: 'clients') ? 'bg-amber-300 text-slate-900' : ''} 
                                                 group" do %>
-                  
                   <span class="flex gap-3 whitespace-nowrap">
-                    <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
+                    <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
                     Клиенты
                   </span>
                 <% end %>
