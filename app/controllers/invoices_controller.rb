@@ -35,7 +35,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully created." }
+        format.html { redirect_to invoice_url(@invoice), notice: "Накладная успешно создана" }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -73,7 +73,7 @@ class InvoicesController < ApplicationController
     @invoice.destroy!
 
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: "Invoice was successfully destroyed." }
+      format.html { redirect_to invoices_url, notice: "Накладная успешно удалена" }
       format.json { head :no_content }
     end
   end

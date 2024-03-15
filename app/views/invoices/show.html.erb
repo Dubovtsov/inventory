@@ -55,7 +55,7 @@
           <th class="border border-slate-200 px-1"></th>
         </tr>
         <% n = 0 %>
-        <% @invoice.products.each do |product| %>
+        <% @invoice.products.order(title: :asc).each do |product| %>
           <tr class="border border-slate-200">
             <td class="border border-slate-200 px-1"><%= n += 1 %></td>
             <td class="border border-slate-200 px-1"><%= product.title %></td>

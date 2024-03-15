@@ -12,7 +12,7 @@
   Storehouse.create(title:Faker::Commerce.department)
 end
 
-storehouse = Storehouse.all
+Storehouse.create(title: "Purchase")
 
 5.times do
   Vendor.create(manager:Faker::Name.name, title:Faker::Commerce.vendor)

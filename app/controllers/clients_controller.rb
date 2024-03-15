@@ -6,16 +6,13 @@ class ClientsController < ApplicationController
     @clients = Client.all
   end
 
-  # GET /clients/1 or /clients/1.json
   def show
   end
 
-  # GET /clients/new
   def new
     @client = Client.new
   end
 
-  # GET /clients/1/edit
   def edit
   end
 
@@ -25,7 +22,7 @@ class ClientsController < ApplicationController
       format.html { redirect_to invoice_url(@invoice), notice: "invoice was successfully created." }
     end
   end
-  # POST /clients or /clients.json
+
   def create
     @client = Client.new(client_params)
 
@@ -54,7 +51,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /clients/1 or /clients/1.json
   def update
     respond_to do |format|
       if @client.update(client_params)
@@ -67,7 +63,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  # DELETE /clients/1 or /clients/1.json
   def destroy
     @client.destroy!
 

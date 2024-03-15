@@ -16,7 +16,7 @@ class StorehousesController < ApplicationController
   def invoice_create
     @invoice = @storehouse.invoices.create!
     respond_to do |format|
-      format.html { redirect_to invoice_url(@invoice), notice: "Storehouse was successfully created." }
+      format.html { redirect_to invoice_url(@invoice), notice: "Накладная создана" }
     end
   end
 
@@ -28,7 +28,7 @@ class StorehousesController < ApplicationController
 
     respond_to do |format|
       if @storehouse.save
-        format.html { redirect_to storehouse_url(@storehouse), notice: "Storehouse was successfully created." }
+        format.html { redirect_to storehouse_url(@storehouse), notice: "Склад успешно создан" }
         format.json { render :show, status: :created, location: @storehouse }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class StorehousesController < ApplicationController
   def update
     respond_to do |format|
       if @storehouse.update(storehouse_params)
-        format.html { redirect_to storehouse_url(@storehouse), notice: "Storehouse was successfully updated." }
+        format.html { redirect_to storehouse_url(@storehouse), notice: "Склад обновлен" }
         format.json { render :show, status: :ok, location: @storehouse }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class StorehousesController < ApplicationController
   def destroy
     begin
       @storehouse.destroy!
-      redirect_to storehouses_url, notice: "Storehouse was successfully destroyed."
+      redirect_to storehouses_url, notice: "Склад удален"
     rescue
       flash[:alert] = "Сначала переместите все позиции на другой склад"
       redirect_to @storehouse

@@ -25,7 +25,7 @@ class VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
-        format.html { redirect_to vendor_url(@vendor), notice: "Vendor was successfully created." }
+        format.html { redirect_to vendor_url(@vendor), notice: "Поставщик успешно создан" }
         format.json { render :show, status: :created, location: @vendor }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class VendorsController < ApplicationController
   def update
     respond_to do |format|
       if @vendor.update(vendor_params)
-        format.html { redirect_to vendor_url(@vendor), notice: "Vendor was successfully updated." }
+        format.html { redirect_to vendor_url(@vendor), notice: "Поставщик обновлен" }
         format.json { render :show, status: :ok, location: @vendor }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class VendorsController < ApplicationController
     @vendor.destroy!
 
     respond_to do |format|
-      format.html { redirect_to vendors_url, notice: "Vendor was successfully destroyed." }
+      format.html { redirect_to vendors_url, notice: "Поставщик удален" }
       format.json { head :no_content }
     end
   end

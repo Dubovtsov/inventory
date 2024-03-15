@@ -71,6 +71,6 @@ class Product < ApplicationRecord
 
   def create_product_movement
     # Создаем новый объект ProductMovement с параметрами
-    product_movements.create!(from_storehouse: Storehouse.find_by(title: "Покупка"), to_storehouse: Storehouse.find_by(id: storehouse_id), quantity: amount, date_movement: DateTime.current.to_date)
+    product_movements.create!(from_storehouse: Storehouse.find_by(title: "Purchase"), to_storehouse: Storehouse.find_by(id: storehouse_id), quantity: amount, date_movement: DateTime.current.to_date)
   end
 end

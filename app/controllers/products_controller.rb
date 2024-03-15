@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
     new_storehouse = @invoice.storehouse
     @product.move_to(new_storehouse, 1)
     respond_to do |format|
-      format.html { redirect_to invoice_url(@invoice), notice: "Product was successfully added." }
+      format.html { redirect_to invoice_url(@invoice), notice: "Позиция добавлена" }
     end
   end
 
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
     old_storehouse = @product.product_movements.last.from_storehouse
     @product.move_to(old_storehouse, 1)
     respond_to do |format|
-      format.html { redirect_to invoice_url(@invoice), notice: "Product was successfully removed." }
+      format.html { redirect_to invoice_url(@invoice), notice: "Позиция удалена" }
     end
   end
 
@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
     new_storehouse = Storehouse.find(params[:new_storehouse_id])
     @product.move_to(new_storehouse, 1)
     respond_to do |format|
-      format.html { redirect_to products_url, notice: "Product was successfully created." }
+      format.html { redirect_to products_url, notice: "Позиция перемещена" }
     end
   end
 
@@ -74,7 +74,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
+        format.html { redirect_to product_url(@product), notice: "Позиция обновлена" }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -87,7 +87,7 @@ class ProductsController < ApplicationController
     @product.destroy!
 
     respond_to do |format|
-      format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
+      format.html { redirect_to products_url, notice: "Позиция удалена" }
       format.json { head :no_content }
     end
   end
