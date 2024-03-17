@@ -15,7 +15,7 @@ class InvoicesController < ApplicationController
     if params[:query]
       @products = Product.search(params[:query])
     else
-      @products = Product.all
+      @products = Product.all - @invoice.products
     end
   end
 

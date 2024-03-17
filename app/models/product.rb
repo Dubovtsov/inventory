@@ -38,7 +38,12 @@ class Product < ApplicationRecord
   end
 
   def add_to_invoice(invoice)
-    invoice.products << self
+    if invoice.products.include? self
+      errors.add(:base, "Нельзя добавить одну и ту же позицию два раза")
+      throw(:abort)
+    else
+      invoice.products << self
+    end
   end
 
   def remove_from_invoice(invoice)

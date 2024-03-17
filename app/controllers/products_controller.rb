@@ -21,11 +21,22 @@ class ProductsController < ApplicationController
   end
 
   def add_to_invoice
-    @product.add_to_invoice(@invoice)
-    new_storehouse = @invoice.storehouse
-    @product.move_to(new_storehouse, 1)
-    respond_to do |format|
-      format.html { redirect_to invoice_url(@invoice), notice: "Позиция добавлена" }
+    # @product.add_to_invoice(@invoice)
+    # new_storehouse = @invoice.storehouse
+    # @product.move_to(new_storehouse, 1)
+    # respond_to do |format|
+    #   format.html { redirect_to invoice_url(@invoice), notice: "Позиция добавлена" }
+    # end
+    begin
+      @product.add_to_invoice(@invoice)
+      new_storehouse = @invoice.storehouse
+      @product.move_to(new_storehouse, 1)
+      respond_to do |format|
+        format.html { redirect_to invoice_url(@invoice), notice: "Позиция добавлена" }
+      end
+    rescue
+      flash[:alert] = "Нельзя добавить одну и ту же позицию два раза"
+      redirect_to @invoice
     end
   end
 
