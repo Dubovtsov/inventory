@@ -15,7 +15,7 @@ class InvoicesController < ApplicationController
     if params[:query]
       @products = Product.search(params[:query])
     else
-      @products = Product.all - @invoice.products
+      @products = Product.balance_sheet - @invoice.products
     end
   end
 
@@ -59,8 +59,10 @@ class InvoicesController < ApplicationController
   def complete
     respond_to do |format|
       if @invoice.update(invoice_params)
+        @invoice.products.each do |product|
+          product.product_shipped
+        end
         format.html { redirect_to @invoice, notice: "Накладная обновлена" }
-        format.json { render :show, status: :ok, location: @invoice }
         # TODO send email
       else
         format.html { render :edit, status: :unprocessable_entity }

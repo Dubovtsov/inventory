@@ -32,9 +32,11 @@
               Со склада
             </div>
             <div class="col-span-2 border-b border-black px-6">
+              <% @storehouse_titles = [] %>
               <% @invoice.products.each do |product| %>
-                [<%= product.product_movements.last.from_storehouse.title %>] 
+                <% @storehouse_titles << product.product_movements.last.from_storehouse.title %>
               <% end %>
+              <%= @storehouse_titles.uniq.join(', ') %>
             </div>
             <div class="col-span-1 font-medium text-xs">
               Кому:

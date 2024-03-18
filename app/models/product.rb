@@ -1,15 +1,11 @@
 class Product < ApplicationRecord
   extend Enumerize
-
   acts_as_paranoid
 
   has_one_attached :picture
   has_many_attached :images
   has_many :product_movements, class_name: "ProductMovement", dependent: :destroy
   has_many :invoices, through: :invoice_products
-
-  # has_many :podcasts, through: :subscriptions, source: :subscribable, source_type: 'Podcast'
-  # has_many :newspapers, through: :subscriptions, source: :subscribable, source_type: 'Newspaper'
 
   belongs_to :storehouse
   belongs_to :vendor
@@ -23,10 +19,20 @@ class Product < ApplicationRecord
   before_create :set_inventory_number
   after_create :create_product_movement
 
+  scope :shipped, -> { where(shipped: true)}
+  scope :balance_sheet, -> { where(shipped: false)}
+  # Ex:- scope :active, -> {where(:active => true)}
+
   def move_to(new_storehouse, amount)
     ActiveRecord::Base.transaction do
       product_movements.create!(from_storehouse: storehouse, to_storehouse: new_storehouse, quantity: amount, date_movement: DateTime.current.to_date)
       update!(storehouse_id: new_storehouse.id) if amount == self.amount
+    end
+  end
+
+  def product_shipped
+    ActiveRecord::Base.transaction do
+      update!(shipped: true)
     end
   end
 

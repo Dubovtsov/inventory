@@ -1,6 +1,6 @@
 <div class="w-full">
   <div class="flex justify-between items-center mb-4">
-    <h1 class="font-bold text-gray-700 text-2xl">Оборудовние и ПО | <span class="text-gray-400">Всего позиции: <%= Product.all.count %></span></h1>
+    <h1 class="font-bold text-gray-700 text-2xl">Оборудовние и ПО | <span class="text-gray-400">Всего позиции: <%= @pagy.count %></span></h1>
     <%= link_to new_product_path, class: "rounded-[10px] flex justify-center items-center text-3xl text-center  w-8 h-8 text-amber-800 bg-amber-400 hover:bg-amber-500 font-medium" do %>
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-amber-50">
         <script xmlns=""/><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
@@ -20,6 +20,10 @@
           <%= f.submit "Найти", class:"cursor-pointer absolute end-[-80px] bottom-[1px] text-amber-700 bg-amber-300 hover:bg-amber-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-3 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
         <% end %>
     </div>
+    <div class="flex gap-2">
+      <%= link_to "Сбросить фильтр", products_path, class: "transition block rounded-full bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
+      <%= link_to "Отгруженные", products_path(shipped: true), class: "transition block rounded-full bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
+    </div>
   </div>
   <div id="products" class="min-w-full" data-controller="menu">
   <%== pagy_nav(@pagy) %>
@@ -31,7 +35,10 @@
               <%= sort_link(@q, :title, default_order: :desc) %>
             </th>
             <th scope="col" class="px-4 py-3 border-gray-200">
-                Описание
+                Серийный №
+            </th>
+            <th scope="col" class="px-4 py-3 border-gray-200">
+                Контрагент
             </th>
             <th scope="col" class="px-4 py-3 border-gray-200">
               Инв. номер

@@ -24,7 +24,7 @@
           <% @invoice.products.each do |product| %>
             <% @storehouse_titles << product.product_movements.last.from_storehouse.title %>
           <% end %>
-          <%= @storehouse_titles.join(', ') %>
+          <%= @storehouse_titles.uniq.join(', ') %>
         </div>
         <div class="col-span-1 font-medium text-xs">
           Кому:
@@ -81,6 +81,7 @@
           <tr class="border border-slate-200 text-sm" data-search-target="filterable" data-search-key='<%= "#{p.title}".downcase %>'>
             <td class="px-4"><%= p.title %></td>
             <td class="text-slate-400 px-4"><%= p.storehouse.title %></td>
+            <td class="px-4"><%= p.client.title %></td>
             <td class="px-4"><%= p.inventory_number %></td>
             <td class="px-4"><%= button_to "добавить", add_to_invoice_product_path(p), params: {invoice_id: @invoice}, method: :post ,class: "transition px-2 py-1 bg-amber-300 hover:bg-amber-400 text-xs font-medium text-slate-900 rounded" %></td>
           </tr>

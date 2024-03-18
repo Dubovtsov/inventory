@@ -4,10 +4,19 @@ class ProductsController < ApplicationController
   before_action :set_invoice, only: %i[ add_to_invoice remove_from_invoice ]
   # GET /products or /products.json
   def index
-    @q = Product.ransack(params[:q])
-    @products = @q.result(distinct: true)
-    @pagy, @products = pagy(@q.result(distinct: true).order(created_at: :desc), items: 8)
+    if params[:shipped].present?
+      @q = Product.ransack(params[:q])
+      @products = @q.result.shipped
+    else
+      @q = Product.ransack(params[:q])
+      @products = @q.result.balance_sheet
+    end
     @partners = Client.all + Storehouse.all
+    @pagy, @products = pagy(@products.order(created_at: :desc), items: 12)
+    # @q = Product.ransack(params[:q])
+    # @products = @q.result(distinct: true)
+    # @pagy, @products = pagy(@q.result(distinct: true).order(created_at: :desc), items: 12)
+    # @partners = Client.all + Storehouse.all
   end
 
   def show
