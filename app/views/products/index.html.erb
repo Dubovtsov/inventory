@@ -1,8 +1,11 @@
 <div class="w-full">
-  <div class="flex justify-between items-center mb-4">
-    <h1 class="font-bold text-gray-700 text-2xl">Оборудовние и ПО | <span class="text-gray-400">Всего позиции: <%= @pagy.count %></span></h1>
-    <%= link_to new_product_path, class: "rounded-[10px] flex justify-center items-center text-3xl text-center  w-8 h-8 text-amber-800 bg-amber-400 hover:bg-amber-500 font-medium" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-amber-50">
+  <div class="flex items-start mb-4">
+    <div class="flex flex-col">
+      <h1 class="font-bold text-gray-700 text-2xl">Оборудовние и ПО</h1>
+      <span class="text-gray-400">Всего позиции: <%= @pagy.count %></span>
+    </div>
+    <%= link_to new_product_path, class: "button-fab flex justify-center items-center bg-amber-100" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="fill-amber-900">
         <script xmlns=""/><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
         <style xmlns="" type="text/css" id="igtranslator-color"/>
       </svg>
@@ -25,6 +28,7 @@
       <%= link_to "Отгруженные", products_path(shipped: true), class: "transition block rounded-full bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
     </div>
   </div>
+  <div class="border-b-2 border-amber-300 mb-4"></div>
   <div id="products" class="min-w-full" data-controller="menu">
   <%== pagy_nav(@pagy) %>
     <div class="relative overflow-x-auto mt-2">

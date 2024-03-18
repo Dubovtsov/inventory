@@ -5,7 +5,7 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Prices</h1>
-    <%= link_to "New price", new_price_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "New price", new_price_path, class: "primary-button" %>
   </div>
   <div class="p-3 flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
     <%= link_to "Export", prices_path(format: 'csv') %>

@@ -20,7 +20,7 @@
   <body>
     <div class="main h-screen bg-slate-100">
       <header class="nav border-b-2 border-amber-300">
-        <nav class="bg-slate-200 px-4 lg:px-6 py-2.5 flex flex-wrap justify-between items-center ">
+        <nav class="bg-gradient-to-b from-slate-200 to-slate-300 px-4 lg:px-6 py-2.5 flex flex-wrap justify-between items-center ">
           <a href="#" class="flex items-center">
             <span class="text-slate-700 bg-amber-500 p-1 material-symbols-outlined rounded-s-lg">inventory</span>
             <span class="self-center text-amber-500 px-2 bg-slate-700 text-2xl font-black whitespace-nowrap rounded-e-lg">СКЛАД</span>
@@ -84,7 +84,7 @@
         <div class="h-full px-4 py-4 overflow-y-auto ">
             <ul class="space-y-2 font-medium text-slate-500">
               <li>
-                <%= link_to product_movements_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-300 group" do %>
+                <%= link_to product_movements_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-200 group" do %>
                   <span class="flex gap-3">
                     <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                       analytics
@@ -94,7 +94,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to invoices_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-300 #{current_page?(controller: 'invoices') ? 'bg-amber-300 text-slate-900' : ''} group" do %>
+                <%= link_to invoices_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-200 #{current_page?(controller: 'invoices') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
                   <span class="flex gap-3">
                     <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                       receipt_long
@@ -104,7 +104,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to products_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-300 #{current_page?(controller: 'products') ? 'bg-amber-300 text-slate-900' : ''} group" do %>
+                <%= link_to products_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-200 #{current_page?(controller: 'products') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
                   <span class="flex gap-3 whitespace-nowrap">
                     <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                       shopping_cart
@@ -114,7 +114,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to storehouses_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-300 #{current_page?(controller: 'storehouses') ? 'bg-amber-300 text-slate-900' : ''} group" do %>
+                <%= link_to storehouses_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-200 #{current_page?(controller: 'storehouses') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
                   <span class="flex gap-3 whitespace-nowrap">
                     <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                       store
@@ -125,8 +125,8 @@
               </li>
               <li>
                 <%= link_to vendors_path, class:"transition flex items-center p-2 hover:text-slate-900 
-                                                rounded-lg hover:bg-amber-300 
-                                                #{current_page?(controller: 'vendors') ? 'bg-amber-300 text-slate-900' : ''} 
+                                                rounded-lg hover:bg-amber-200 
+                                                #{current_page?(controller: 'vendors') ? 'bg-amber-200 text-slate-900' : ''} 
                                                 group" do %>
                   <span class="flex gap-3 whitespace-nowrap">
                     <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
@@ -137,8 +137,8 @@
               <li>
                 <%= link_to clients_path, class:"transition flex items-center 
                                                 p-2 hover:text-slate-900 rounded-lg 
-                                                hover:bg-amber-300  
-                                                #{current_page?(controller: 'clients') ? 'bg-amber-300 text-slate-900' : ''} 
+                                                hover:bg-amber-200  
+                                                #{current_page?(controller: 'clients') ? 'bg-amber-200 text-slate-900' : ''} 
                                                 group" do %>
                   <span class="flex gap-3 whitespace-nowrap">
                     <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
@@ -147,9 +147,9 @@
                 <% end %>
               </li>
             </ul>
-            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-slate-300 dark:border-amber-700">
+            <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-slate-200 dark:border-amber-700">
               <li>
-                <%= link_to prices_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg dark:text-white hover:bg-amber-300 dark:hover:bg-amber-700 group" do %>
+                <%= link_to prices_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg dark:text-white hover:bg-amber-200 dark:hover:bg-amber-700 group" do %>
                   <svg class="flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
                       <path d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z"/>
                   </svg>
@@ -157,7 +157,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to product_movements_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg hover:bg-amber-300 group" do %>
+                <%= link_to product_movements_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg hover:bg-amber-200 group" do %>
                   <span class="flex gap-3 whitespace-nowrap">
                     <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">sync_alt</span>
                     Передвижения

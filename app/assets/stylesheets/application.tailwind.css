@@ -12,6 +12,17 @@
 
 */
 
+.primary-button {
+  @apply px-4 py-2 transition rounded-lg text-slate-900 bg-amber-300 hover:bg-amber-400 border border-amber-400 font-semibold text-sm cursor-pointer;
+}
+
+.button-fab {
+  @apply transition shadow ml-2 rounded-lg text-3xl text-center w-8 h-8 bg-amber-300 hover:bg-amber-400 font-medium;
+}
+
+.button-outline {
+  @apply
+}
 
 .pagy-nav.pagination {
   @apply isolate inline-flex -space-x-px rounded-md shadow-sm;
