@@ -29,8 +29,18 @@ class ClientsController < ApplicationController
     respond_to do |format|
       if @client.save
         format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend('clients', partial: 'clients/client',
-                                                                   locals: { client: @client })
+          helpers.fields model: Product.new do |form|
+            @form = form
+          end
+        # format.turbo_stream do
+        #   render turbo_stream: turbo_stream.prepend('clients', partial: 'clients/client',
+        #                                                            locals: { client: @client })
+        #   helpers.fields model: Product.new do |form|
+        #           render turbo_stream: turbo_stream.update(
+        #             :new_client_form, partial: "products/client_select", locals: {form: form}
+        #           )
+        #   end
+        # end
         end
         format.html { redirect_to client_url(@client), notice: 'client was successfully created.' }
       else

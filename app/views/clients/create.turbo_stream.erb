@@ -1,5 +1,2 @@
-<% if @client.errors.any? %>
-  <%= turbo_stream.replace "new-client-form", partial: "clients/form", locals: { client: @client } %> <!-- Заменяем форму на форму с ошибками -->
-<% else %>
-  <%= turbo_stream.replace "new-client-form", partial: "products/client_select", locals: { form: form } %>
-<% end %>
+<%= turbo_stream.replace('new_client_form', partial: 'products/client_select', locals: { form: @form }) %>
+<%= turbo_stream.prepend('clients', partial: 'clients/client',locals: { client: @client }) %>

@@ -1,16 +1,3 @@
-
-  <div class="mx-auto md:w-2/3 w-full">
-
-      <%= render "shared/modal", model:  @client, title: "Добавить нового клиента" %>
-
-    <%# if current_page?(controller: 'clients', action: 'new') %>
-    <%# debug %>
-      <%#= render "form", client: @client %>
-    <%# else %>
-      <%#= turbo_frame_tag "new_client_form" do %>
-        <%#= render "inline_form", client: @client %>
-      <%# end %>
-    <%# end %>
-    <%#= link_to "Back to clients", clients_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  </div>
-
+<div class="mx-auto md:w-2/3 w-full">
+  <%= render "shared/modal", model:  @client, title: "Добавить нового клиента" %>
+</div>
