@@ -76,6 +76,10 @@
             <% elsif alert.present? %>
               <p class="alert py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
             <% end %>
+            <%#= turbo_frame_tag "modal", target: "_top" do %>
+              <%#= render "clients/form", client: Client.new %>
+            <%# end %>
+            <%= turbo_frame_tag "modal" %>
             <%= yield %>
           </div>
         </div>

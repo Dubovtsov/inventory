@@ -17,24 +17,32 @@
  html, body { 
   font-family: 'Roboto', sans-serif;
  }
-/* .main {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.1fr 1.9fr; 
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "nav nav nav nav nav nav";
-      "aside content content content content content";
-  }
-  
-.content { grid-area: content; }
+ .modal {
+  background-color: #FFF;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  word-break: break-word;
+  border-radius: 6px;
+  z-index: 1000;
+}
 
-.aside { grid-area: aside; }
-
-header {
-  grid-area: nav;
-} */
-
+.modal-background {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .5);
+  opacity: 1;
+  transition: opacity .2s ease;
+  z-index:800;
+  background:rgba(0,0,0,.7);
+}
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 

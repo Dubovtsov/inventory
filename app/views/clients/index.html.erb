@@ -1,7 +1,8 @@
 <div class="w-full">
   <div class="flex justify-start items-center mb-4">
     <h1 class="font-bold text-gray-700 text-2xl mr-3">Клиенты | </h1>
-    <%= link_to "Добавить", new_client_path, class: "px-4 py-2 transition rounded-xl text-amber-600 hover:text-slate-900 hover:bg-amber-400 border border-amber-400 font-medium text-sm cursor-pointer" %>
+
+    <%= link_to "Добавить", new_client_path, data: { turbo_frame: 'modal' }, class: "px-4 py-2 transition rounded-xl text-amber-600 hover:text-slate-900 hover:bg-amber-400 border border-amber-400 font-medium text-sm cursor-pointer" %>
   </div>
 
   <div id="clients" class="grid grid-cols-5 gap-3">
