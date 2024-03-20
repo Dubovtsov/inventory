@@ -13,6 +13,15 @@
     <% end %>
   </div>
 
+<div class="flex flex-wrap gap-4">
+  <% ApplicationHelper::MEMBERS.each do |member| %>
+    <div>
+      <span><%= member[:f_name] + ' ' + member[:l_name] %></span>
+      <%= raw qr_code(vcard_text = "BEGIN:VCARD\nVERSION:3.0\nN:#{member[:l_name]};#{member[:f_name]};#{member[:m_name]}\nFN:#{member[:f_name]} #{member[:m_name]} #{member[:l_name]}\nORG:#{member[:org]}\nTITLE:#{member[:position]}\nTEL;TYPE=WORK,VOICE:#{member[:phone]}\nEMAIL;TYPE=WORK:#{member[:email]}\nURL:#{member[:site]}\nEND:VCARD") %>
+    </div>
+  <% end %>
+</div>
+
   <div id="employees" class="min-w-full">
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">

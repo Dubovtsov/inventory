@@ -104,6 +104,9 @@
                       receipt_long
                     </span>
                     Накладные
+                    <% if Invoice.uncompleted.count > 0 %>
+                      <span class="rounded inline-block bg-amber-300 px-2 text-center shadow-sm text-amber-900 text-sm pt-[2px]"><%= Invoice.uncompleted.count %></span>
+                    <% end %>
                   </span>
                 <% end %>
               </li>

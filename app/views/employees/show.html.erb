@@ -2,7 +2,7 @@
   <div class="mx-auto">
 
     <%= render @employee %>
-
+    <%= raw qr_code(vcard_text = "BEGIN:VCARD\nVERSION:3.0\nN:Clark;Jason\nFN:Jason Clark\nORG:MSU Library\nTITLE:Team Leader/Digital Initiatives Librarian [Associate Professor]\nTEL;TYPE=WORK,VOICE:(406) 994-6801\nEMAIL;TYPE=PREF,INTERNET:jaclark@montana.edu\nURL:http://www.jasonclark.info\nREV:20111013T195243Z\nEND:VCARD") %>
     <%= link_to "Edit this employee", edit_employee_path(@employee), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Destroy this employee", employee_path(@employee), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>

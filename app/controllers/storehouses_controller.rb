@@ -1,4 +1,5 @@
 class StorehousesController < ApplicationController
+  include Pagy::Backend
   before_action :set_storehouse, only: %i[ show edit update destroy invoice_create ]
 
   def index
@@ -7,6 +8,7 @@ class StorehousesController < ApplicationController
 
   def show
     @products = @storehouse.products
+    @pagy, @products = pagy(@products.order(created_at: :desc), items: 12)
   end
 
   def new
