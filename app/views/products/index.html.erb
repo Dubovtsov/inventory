@@ -73,4 +73,70 @@
       </table>
     </div>
   </div>
+  
+  <% @grouped_products.each do |title,  products| %>
+    <details>
+      <summary><%= title %> ➡️ <span class="text-red-800">Всего: <%== products.count %></span></summary>
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs font-bold text-gray-700 uppercase bg-slate-300">
+          <tr>
+            <th scope="col" class="px-2 py-1">
+              <%= sort_link(@q, :title, default_order: :desc) %>
+            </th>
+            <th scope="col" class="px-2 py-1 border-gray-200">
+                Серийный №
+            </th>
+            <th scope="col" class="px-2 py-1 border-gray-200">
+                Контрагент
+            </th>
+            <th scope="col" class="px-2 py-1 border-gray-200">
+              Инв. номер
+            </th>
+            <th scope="col" class="px-2 py-1 border-gray-200">
+              <%= sort_link(@q, :accepted_at, default_order: :desc) %>
+            </th>
+            <th scope="col" class="px-2 py-1">
+              Кол-во
+            </th>
+            <th scope="col" class="px-2 py-1">
+              Тип
+            </th>
+            <th scope="col" class="px-2 py-1">
+              Склад
+            </th>
+            <th scope="col" class="px-2 py-1">
+              <span class="sr-only">Edit</span>
+            </th>
+            <th scope="col" class="px-2 py-1">
+              <span class="sr-only">Перемещение</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% products.each do |product| %>
+            <tr class="bg-white border-b hover:bg-gray-50">
+              <td><%= link_to product.title, product %></td>
+              <td><%= product.serial_number %></td>
+              <td><%= product.client.title %></td>
+              <td><%= product.inventory_number %></td>
+              <td><%= product.accepted_at %></td>
+              <td><%= product.amount %></td>
+              <td>
+                <div class="rounded text-center text-[0.7rem] <%= product.type_product_style %> font-semibold">
+                  <%= I18n.t(product.type_product, locale: :ru) %>
+                </div>
+              </td>
+              <td>
+                <div class="py-1 bg-amber-100 border border-amber-400 rounded text-[0.7rem] text-center text-amber-800 font-semibold leading-tight">
+                  <%= link_to product.storehouse.title, storehouse_url(product.storehouse.id) %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </details>
+  <% end %>
+    
+  
 </div>

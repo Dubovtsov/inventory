@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   include Pagy::Backend
   before_action :set_product, only: %i[ show edit update destroy move_to_storehouse clone add_to_invoice remove_from_invoice add_files ]
   before_action :set_invoice, only: %i[ add_to_invoice remove_from_invoice ]
-  # GET /products or /products.json
+
   def index
     if params[:shipped].present?
       @q = Product.ransack(params[:q])
@@ -12,11 +12,9 @@ class ProductsController < ApplicationController
       @products = @q.result.balance_sheet
     end
     @partners = Client.all + Storehouse.all
+    @products = @products.order('title ASC')
+    @grouped_products = @products.group_by &:title
     @pagy, @products = pagy(@products.order(created_at: :desc), items: 12)
-    # @q = Product.ransack(params[:q])
-    # @products = @q.result(distinct: true)
-    # @pagy, @products = pagy(@q.result(distinct: true).order(created_at: :desc), items: 12)
-    # @partners = Client.all + Storehouse.all
   end
 
   def show
@@ -30,12 +28,6 @@ class ProductsController < ApplicationController
   end
 
   def add_to_invoice
-    # @product.add_to_invoice(@invoice)
-    # new_storehouse = @invoice.storehouse
-    # @product.move_to(new_storehouse, 1)
-    # respond_to do |format|
-    #   format.html { redirect_to invoice_url(@invoice), notice: "Позиция добавлена" }
-    # end
     begin
       @product.add_to_invoice(@invoice)
       new_storehouse = @invoice.storehouse
