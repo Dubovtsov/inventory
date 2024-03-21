@@ -11,7 +11,7 @@
       </svg>
     <% end %>
   </div>
-  <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4">
+  <div class="flex items-center sm:w-full justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4">
     <div class="relative">
         <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
           <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -25,7 +25,7 @@
     </div>
     <div class="flex gap-2">
       <%= link_to "Сбросить фильтр", products_path, class: "transition block rounded-full bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
-      <%= link_to "Отгруженные", products_path(shipped: true), class: "transition block rounded-full bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
+      <%= link_to "Отгруженные", products_path(shipped: true), class: "transition block rounded-full bg-slate-300 #{request.url.include?("shipped") ? "bg-slate-400 text-slate-900" : "bg-slate-300"} hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
     </div>
   </div>
   <div class="border-b-2 border-amber-300 mb-4"></div>

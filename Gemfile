@@ -6,7 +6,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "importmap-rails"
-gem "turbo-rails"
+gem "turbo-rails", '~> 1.3.3'
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "jbuilder"
@@ -21,7 +21,7 @@ gem 'error_highlight'
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 gem "slim"
-
+gem 'rqrcode'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

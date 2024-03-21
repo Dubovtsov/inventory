@@ -32,17 +32,8 @@ class ClientsController < ApplicationController
           helpers.fields model: Product.new do |form|
             @form = form
           end
-        # format.turbo_stream do
-        #   render turbo_stream: turbo_stream.prepend('clients', partial: 'clients/client',
-        #                                                            locals: { client: @client })
-        #   helpers.fields model: Product.new do |form|
-        #           render turbo_stream: turbo_stream.update(
-        #             :new_client_form, partial: "products/client_select", locals: {form: form}
-        #           )
-        #   end
-        # end
         end
-        format.html { redirect_to client_url(@client), notice: 'client was successfully created.' }
+        format.html { redirect_to client_url(@client), notice: 'Клиент успешно добавлен.' }
       else
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace('modal',
@@ -52,31 +43,6 @@ class ClientsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
       end
     end
-
-    # respond_to do |format|
-
-    #   if @client.save
-    #     format.turbo_stream do
-    #       helpers.fields model: Product.new do |form|
-    #         render turbo_stream: turbo_stream.update(
-    #           :new_client_form, partial: "products/client_select", locals: {form: form}
-    #         )
-    #       end
-    #     end
-    #     format.html { redirect_to client_url(@client), notice: "Клиент успешно добавлен" }
-    #     format.json { render :show, status: :created, location: @client }
-    #   else
-    #     format.turbo_stream do
-    #       helpers.fields model: Product.new do |form|
-    #         render turbo_stream: turbo_stream.update(
-    #           :new_client_form, partial: "products/client_select", locals: {form: form}
-    #         )
-    #       end
-    #     end
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @client.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def update

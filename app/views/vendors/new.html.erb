@@ -1,7 +1,4 @@
 <div class="mx-auto lg:w-2/3 md:w-full sm:w-full border bg-slate-200 border-slate-300 p-4 rounded-xl">
-  <h1 class="font-bold text-gray-700 text-2xl">Новый поставщик</h1>
-
-  <%= render "form", vendor: @vendor %>
-
-  <%= link_to "Назад", vendors_path, class: "transition ml-2 border border-slate-300 rounded-lg py-2 px-4 bg-slate-100 hover:bg-slate-300 inline-block font-semibold text-sm" %>
+  <%= render "shared/modal", model:  @vendor, title: "Добавить нового поставщика" %>
+  <%#= render "form", vendor: @vendor %>
 </div>
