@@ -29,55 +29,11 @@
     </div>
   </div>
   <div class="border-b-2 border-amber-300 mb-4"></div>
-  <div id="products" class="min-w-full" data-controller="menu">
   <%== pagy_nav(@pagy) %>
-    <div class="relative overflow-x-auto mt-2">
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs font-bold text-gray-700 uppercase bg-slate-300">
-          <tr>
-            <th scope="col" class="px-4 py-3">
-              <%= sort_link(@q, :title, default_order: :desc) %>
-            </th>
-            <th scope="col" class="px-4 py-3 border-gray-200">
-                Серийный №
-            </th>
-            <th scope="col" class="px-4 py-3 border-gray-200">
-                Контрагент
-            </th>
-            <th scope="col" class="px-4 py-3 border-gray-200">
-              Инв. номер
-            </th>
-            <th scope="col" class="px-4 py-3 border-gray-200">
-              <%= sort_link(@q, :accepted_at, default_order: :desc) %>
-            </th>
-            <th scope="col" class="px-4 py-3">
-              Кол-во
-            </th>
-            <th scope="col" class="px-4 py-3">
-              Тип
-            </th>
-            <th scope="col" class="px-4 py-3">
-              Склад
-            </th>
-            <th scope="col" class="px-4 py-3">
-              <span class="sr-only">Edit</span>
-            </th>
-            <th scope="col" class="px-4 py-3">
-              <span class="sr-only">Перемещение</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render @products %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
   <% @grouped_products.each do |title,  products| %>
-    <details>
-      <summary><%= title %> ➡️ <span class="text-red-800">Всего: <%== products.count %></span></summary>
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <details class="transition my-1 open:bg-gray-100 open:ring-1 open:ring-black/5 open:p-4 rounded-lg text-sm open:font-semibold">
+      <summary class="border-b border-gray-200 w-1/2 flex justify-between p-1 cursor-pointer"><span class="w-2/3"><%= title %></span><span class="px-2 flex rounded bg-white border border-amber-300 justify-center items-center">➡️ Всего: <%== products.count %></span></summary>
+      <table class="mt-2 w-full text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs font-bold text-gray-700 uppercase bg-slate-300">
           <tr>
             <th scope="col" class="px-2 py-1">
@@ -115,18 +71,18 @@
         <tbody>
           <% products.each do |product| %>
             <tr class="bg-white border-b hover:bg-gray-50">
-              <td><%= link_to product.title, product %></td>
-              <td><%= product.serial_number %></td>
-              <td><%= product.client.title %></td>
-              <td><%= product.inventory_number %></td>
-              <td><%= product.accepted_at %></td>
-              <td><%= product.amount %></td>
-              <td>
+              <td class="px-2"><%= link_to product.title, product %></td>
+              <td class="px-2"><%= product.serial_number %></td>
+              <td class="px-2"><%= product.client.title %></td>
+              <td class="px-2"><%= product.inventory_number %></td>
+              <td class="px-2"><%= product.accepted_at %></td>
+              <td class="px-2"><%= product.amount %></td>
+              <td class="px-2">
                 <div class="rounded text-center text-[0.7rem] <%= product.type_product_style %> font-semibold">
                   <%= I18n.t(product.type_product, locale: :ru) %>
                 </div>
               </td>
-              <td>
+              <td class="px-2">
                 <div class="py-1 bg-amber-100 border border-amber-400 rounded text-[0.7rem] text-center text-amber-800 font-semibold leading-tight">
                   <%= link_to product.storehouse.title, storehouse_url(product.storehouse.id) %>
                 </div>

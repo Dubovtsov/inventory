@@ -9,6 +9,8 @@ ru:
   software: "ПО"
   hardware: "Оборудование"
   office: "Офис"
+  mounting_equipment: "Монтаж"
+  test_equipment: "Измерительное"
   ransack:
     asc: ascending
     desc: descending

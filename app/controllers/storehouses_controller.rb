@@ -8,7 +8,7 @@ class StorehousesController < ApplicationController
 
   def show
     @products = @storehouse.products
-    @pagy, @products = pagy(@products.order(created_at: :desc), items: 12)
+    # @pagy, @products = pagy(@products.order(created_at: :desc), items: 12)
   end
 
   def new

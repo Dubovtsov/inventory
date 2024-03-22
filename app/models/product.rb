@@ -14,13 +14,14 @@ class Product < ApplicationRecord
   validates :title, presence: true
   validates :inventory_number, uniqueness: true
 
-  enumerize :type_product, in: [ :software, :hardware, :office ], default: :hardware, i18n_scope: "type_product", scope: :shallow
+  enumerize :type_product, in: [ :software, :hardware, :test_equipment, :mounting_equipment ], default: :hardware, i18n_scope: "type_product", scope: :shallow
 
   before_create :set_inventory_number
   after_create :create_product_movement
 
   scope :shipped, -> { where(shipped: true)}
   scope :balance_sheet, -> { where(shipped: false)}
+  scope :type_product, -> (type) { where(type_product: type)}
   # Ex:- scope :active, -> {where(:active => true)}
 
   def move_to(new_storehouse, amount)

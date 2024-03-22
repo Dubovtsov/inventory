@@ -13,8 +13,9 @@ class ProductsController < ApplicationController
     end
     @partners = Client.all + Storehouse.all
     @products = @products.order('title ASC')
+    @pagy, @products = pagy_arel(@products, items: 13)
     @grouped_products = @products.group_by &:title
-    @pagy, @products = pagy(@products.order(created_at: :desc), items: 12)
+
   end
 
   def show
