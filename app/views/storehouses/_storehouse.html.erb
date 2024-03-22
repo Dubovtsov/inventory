@@ -1,7 +1,7 @@
 <div id="<%= dom_id storehouse %>" class="">
-  <%= link_to storehouse, class:"flex flex-col items-center bg-slate-200 border border-slate-300 transition rounded-3xl md:flex-row md:max-w-xl hover:bg-slate-300 hover:border-slate-300" do %>
+  <%= link_to storehouse, class:"flex items-center bg-slate-200 border border-slate-300 transition rounded-3xl flex-row hover:bg-slate-300 hover:border-slate-300" do %>
     <% if storehouse.image.attached? %>
-      <%= image_tag storehouse.image, class: "ml-4 object-cover w-full rounded-full h-96 md:h-auto md:w-[80px] " %>
+      <%= image_tag storehouse.image, class: "ml-4 object-cover rounded-full h-[80px] md:w-[80px] " %>
     <% else %>
       <div class="ml-4 md:w-[80px] md:h-[80px] rounded-full border border-slate-300 bg-slate-50 flex items-center justify-center">
         <div class="text-sky-900 font-bold uppercase"><%= storehouse.title[0] + storehouse.title[1] %></div>
