@@ -124,11 +124,11 @@
       </div>
 
       <div class="tab-content-item p-5 fade-in" data-tabs-target="tabContentItem" data-tab-id="2" hidden>
-        <%= render partial: "products/products_table", locals: { products: @products.type_product(:software) } %>
+        <%= render partial: "products/products_table", locals: { products: @products.type_product?(:software) } %>
       </div>
 
       <div class="tab-content-item p-5 fade-in" data-tabs-target="tabContentItem" data-tab-id="3" hidden>
-        <%= render partial: "products/products_table", locals: { products: @products.type_product(:hardware) } %>
+        <%= render partial: "products/products_table", locals: { products: @products.type_product?(:hardware) } %>
       </div>
 
       <div class="tab-content-item p-5 fade-in w-full lg:w-1/2" data-tabs-target="tabContentItem" data-tab-id="5" hidden>

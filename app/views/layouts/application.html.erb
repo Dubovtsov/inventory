@@ -18,24 +18,24 @@
   </head>
 
   <body class="flex flex-col min-h-screen">
-      <header class="text-white p-4 flex justify-between items-center bg-gradient-to-b from-slate-200 to-slate-300 px-4 lg:px-6 py-2.5 flex-wrap">
+      <header class="text-white p-4 flex justify-between items-center border-b-2 border-gray-200 bg-white px-4 lg:px-6 py-2.5 flex-wrap">
           <div class="font-bold">
             <a href="#" class="flex items-center">
-              <span class="text-slate-700 bg-amber-500 p-1 material-symbols-outlined rounded-s-lg">inventory</span>
-              <span class="self-center text-amber-500 px-2 bg-slate-700 text-2xl font-black whitespace-nowrap rounded-e-lg">СКЛАД</span>
+              <span class="text-slate-700 bg-amber-500 p-2 material-symbols-outlined rounded-s-xl">inventory</span>
+              <span class="self-center text-amber-500 px-3 py-1 bg-slate-700 text-2xl font-black whitespace-nowrap rounded-e-xl">СКЛАД</span>
             </a>
           </div>
           <div class="flex items-center lg:order-2">
             <% if user_signed_in? %>
               <span class="text-sm font-semibold text-amber-500 mr-3"><%= current_user.email %></span>
-              <%= link_to destroy_user_session_path, class:"font-semibold text-gray-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none", data: { turbo_method: :delete, turbo_confirm: 'Really?' } do %>
+              <%= link_to destroy_user_session_path, class:"font-semibold text-gray-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none", data: { turbo_method: :delete, turbo_confirm: 'Really?' } do %>
                 Выйти 
               <% end %>
             <% else %>
-              <%= link_to new_user_session_path, class:"font-semibold text-gray-800 hover:bg-slate-200 focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" do %>
+              <%= link_to new_user_session_path, class:"font-semibold text-gray-800 hover:bg-slate-200 focus:ring-4 focus:ring-gray-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" do %>
                 Войти
               <% end %>
-              <a href="#" class="font-semibold text-gray-300 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">
+              <a href="#" class="font-semibold text-gray-300 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">
                 Sign Up
               </a>
             <% end %>
@@ -48,11 +48,11 @@
       </header>
 
       <div class="flex-1 flex">
-          <aside id="sidebar" class="bg-gray-200 p-4 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:relative fixed inset-y-0 left-0 z-10 w-64">
+          <aside id="sidebar" class="bg-white p-4 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:relative fixed inset-y-0 left-0 z-10 w-64">
               <nav>
                   <ul class="space-y-1 text-slate-500">
                       <li>
-                        <%= link_to product_movements_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-200 group" do %>
+                        <%= link_to product_movements_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
                           <span class="flex gap-3">
                             <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                               analytics
@@ -62,7 +62,7 @@
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to invoices_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-200 #{current_page?(controller: 'invoices') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+                        <%= link_to invoices_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'invoices') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
                           <span class="flex gap-3">
                             <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                               receipt_long
@@ -75,7 +75,7 @@
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to products_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-200 #{current_page?(controller: 'products') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+                        <%= link_to products_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'products') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
                           <span class="flex gap-3 whitespace-nowrap">
                             <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                               shopping_cart
@@ -85,7 +85,7 @@
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to storehouses_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-lg hover:bg-amber-200 #{current_page?(controller: 'storehouses') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+                        <%= link_to storehouses_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'storehouses') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
                           <span class="flex gap-3 whitespace-nowrap">
                             <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
                               store
@@ -96,7 +96,7 @@
                       </li>
                       <li>
                         <%= link_to vendors_path, class:"transition flex items-center p-2 hover:text-slate-900 
-                                                rounded-lg hover:bg-amber-200 
+                                                rounded-xl hover:bg-amber-200 
                                                 #{current_page?(controller: 'vendors') ? 'bg-amber-200 text-slate-900' : ''} 
                                                 group" do %>
                           <span class="flex gap-3 whitespace-nowrap">
@@ -107,7 +107,7 @@
                       </li>
                       <li>
                         <%= link_to clients_path, class:"transition flex items-center 
-                                                p-2 hover:text-slate-900 rounded-lg 
+                                                p-2 hover:text-slate-900 rounded-xl 
                                                 hover:bg-amber-200  
                                                 #{current_page?(controller: 'clients') ? 'bg-amber-200 text-slate-900' : ''} 
                                                 group" do %>
@@ -119,7 +119,7 @@
                       </li>
                       <div class="border border-slate-300"></div>
                       <li>
-                        <%= link_to prices_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg dark:text-white hover:bg-amber-200 dark:hover:bg-amber-700 group" do %>
+                        <%= link_to prices_path, class:"transition flex items-center p-2 text-slate-900 rounded-xl dark:text-white hover:bg-amber-200 dark:hover:bg-amber-700 group" do %>
                           <svg class="flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
                               <path d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z"/>
                           </svg>
@@ -127,7 +127,7 @@
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to product_movements_path, class:"transition flex items-center p-2 text-slate-900 rounded-lg hover:bg-amber-200 group" do %>
+                        <%= link_to product_movements_path, class:"transition flex items-center p-2 text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
                           <span class="flex gap-3 whitespace-nowrap">
                             <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">sync_alt</span>
                             Передвижения
@@ -159,7 +159,7 @@
                 </button>
               </div>
             <% elsif alert.present? %>
-              <p class="alert py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
+              <p class="alert py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-xl inline-block" id="alert"><%= alert %></p>
             <% end %>
             <%= turbo_frame_tag "modal" %>
             <%= yield %>

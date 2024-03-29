@@ -22,6 +22,9 @@
       <td class="px-4 py-1 border-gray-200 border-dotted text-center">
         <%= product.amount %>
       </td>
+      <td class="px-4 py-1 border-gray-200 border-dotted text-center">
+        <%= product.booking %>
+      </td>
       <td class="px-2">
         <div class="rounded text-center text-[0.7rem] <%= product.type_product_style %> font-semibold">
           <%= I18n.t(product.type_product, locale: :ru) %>

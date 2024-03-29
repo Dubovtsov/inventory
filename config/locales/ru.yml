@@ -1,4 +1,6 @@
 ru:
+  title: "Название"
+  manager: "Менеджер"
   enumerize:
     product:
       type:
@@ -30,3 +32,9 @@ ru:
       article:
         title: Article Title
         body: Main Content
+  activerecord:
+    models:
+      vendor: "Поставщик"
+    attributes:
+      vendor:
+        title: "Название"

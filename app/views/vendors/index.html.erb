@@ -10,18 +10,19 @@
     <% end %>
   </div>
 
-  <div class="relative border-collapse overflow-x-auto border border-slate-300 sm:rounded-2xl">
+  <%# <div class="relative border-collapse overflow-x-auto border border-slate-300 sm:rounded-2xl">
     <table class="text-xs w-full border">
       <thead class=" text-gray-700 uppercase bg-slate-300">
         <tr>
-          <th class="px-6 py-3">Наименование</th>
-          <th class="px-6 py-3">Менеджер</th>
+          <th class="px-6 py-3"><%= I18n.t :title %></th>
+          <%# <th class="px-6 py-3">Менеджер</th>
           <th class="px-6 py-3"></th>
         </tr>
       </thead>
       <tbody class="bg-slate-50">
         <%= render @vendors %>
-      </tbody>
+      <%# </tbody>
     </table> 
-  </div>
+  </div> %>
+  <%= render_table(@vendors, :title, :manager) %>
 </div>

@@ -25,13 +25,14 @@
     </div>
     <div class="flex gap-2">
       <%= link_to "Сбросить фильтр", products_path, class: "transition block rounded-full bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
+      <%# Сделать группировку по контрагенту %>
       <%= link_to "Отгруженные", products_path(shipped: true), class: "transition block rounded-full bg-slate-300 #{request.url.include?("shipped") ? "bg-slate-400 text-slate-900" : "bg-slate-300"} hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
     </div>
   </div>
   <div class="border-b-2 border-amber-300 mb-4"></div>
   <%== pagy_nav(@pagy) %>
   <% @grouped_products.each do |title,  products| %>
-    <details class="transition my-1 open:bg-gray-100 open:ring-1 open:ring-black/5 open:p-4 rounded-lg text-sm open:font-semibold">
+    <details class="transition my-1 open:bg-gray-100 open:ring-1 open:ring-black/5 open:p-4 rounded-xl text-sm open:font-semibold">
       <summary class="border-b border-gray-200 w-1/2 flex justify-between p-1 cursor-pointer"><span class="w-2/3"><%= title %></span><span class="px-2 flex rounded bg-white border border-amber-300 justify-center items-center">➡️ Всего: <%== products.count %></span></summary>
       <table class="mt-2 w-full text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs font-bold text-gray-700 uppercase bg-slate-300">
@@ -53,6 +54,9 @@
             </th>
             <th scope="col" class="px-2 py-1">
               Кол-во
+            </th>
+            <th scope="col" class="px-2 py-1">
+              Зарезервировано
             </th>
             <th scope="col" class="px-2 py-1">
               Тип
@@ -77,6 +81,12 @@
               <td class="px-2"><%= product.inventory_number %></td>
               <td class="px-2"><%= product.accepted_at %></td>
               <td class="px-2"><%= product.amount %></td>
+              <td class="px-4 py-1 border-gray-200 border-dotted text-center">
+              <%#= button_to product_path(product, product: {booking: true}), class: "px-4 py-2 transition rounded-lg text-slate-900 bg-amber-300 hover:bg-amber-400 font-bold text-sm cursor-pointer", method: :patch do %>
+                
+              <%# end %>
+                <input type="checkbox" name="" id="" <%= product.booking ? "checked disabled" : "disabled" %>>
+              </td>
               <td class="px-2">
                 <div class="rounded text-center text-[0.7rem] <%= product.type_product_style %> font-semibold">
                   <%= I18n.t(product.type_product, locale: :ru) %>
@@ -86,6 +96,9 @@
                 <div class="py-1 bg-amber-100 border border-amber-400 rounded text-[0.7rem] text-center text-amber-800 font-semibold leading-tight">
                   <%= link_to product.storehouse.title, storehouse_url(product.storehouse.id) %>
                 </div>
+              </td>
+              <td class="px-4 py-2 text-right">
+                <%= link_to "Edit", edit_product_path(product), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
               </td>
             </tr>
           <% end %>

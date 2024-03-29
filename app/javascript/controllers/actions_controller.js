@@ -1,16 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="menu"
 export default class extends Controller {
-  static targets = [ "button", "menu" ]
+  static targets = [ "button", "actions" ]
 
   toggle(event) {
     event.preventDefault()
     let button =  event.currentTarget
-    this.menuTargets.forEach((el) => {
+    this.actionsTargets.forEach((el) => {
       if(el == button.nextElementSibling) {
         el.classList.toggle("-translate-x-0")
         el.classList.toggle("-translate-x-full")
+        el.classList.toggle("hidden")
       } else {
         el.classList.add("-translate-x-full")
       }

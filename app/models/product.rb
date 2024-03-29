@@ -21,7 +21,7 @@ class Product < ApplicationRecord
 
   scope :shipped, -> { where(shipped: true)}
   scope :balance_sheet, -> { where(shipped: false)}
-  scope :type_product, -> (type) { where(type_product: type)}
+  scope :type_product?, -> (type) { where(type_product: type)}
   # Ex:- scope :active, -> {where(:active => true)}
 
   def move_to(new_storehouse, amount)

@@ -79,6 +79,10 @@
       <%= form.check_box :shipped %>
     </div>
     <div class="my-3">
+      <%= form.label "Зарезервировано", class:"font-semibold text-sm" %>
+      <%= form.check_box :booking %>
+    </div>
+    <div class="my-3">
       <%= form.label "Розничная цена", class:"font-semibold text-sm" %>
       <%= form.text_field :retail_price, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
     </div>
