@@ -58,20 +58,20 @@ module TableHelper
   end
 
   def dropdown_menu(record)
-    content_tag :div, class: 'z-10 fade-in-down origin-top-right absolute right-0 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44', data: { 'actions-target': 'actions' } do
+    content_tag :div, class: 'z-10 fade-in-down origin-top-right absolute right-0 hidden bg-amber-200 divide-y divide-amber-100 rounded-lg shadow w-44', data: { 'actions-target': 'actions' } do
       concat(dropdown_menu_items(record))
     end
   end
 
   def dropdown_menu_items(record)
     content_tag :ul, class: 'text-sm text-gray-700' do
-      concat(content_tag(:li, link_to('Редактировать', send("edit_#{record.class.name.downcase}_path", record), data: { turbo_frame: 'modal' }, class: 'block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition')))
+      concat(content_tag(:li, link_to('Редактировать', send("edit_#{record.class.name.downcase}_path", record), data: { turbo_frame: 'modal' }, class: 'block px-4 py-2 hover:bg-amber-100 dark:hover:bg-gray-600 dark:hover:text-white transition')))
     end.concat(destroy_menu_item(record))
   end
 
   def destroy_menu_item(record)
     content_tag :div, class: '' do
-      link_to 'Удалить', record, data: { turbo_method: :delete, turbo_frame: '_top', turbo_confirm: 'Are you sure?' }, class: 'block px-4 py-2 text-sm text-gray-700 hover:text-red-700 hover:bg-red-100 transition'
+      link_to 'Удалить', record, data: { turbo_method: :delete, turbo_frame: '_top', turbo_confirm: 'Are you sure?' }, class: 'block px-4 py-2 text-sm text-gray-700 hover:text-red-700 hover:bg-amber-100 transition'
     end
   end
 end
