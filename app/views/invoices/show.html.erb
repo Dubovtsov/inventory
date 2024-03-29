@@ -78,7 +78,7 @@
     <div id="products" class="bg-white scrollbar border w-full mt-3 rounded h-[60vh] overflow-auto" data-search-target="results" >
       <table class="w-full text-xs border-collapse">
         <% @products.each do |p| %>
-          <tr class="border border-slate-200 text-sm" data-search-target="filterable" data-search-key='<%= "#{p.title}".downcase %>'>
+          <tr class="border border-slate-200 text-sm" data-search-target="filterable" data-search-key='<%= "#{p.title}".downcase + "#{p.client.title}".downcase %>'>
             <td class="px-4"><%= p.title %></td>
             <td class="text-slate-400 px-4"><%= p.storehouse.title %></td>
             <td class="px-4"><%= p.client.title %></td>

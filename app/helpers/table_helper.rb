@@ -27,7 +27,7 @@ module TableHelper
         content_tag :tr, class: 'bg-white border-t hover:bg-gray-50' do
           columns.map.with_index do |column, index|
             if index == 0
-              concat content_tag(:td, link_to(record.send(column), polymorphic_path(record)), class: 'px-6 py-1 font-bold text-gray-950')
+              concat content_tag(:td, link_to(record.send(column), polymorphic_path(record)), class: 'px-6 py-1 font-bold text-gray-600')
             else
               concat(content_tag(:td, record.send(column), class: 'px-6 py-1'))
             end
