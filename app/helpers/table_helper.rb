@@ -1,11 +1,11 @@
 # app/helpers/table_helper.rb
 
 module TableHelper
-  def render_table(collection, *columns)
+  def render_table(collection, *columns, association_path: nil)
     content_tag :div, class: 'overflow-x-auto rounded-2xl border border-gray-200', data: {controller: "actions"} do
       content_tag :table, class: 'w-full text-xs text-left text-gray-600' do
         concat(render_table_header(columns))
-        concat(render_table_body(collection, columns))
+        concat(render_table_body(collection, columns, association_path: nil))
       end
     end
   end
@@ -21,7 +21,7 @@ module TableHelper
     end
   end
 
-  def render_table_body(collection, columns)
+  def render_table_body(collection, columns, association_path: nil)
     content_tag :tbody do
       collection.map do |record|
         content_tag :tr, class: 'bg-white border-t hover:bg-gray-50' do
@@ -37,6 +37,24 @@ module TableHelper
       end.join.html_safe
     end
   end
+
+  #
+  def render_table_row(item, columns, association_path: nil)
+    content_tag :tr do
+      columns.each do |column|
+        value = if association_path
+                  item.dig(*association_path.split('.').map(&:to_sym), column)
+                else
+                  item.send(column)
+                end
+
+        concat(content_tag(:td, class: 'px-6 py-4 whitespace-nowrap') do
+          value
+        end)
+      end
+    end
+  end
+  #
 
   def render_table_actions(record)
     content_tag :td, class: 'px-6 py-1 text-right' do

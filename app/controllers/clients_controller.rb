@@ -7,6 +7,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    @invoices = Invoice.where(client_id: params[:id]).order(:date)
   end
 
   def new

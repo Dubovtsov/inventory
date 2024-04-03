@@ -10,7 +10,7 @@
     <div class="inline-block ml-2">
       <%= button_to "Destroy this client", client_path(@client), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
-    <%#= button_to "Создать накладную", invoice_create_client_path(@client), class: "mt-2 text-slate-50 hover:text-slate-50 transition rounded-lg py-1 px-4 bg-slate-400 hover:bg-slate-500 inline-block", method: :post %>
+    <%= render_table(@invoices, :id) %>
     <%= link_to "Back to clients", clients_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

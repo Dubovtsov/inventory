@@ -35,6 +35,21 @@ ru:
   activerecord:
     models:
       vendor: "Поставщик"
+      price: "Цена"
     attributes:
       vendor:
         title: "Название"
+    attributes:
+      price:
+        title: "Название"
+        retail_price: "Розничная цена"
+        purchase_price: "Закупочная цена"
+        item_number: "Артикул"
+  vat_20: "НДС 20%"
+  no_vat: "Без НДС"
+  devise:
+    sessions:
+      signed_in: "Вы успешно вошли"
+      sign_out: "Выйти"
+      sign_in: "Войти"
+      sign_up: "Зарегистрироваться"

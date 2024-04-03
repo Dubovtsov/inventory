@@ -75,6 +75,6 @@ class PricesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def price_params
-      params.require(:price).permit(:title, :retail_price, :purchase_price, :vendor_id)
+      params.require(:price).permit(:title, :retail_price, :purchase_price, :vendor_id, :vat, :item_number)
     end
 end

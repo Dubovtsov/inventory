@@ -1,13 +1,19 @@
 <div id="<%= dom_id price %>">
   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-    <td class="px-6 py-4 w-2/4">
+    <td class="px-6 py-4 w-1/3">
       <%= link_to price.title, price, class: "" %>
     </td>
     <td class="px-6 py-4">
+      <%= price.item_number %>
+    </td>
+    <td class="px-6 py-4 text-right">
       <%= number_with_precision(price.retail_price, delimiter: ' ', precision: 2) %> ₽
     </td>
-    <td class="px-6 py-4">
+    <td class="px-6 py-4 text-right">
       <%= number_with_precision(price.purchase_price, delimiter: ' ', precision: 2) %> ₽
+    </td>
+    <td class="px-6 py-4">
+      <%= I18n.t(price.vat, locale: :ru) %>
     </td>
     <td class="px-6 py-4">
       <%= price.vendor.title %>

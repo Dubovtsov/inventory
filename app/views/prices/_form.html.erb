@@ -17,6 +17,11 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :item_number %>
+    <%= form.text_field :item_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :retail_price %>
     <%= form.number_field :retail_price, step: :any, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
@@ -25,9 +30,15 @@
     <%= form.label :purchase_price %>
     <%= form.number_field :purchase_price, step: :any, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
+
   <div class="my-3 w-1/3">
     <%= form.label "Поставщик", class:"font-semibold text-sm" %>
     <%= form.collection_select :vendor_id, Vendor.order(:title), :id, :title, {:include_blank => true}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
+  </div>
+
+  <div class="my-3 w-1/2">
+    <%= form.label "НДС", class:"font-semibold text-sm" %>
+    <%= form.select :vat, Price.vat.values.map{ |s| [I18n.t(s, locale: :ru), s] }, {}, class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" %>
   </div>
 
   <div class="inline">
