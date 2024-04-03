@@ -67,10 +67,10 @@
                     data-action="click->tabs#changeTab" data-tabs-target="tab" data-tab-id="5"><i class="fa-solid fa-briefcase pr-5 text-slate-400 text-xl"></i>Монтаж</button>
     </div>
     <div class="tab-content bg-gray-100 flex flex-row w-full" data-tabs-target="content">
-      <div class="tab-content-item p-5 fade-in overflow-auto w-full" data-tabs-target="tabContentItem" data-tab-id="1">
+      <div class="tab-content-item p-5 fade-in overflow-x-auto w-full" data-tabs-target="tabContentItem" data-tab-id="1">
         <%# <%== pagy_nav(@pagy) %>
         <div class="relative table-wrp block max-h-[60vh] overflow-x-auto border border-slate-300 sm:rounded-xl">
-          <table class="w-full overflow-auto text-sm text-left rtl:text-right text-gray-500">
+          <table class="w-full overflow-x-auto text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase sticky top-0 bg-gray-100">
               <tr>
                 <th scope="col" class="px-6 py-3">

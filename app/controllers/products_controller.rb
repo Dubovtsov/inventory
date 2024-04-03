@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
     @clone.update(serial_number: "-", inventory_number: @clone.set_inventory_number)
     if @clone.save
       flash[:notice] = "Product cloned successfully"
-      redirect_to @clone
+      redirect_to edit_product_path(@clone)
     else
       flash[:alert] = "Product cloning failed"
       redirect_to products_url

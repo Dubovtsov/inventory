@@ -16,20 +16,28 @@
         <div class="text-gray-500 text-xs font-semibold">
           <%= product.accepted_at %>
         </div>
-        <h2 class="mb-3 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white"><%= link_to product.title, product %></h2>
+        <div class="flex gap-1 items-center">
+          <div class="p-2 px-3 rounded text-center text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold" title="ТИП">
+            <%= I18n.t(product.type_product, locale: :ru) %>
+          </div>
+          <div class="p-2 px-3 bg-amber-100 rounded text-xs text-center text-amber-800 font-semibold" title="СКЛАД">
+            <%= product.storehouse.title %>
+          </div>
+        </div>
+
+        <h2 class="my-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= link_to product.title, product %></h2>
         <p class="mb-3 text-gray-500 dark:text-gray-400"><%= product.description %></p>
         <div class="text-gray-700 font-medium mb-4 w-full flex flex-row gap-2">
           <div class="bg-gray-100 px-3 rounded tracking-wider"><span class="font-normal text-gray-500 tracking-normal">Серийный номер: </span> <%= product.serial_number %></div>
           <div class="bg-gray-100 px-3 rounded tracking-wider"><span class="font-normal text-gray-500 tracking-normal">Инвентарный номер: </span><%= product.inventory_number %></div>
         </div>
-        <div class="flex gap-4 items-center">
-          <div class="p-2 rounded text-center text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold" title="ТИП">
-            <%= I18n.t(product.type_product, locale: :ru) %>
+        
+        <% if product.booking? %>
+          <div class="text-red-400">
+            В резерве для: <%= product.client.title %>
           </div>
-          <div class="p-2 bg-amber-100 rounded text-xs text-center text-amber-800 font-semibold" title="СКЛАД">
-            <%= product.storehouse.title %>
-          </div>
-        </div>
+        <% end %>
+         <div class="border-b-2 border-amber-300 mt-4"></div>
         <%= link_to edit_product_path(product), class: "inline-flex items-center text-xs font-medium text-amber-500 hover:text-amber-700 hover:underline mt-4" do %>
           Редактировать
         <% end %>
