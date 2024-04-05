@@ -24,6 +24,29 @@
         <% end %>
     </div>
     <div class="flex gap-2">
+      <div class="relative" data-controller="dd">
+         <button data-action="click->dd#toggle" class="text-amber-600 bg-amber-200 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
+          <span data-dd-target="buttonText">Фильтр по поставщикам</span>
+          <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+          </svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div id="dropdownDivider2" class="hidden absolute z-10 top-12 w-full shadow-lg rounded-md bg-amber-200 p-4" data-dd-target="m">
+          <!-- Содержимое dropdown -->
+          <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+            <% Client.all.each do |client| %>
+              <li data-action="click->dd#updateButtonText">
+                <%= link_to client.title, products_path(client_id: client.id), class: "block px-4 py-2 hover:bg-amber-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+              </li>
+            <% end %>
+          </ul>
+          <div class=" bg-amber-300">
+            <%= link_to "Все", products_path, class:"block px-4 py-2 text-sm text-gray-700  hover:bg-amber-100" %>
+          </div>
+        </div>
+      </div>
+     
       <%= link_to "Сбросить фильтр", products_path, class: "transition block rounded-full bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
       <%# Сделать группировку по контрагенту %>
       <%= link_to "Отгруженные", products_path(shipped: true), class: "transition block rounded-full bg-slate-300 #{request.url.include?("shipped") ? "bg-slate-400 text-slate-900" : "bg-slate-300"} hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>

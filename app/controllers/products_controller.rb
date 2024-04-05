@@ -11,6 +11,13 @@ class ProductsController < ApplicationController
       @q = Product.ransack(params[:q])
       @products = @q.result.balance_sheet
     end
+    if params[:client_id].present?
+      @q = Product.ransack(params[:q])
+      @products = Product.where(client_id: params[:client_id])
+    else
+      @q = Product.ransack(params[:q])
+      @products = @q.result(distinct: true).order(:client_id)
+    end
     @partners = Client.all + Storehouse.all
     @products = @products.order('title ASC')
     @pagy, @products = pagy_arel(@products, items: 13)
