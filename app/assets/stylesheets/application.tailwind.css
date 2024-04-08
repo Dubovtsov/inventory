@@ -28,6 +28,7 @@
   @apply border border-amber-300;
 }
 
+
 .pagy-nav.pagination {
   @apply isolate inline-flex -space-x-px rounded-md;
 }
@@ -53,5 +54,6 @@
 }
 
 .page.active {
-  @apply z-10 border-indigo-500 bg-indigo-50 text-indigo-600 relative inline-flex items-center border text-sm font-medium focus:z-20;
+  @apply z-10 border-indigo-500 bg-indigo-50 text-indigo-600 relative inline-flex items-center ring-2 ring-amber-300 text-sm font-medium focus:z-20;
 }
+

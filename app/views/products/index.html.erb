@@ -13,26 +13,28 @@
   </div>
   <div class="flex items-center sm:w-full justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4">
     <div class="relative">
-        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-          <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-          </svg>
-        </div>
+      <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+        <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+      </div>
+      <div class="">
         <%= search_form_for @q do |f| %>
-          <%= f.search_field :title_or_description_cont, class:"p-2 ps-10 text-sm text-gray-900 border border-amber-200 rounded-l-full w-80 bg-gray-50 focus:ring-amber-500 focus:border-amber-500", placeholder: "Search..." %>
+          <%= f.search_field :title_or_description_cont, class:"p-2 ps-10 text-sm text-gray-900 border border-amber-200 rounded-l-full bg-gray-50 focus:ring-amber-500 focus:border-amber-500", placeholder: "Search..." %>
           <%= f.submit "Найти", class:"transition cursor-pointer border border-amber-200 ml-0 text-amber-900 bg-amber-100 hover:bg-amber-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-r-full text-sm px-4 py-2" %>
         <% end %>
+      </div>
     </div>
-    <div class="flex gap-2">
-      <div class="relative" data-controller="dd">
-         <button data-action="click->dd#toggle" class="text-amber-600 bg-amber-200 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
+    <div class="flex flex-wrap gap-2">
+      <div class="relative lg:w-auto sm:w-full" data-controller="dd">
+         <button data-action="click->dd#toggle" class="w-full text-amber-600 bg-amber-200 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
           <span data-dd-target="buttonText">Фильтр по поставщикам</span>
           <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
           </svg>
         </button>
         <!-- Dropdown menu -->
-        <div id="dropdownDivider2" class="hidden absolute z-10 top-12 w-full shadow-lg rounded-md bg-amber-200 p-4" data-dd-target="m">
+        <div id="dropdownDivider2" class="hidden scrollbar absolute z-10 top-12 w-full min-w-[15rem] max-h-[25rem] overflow-y-auto shadow-lg rounded-md bg-amber-200 p-4" data-dd-target="m">
           <!-- Содержимое dropdown -->
           <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
             <% Client.all.each do |client| %>
@@ -46,18 +48,20 @@
           </div>
         </div>
       </div>
-     
-      <%= link_to "Сбросить фильтр", products_path, class: "transition block rounded-full bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
-      <%# Сделать группировку по контрагенту %>
-      <%= link_to "Отгруженные", products_path(shipped: true), class: "transition block rounded-full bg-slate-300 #{request.url.include?("shipped") ? "bg-slate-400 text-slate-900" : "bg-slate-300"} hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
+      <div class="flex items-center lg:w-auto sm:w-1/2">
+        <%= link_to "Сбросить фильтр", products_path, class: "transition block rounded-full align-middle bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
+      </div>
+      <div class="flex items-center lg:w-auto sm:w-1/2">
+        <%= link_to "Отгруженные", products_path(shipped: true), class: "transition block rounded-full bg-slate-300 #{request.url.include?("shipped") ? "bg-slate-400 text-slate-900" : "bg-slate-300"} hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
+      </div>
     </div>
   </div>
   <div class="border-b-2 border-amber-300 mb-4"></div>
   <%== pagy_nav(@pagy) %>
   <% @grouped_products.each do |title,  products| %>
-    <details class="transition my-1 open:bg-gray-100 open:ring-1 open:ring-black/5 open:p-4 rounded-xl text-sm open:font-semibold">
-      <summary class="border-b border-gray-200 w-1/2 flex justify-between p-1 cursor-pointer"><span class="w-2/3"><%= title %></span><span class="px-2 flex rounded bg-white border border-amber-300 justify-center items-center">➡️ Всего: <%== products.count %></span></summary>
-      <table class="mt-2 w-full text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <details class="transition my-1 open:bg-gray-100 w-full overflow-x-auto open:ring-1 open:ring-black/5 open:p-4 rounded-xl text-sm open:font-semibold">
+      <summary class="border-b border-gray-200 lg:w-1/2 sm:w-full flex justify-between p-1 cursor-pointer"><span class="w-2/3"><%= title %></span><span class="px-2 flex rounded bg-white border border-amber-300 justify-center items-center">➡️ Всего: <%== products.count %></span></summary>
+      <table class="mt-2 w-full overflow-x-auto text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-4000">
         <thead class="text-xs font-bold text-gray-700 uppercase bg-slate-300">
           <tr>
             <th scope="col" class="px-2 py-1">
