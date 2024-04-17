@@ -5,11 +5,11 @@
       <div>
         <p><%= cart_item.price.title %></p>
         <p><%= number_to_currency(cart_item.total_price) %></p>
-        <%= form_with url: cart_items_path(cart_item), method: :patch do |form| %>
+        <%= form_with url: cart_item_path(cart_item), method: :patch do |form| %>
           <%= form.number_field :quantity, value: cart_item.quantity, min: 1 %>
           <%= form.submit 'Обновить' %>
         <% end %>
-        <%= button_to 'Удалить', cart_items_path(cart_item), method: :delete, form: { data: { turbo_frame: "_top" } } %>
+        <%= button_to 'Удалить', cart_item_path(cart_item), method: :delete, form: { data: { turbo_frame: "_top" } } %>
       </div>
     <% end %>
   <% end %>

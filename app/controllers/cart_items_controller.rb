@@ -12,6 +12,24 @@ class CartItemsController < ApplicationController
     end
   end
 
+  def update
+    @cart_item = current_cart.cart_items.find(params[:id])
+    @cart_item.update(quantity: params[:quantity])
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
+  def destroy
+    @cart_item = current_cart.cart_items.find(params[:id])
+    @cart_item.destroy
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
 
   def current_cart

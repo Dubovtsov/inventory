@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       post :add_files
     end
   end
-  resources :cart_items, only: [:create]
+  resources :cart_items
   resources :carts
   resources :attachments, only: :destroy
   devise_for :administrators
