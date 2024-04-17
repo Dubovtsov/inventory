@@ -4,20 +4,16 @@ class ProductsController < ApplicationController
   before_action :set_invoice, only: %i[ add_to_invoice remove_from_invoice ]
 
   def index
-    if params[:shipped].present?
-      @q = Product.ransack(params[:q])
-      @products = @q.result.shipped
-    else
-      @q = Product.ransack(params[:q])
-      @products = @q.result.balance_sheet
-    end
-    if params[:client_id].present?
-      @q = Product.ransack(params[:q])
-      @products = Product.where(client_id: params[:client_id])
-    else
-      @q = Product.ransack(params[:q])
-      @products = @q.result(distinct: true).order(:client_id)
-    end
+    @q = Product.ransack(params[:q])
+
+    @products = if params[:client_id].present?
+                  Product.where(client_id: params[:client_id])
+                elsif params[:shipped].present?
+                  @q.result.shipped
+                else
+                  @q.result.balance_sheet
+                end
+
     @partners = Client.all + Storehouse.all
     @products = @products.order('title ASC')
     @pagy, @products = pagy_arel(@products, items: 13)

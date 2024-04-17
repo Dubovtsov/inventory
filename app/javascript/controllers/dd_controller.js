@@ -4,9 +4,7 @@ export default class extends Controller {
   static targets = ["m", "buttonText"]
 
   connect() {
-    console.log(window.location.search);
-
-    if (window.location.search != "") {
+    if (window.location.search.includes('?client_id')) {
       this.restoreButtonText();
     }
     document.addEventListener("click", this.outsideClick.bind(this));

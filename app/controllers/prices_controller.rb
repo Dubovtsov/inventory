@@ -14,6 +14,7 @@ class PricesController < ApplicationController
       format.html
       format.csv { send_data Price.to_csv, filename: "posts-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
     end
+    @cart = current_cart
   end
 
   # GET /prices/1 or /prices/1.json
@@ -76,5 +77,13 @@ class PricesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def price_params
       params.require(:price).permit(:title, :retail_price, :purchase_price, :vendor_id, :vat, :item_number)
+    end
+
+    def current_cart
+      Cart.find(session[:cart_id])
+    rescue ActiveRecord::RecordNotFound
+      cart = Cart.create
+      session[:cart_id] = cart.id
+      cart
     end
 end

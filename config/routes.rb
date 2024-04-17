@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       post :add_files
     end
   end
+  resources :cart_items, only: [:create]
+  resources :carts
   resources :attachments, only: :destroy
   devise_for :administrators
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
