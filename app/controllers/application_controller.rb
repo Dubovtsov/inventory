@@ -1,14 +1,19 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  # layout :layout_by_resource
+  before_action :set_current_cart
 
-  protected
+  private
 
-  # def layout_by_resource
-  #   if devise_controller?
-  #     "devise"
-  #   else
-  #     "application"
-  #   end
-  # end
+  def set_current_cart
+    @current_cart = current_cart
+  end
+
+  def current_cart
+    Cart.find(session[:cart_id])
+  rescue ActiveRecord::RecordNotFound
+    cart = Cart.create
+    session[:cart_id] = cart.id
+    cart
+  end
+
 end

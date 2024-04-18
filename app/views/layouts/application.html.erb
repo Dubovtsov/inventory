@@ -139,6 +139,11 @@
                           Создать накладную
                         <% end %>
                       </li>
+                      <li>
+                        <%= link_to cart_path(@current_cart), class:"shadow border flex text-center items-center border-amber-400 transition text-slate-900 bg-amber-300 hover:bg-amber-400 font-semibold rounded-xl text-sm px-4 lg:px-5 py-3 lg:py-3 focus:outline-none" do %>
+                          Корзина
+                        <% end %>
+                      </li>
                   </ul>
               </nav>
           </aside>

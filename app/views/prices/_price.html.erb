@@ -20,6 +20,7 @@
     </td>
     <td class="px-6 py-4 text-right">
       <%= link_to "Edit", edit_price_path(price), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
+      <%= button_to 'В корзину', cart_items_path(price_id: price.id), form: { data: { turbo_frame: "cart" } }, class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
     </td>
   </tr>
 </div>

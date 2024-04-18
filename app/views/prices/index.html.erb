@@ -81,8 +81,9 @@
       <% end %>
     </div>
   <% end %>
-
+  <% console %>
+ <%= @current_cart %>
   <%= turbo_frame_tag "cart" do %>
-    <%= render 'carts/cart' %>
+    <%#= render 'carts/cart', locals: { cart: @current_cart } %>
   <% end %>
 </div>
