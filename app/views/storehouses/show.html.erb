@@ -12,129 +12,92 @@
     </div>
 </div>
 
-<div class="" data-controller="tabs">
-    <div class="tabs flex-row md:flex-row lg:flex-row xl:flex-row">
-      <button class="
-                    font-medium
-                    text-xs
-                    text-slate-700
-                    leading-tight
-                    uppercase
-                    px-6
-                    py-3
-                    hover:border-transparent hover:bg-gray-100
-                    active" 
-                    data-action="click->tabs#changeTab" data-tabs-target="tab" data-tab-id="1"><i class="fa-solid fa-id-card pr-5 text-slate-400 text-xl"></i>Все позиции</button>
-      <button class="
-                    font-medium
-                    text-xs
-                    text-slate-700
-                    leading-tight
-                    uppercase
-                    px-6
-                    py-3
-                    hover:border-transparent hover:bg-gray-100"
-                    data-action="click->tabs#changeTab" data-tabs-target="tab" data-tab-id="2"><i class="fa-solid fa-file-contract pr-5 text-slate-400 text-xl"></i>ПО</button>
-      <button class="
-                    font-medium
-                    text-xs
-                    text-slate-700
-                    leading-tight
-                    uppercase
-                    px-6
-                    py-3
-                    hover:border-transparent hover:bg-gray-100"
-                    data-action="click->tabs#changeTab" data-tabs-target="tab" data-tab-id="3"><i class="fa-solid fa-file-contract pr-5 text-slate-400 text-xl"></i>Оборудовние</button>
-      <button class="
-                    font-medium
-                    text-slate-700
-                    text-xs
-                    leading-tight
-                    uppercase
-                    px-6
-                    py-3
-                    hover:border-transparent hover:bg-gray-100"
-                    data-action="click->tabs#changeTab" data-tabs-target="tab" data-tab-id="4"><i class="fa-solid fa-briefcase pr-5 text-slate-400 text-xl"></i>Измерительное</button>
-      <button class="
-                    font-medium
-                    text-slate-700
-                    text-xs
-                    leading-tight
-                    uppercase
-                    px-6
-                    py-3
-                    hover:border-transparent hover:bg-gray-100"
-                    data-action="click->tabs#changeTab" data-tabs-target="tab" data-tab-id="5"><i class="fa-solid fa-briefcase pr-5 text-slate-400 text-xl"></i>Монтаж</button>
-    </div>
-    <div class="tab-content bg-gray-100 flex flex-row w-full" data-tabs-target="content">
-      <div class="tab-content-item p-5 fade-in overflow-x-auto w-full" data-tabs-target="tabContentItem" data-tab-id="1">
-        <%# <%== pagy_nav(@pagy) %>
-        <div class="relative table-wrp block max-h-[60vh] overflow-x-auto border border-slate-300 sm:rounded-xl">
-          <table class="w-full overflow-x-auto text-sm text-left rtl:text-right text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase sticky top-0 bg-gray-100">
-              <tr>
-                <th scope="col" class="px-6 py-3">
-                  Наименование
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Описание
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Инв. номер
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Дата принятия
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Тип
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="overflow-y-auto">
-              <% @products.each do |product| %>
-                <tr class="bg-white border-b hover:bg-gray-50 text-sm">
-                  <th scope="row" class="px-6 py-1 font-medium text-gray-900 dark:text-white max-w-[500px]">
-                    <%= link_to product.title, product %>
-                  </th>
-                  <td class="px-6 py-1">
-                      <%= product.description.truncate(200) %>
-                  </td>
-                  <td class="px-6 py-1">
-                      <%= product.inventory_number %>
-                  </td>
-                  <td class="px-6 py-1">
-                      <%= product.accepted_at %>
-                  </td>
-                  <td class="px-6 py-1">
-                    <div class="p-2 rounded text-center text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
-                      <%= I18n.t(product.type_product, locale: :ru) %>
-                    </div>
-                  </td>
-                  <td class="px-6 py-1 text-right">
-                    <%= link_to "Edit", edit_product_path(product), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="tab-content-item p-5 fade-in" data-tabs-target="tabContentItem" data-tab-id="2" hidden>
-        <%= render partial: "products/products_table", locals: { products: @products.type_product?(:software) } %>
-      </div>
-
-      <div class="tab-content-item p-5 fade-in" data-tabs-target="tabContentItem" data-tab-id="3" hidden>
-        <%= render partial: "products/products_table", locals: { products: @products.type_product?(:hardware) } %>
-      </div>
-
-      <div class="tab-content-item p-5 fade-in w-full lg:w-1/2" data-tabs-target="tabContentItem" data-tab-id="5" hidden>
-        <div class="flex justify-center p-5">
-          Контент
-        </div>
-      </div>
+<div data-controller="d-tabs">
+  <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px">
+        <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
+            <a href="#" class="flex flex gap-2 items-center inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">
+            <span class="items-center flex-shrink-0 transition duration-75 material-symbols-outlined material-symbols-outlined">local_mall</span>Все позиции</a>
+        </li>
+        <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
+            <a href="#" class="flex flex gap-2 items-center inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+            <span class="flex items-center flex-shrink-0 transition duration-75 material-symbols-outlined material-symbols-outlined">package_2</span>ПО</a>
+        </li>
+        <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
+            <a href="#" class="inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Оборудовние</a>
+        </li>
+        <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
+            <a href="#" class="inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Измерительное</a>
+        </li>
+        <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
+            <a href="#" class="inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Монтаж</a>
+        </li>
+    </ul>
+  </div>
+  <div data-d-tabs-target="content" style="display: none;" class="p-2 bg-gray-200">
+    <div class="relative table-wrp block max-h-[60vh] overflow-x-auto border border-slate-300 ">
+      <table class="w-full overflow-x-auto text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase sticky top-0 bg-gray-100">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              Наименование
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Описание
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Инв. номер
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Дата принятия
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Тип
+            </th>
+            <th scope="col" class="px-6 py-3">
+                <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="overflow-y-auto">
+          <% @products.each do |product| %>
+            <tr class="bg-white border-b hover:bg-gray-50 text-sm">
+              <th scope="row" class="px-6 py-1 font-medium text-gray-900 dark:text-white max-w-[500px]">
+                <%= link_to product.title, product %>
+              </th>
+              <td class="px-6 py-1">
+                  <%= product.description.truncate(200) %>
+              </td>
+              <td class="px-6 py-1">
+                  <%= product.inventory_number %>
+              </td>
+              <td class="px-6 py-1">
+                  <%= product.accepted_at %>
+              </td>
+              <td class="px-6 py-1">
+                <div class="p-2 rounded text-center text-xs <%= product.type_product == :software ? "bg-green-200 text-green-800" : "bg-orange-200 text-orange-800" %> font-semibold">
+                  <%= I18n.t(product.type_product, locale: :ru) %>
+                </div>
+              </td>
+              <td class="px-6 py-1 text-right">
+                <%= link_to "Edit", edit_product_path(product), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
+  <div data-d-tabs-target="content" style="display: none;" class="p-2 bg-gray-200">
+    <%= render partial: "products/products_table", locals: { products: @products.balance_sheet.type_product?(:software) } %>
+  </div>
+  <div data-d-tabs-target="content" style="display: none;" class="p-2 bg-gray-200">
+    <%= render partial: "products/products_table", locals: { products: @products.balance_sheet.type_product?(:hardware) } %>
+  </div>
+  <div data-d-tabs-target="content" style="display: none;" class="p-2 bg-gray-200">
+    <%= render partial: "products/products_table", locals: { products: @products.balance_sheet.type_product?(:test_equipment) } %>
+  </div>
+  <div data-d-tabs-target="content" style="display: none;" class="p-2 bg-gray-200">
+    <%= render partial: "products/products_table", locals: { products: @products.balance_sheet.type_product?(:mounting_equipment) } %>
+  </div>
+</div>

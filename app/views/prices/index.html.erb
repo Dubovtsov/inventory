@@ -72,17 +72,10 @@
     </table>
   </div>
 
-  <% @prices.each do |price| %>
-    <div>
-      <h2><%= price.title %></h2>
-      <p><%= number_to_currency(price.retail_price) %></p>
-      <%= turbo_frame_tag "cart_actions_#{price.id}" do %>
-        <%= button_to 'Добавить в корзину', cart_items_path(price_id: price.id), form: { data: { turbo_frame: "cart" } } %>
-      <% end %>
-    </div>
-  <% end %>
-  <% console %>
- <%= @current_cart %>
+      <%#= turbo_frame_tag "cart_actions_#{price.id}" do %>
+        <%#= button_to 'Добавить в корзину', cart_items_path(price_id: price.id), form: { data: { turbo_frame: "cart" } } %>
+      <%# end %>
+
   <%= turbo_frame_tag "cart" do %>
     <%#= render 'carts/cart', locals: { cart: @current_cart } %>
   <% end %>

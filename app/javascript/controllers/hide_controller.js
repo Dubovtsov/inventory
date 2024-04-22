@@ -4,10 +4,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "parent" ]
   connect() {
-    console.log(this.parentTarget)
   }
   hideEl() {
-    console.log(this.parentTarget)
     this.parentTarget.remove()
   }
 }
