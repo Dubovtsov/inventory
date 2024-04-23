@@ -146,6 +146,9 @@
               <% end %>
             </li>
           </ul>
+          <%= turbo_frame_tag "cart" do %>
+            <%= render @cart %>
+          <% end %>
         </nav>
       </aside>
 

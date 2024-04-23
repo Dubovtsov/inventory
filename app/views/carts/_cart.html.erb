@@ -1,19 +1,33 @@
 <% if cart.cart_items.any? %>
   <h1 class="text-2xl font-bold">Корзина</h1>
-  <% cart.cart_items.each do |cart_item| %>
+  <% cart.cart_items.order(created_at: :desc).each do |cart_item| %>
     <%= turbo_frame_tag "cart_item_#{cart_item.id}" do %>
-      <div>
-        <p><%= cart_item.price.title %></p>
-        <p><%= number_to_currency(cart_item.total_price) %></p>
-        <%= form_with url: cart_item_path(cart_item), method: :patch do |form| %>
-          <%= form.number_field :quantity, value: cart_item.quantity, min: 1 %>
-          <%= form.submit 'Обновить' %>
-        <% end %>
-        <%= button_to 'Удалить', cart_item_path(cart_item), method: :delete, form: { data: { turbo_frame: "_top" } } %>
+      <div class="flex flex-1 flex-col mb-2 bg-gray-200 p-4 w-full">
+        <div class="flex justify-between text-xs font-medium text-gray-900">
+          <h3><%= cart_item.price.title %></h3>
+          <p><%= number_with_precision(cart_item.total_price, delimiter: ' ', precision: 2) %> ₽</p>
+        </div>
+        
+        <div class="flex flex-1 items-end justify-between text-sm">
+          <div class="">
+            <%= form_with url: cart_item_path(cart_item), method: :patch do |form| %>
+              <%= form.number_field :quantity, class: "max-w-20 py-0 px-2", value: cart_item.quantity, min: 1 %>
+              <button type="submit" class="cursor-pointer">
+                <span class="material-symbols-outlined">
+                  refresh
+                </span>
+              </button>
+            <% end %>
+          </div>
+
+          <div class="flex">
+            <%= button_to 'Удалить', cart_item_path(cart_item), class: "font-normal text-xs text-indigo-600 hover:text-indigo-500 cursor-pointer", method: :delete, form: { data: { turbo_frame: "_top" } } %>
+          </div>
+        </div>
       </div>
     <% end %>
   <% end %>
-  <p>Итого: <%= number_to_currency(cart.total_price) %></p>
+  <p class="text-xl font-bold text-right">Итого: <%= number_with_precision(cart.total_price, delimiter: ' ', precision: 2) %> ₽</p>
 <% else %>
   <p>Корзина пуста</p>
 <% end %>
