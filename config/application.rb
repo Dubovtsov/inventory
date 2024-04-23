@@ -19,6 +19,8 @@ module Inventory
     config.active_storage.replace_on_assign_to_many = false
     # Configuration for the application, engines, and railties goes here.
     config.i18n.default_locale = :ru
+    config.web_console.permissions = '192.168.0.0/16'
+    config.web_console.permissions = '0.0.0.0'
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #

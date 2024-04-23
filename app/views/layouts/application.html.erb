@@ -19,166 +19,166 @@
   </head>
 
   <body class="flex flex-col min-h-screen bg-slate-50">
-      <header class="text-white p-4 flex justify-between items-center border-b-2 border-gray-200 bg-slate-50 px-4 lg:px-6 py-2.5 flex-wrap">
-          <div class="font-bold">
-            <a href="#" class="flex items-center">
-              <span class="text-slate-700 bg-amber-500 p-2 material-symbols-outlined rounded-s-xl">inventory</span>
-              <span class="self-center text-amber-500 px-3 py-1 bg-slate-700 text-2xl font-black whitespace-nowrap rounded-e-xl">СКЛАД</span>
-            </a>
-          </div>
-          <div class="flex items-center lg:order-2">
-            <% if user_signed_in? %>
-              <span class="text-sm font-semibold text-amber-500 mr-3"><%= current_user.email %></span>
-              <%= link_to destroy_user_session_path, class:"font-semibold text-gray-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none", data: { turbo_method: :delete, turbo_confirm: 'Really?' } do %>
-                Выйти 
-              <% end %>
-            <% else %>
-              <%= link_to new_user_session_path, class:"font-semibold text-gray-800 hover:bg-slate-200 focus:ring-4 focus:ring-gray-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" do %>
-                Войти
-              <% end %>
-              <a href="#" class="font-semibold text-gray-300 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">
-                Sign Up
-              </a>
-            <% end %>
-          </div>
-          <button id="menuBtn" class="md:hidden">
-              <svg class="h-6 w-6 fill-current text-black" viewBox="0 0 24 24">
-                  <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
-              </svg>
-          </button>
-      </header>
-
-      <div class="flex-1 flex">
-          <aside id="sidebar" class="bg-slate-50 p-4 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:relative fixed inset-y-0 left-0 z-10 w-64">
-              <nav>
-                  <ul class="space-y-1 text-slate-500">
-                      <li>
-                        <%= link_to product_movements_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
-                          <span class="flex gap-3">
-                            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
-                              analytics
-                            </span>
-                            Dashboard
-                          </span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to invoices_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'invoices') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
-                          <span class="flex gap-3">
-                            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
-                              receipt_long
-                            </span>
-                            Накладные
-                            <% if Invoice.uncompleted.count > 0 %>
-                              <span class="rounded inline-block bg-amber-300 px-2 text-center shadow-sm text-amber-900 text-sm pt-[2px]"><%= Invoice.uncompleted.count %></span>
-                            <% end %>
-                          </span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to products_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'products') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
-                          <span class="flex gap-3 whitespace-nowrap">
-                            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
-                              shopping_cart
-                            </span>
-                            Продукты
-                          </span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to storehouses_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'storehouses') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
-                          <span class="flex gap-3 whitespace-nowrap">
-                            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
-                              store
-                            </span>
-                            Склады
-                          </span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to vendors_path, class:"transition flex items-center p-2 hover:text-slate-900 
-                                                rounded-xl hover:bg-amber-200 
-                                                #{current_page?(controller: 'vendors') ? 'bg-amber-200 text-slate-900' : ''} 
-                                                group" do %>
-                          <span class="flex gap-3 whitespace-nowrap">
-                            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
-                            Поставщики
-                          </span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to clients_path, class:"transition flex items-center 
-                                                p-2 hover:text-slate-900 rounded-xl 
-                                                hover:bg-amber-200  
-                                                #{current_page?(controller: 'clients') ? 'bg-amber-200 text-slate-900' : ''} 
-                                                group" do %>
-                          <span class="flex gap-3 whitespace-nowrap">
-                            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
-                            Клиенты
-                          </span>
-                        <% end %>
-                      </li>
-                      <div class="border border-slate-300"></div>
-                      <li>
-                        <%= link_to prices_path, class:"transition flex items-center p-2 text-slate-900 rounded-xl dark:text-white hover:bg-amber-200 dark:hover:bg-amber-700 group" do %>
-                          <svg class="flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
-                              <path d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z"/>
-                          </svg>
-                          <span class="ms-3">Price</span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to product_movements_path, class:"transition flex items-center p-2 text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
-                          <span class="flex gap-3 whitespace-nowrap">
-                            <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">sync_alt</span>
-                            Передвижения
-                          </span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to new_invoice_path, class:"shadow border flex text-center items-center border-amber-400 transition text-slate-900 bg-amber-300 hover:bg-amber-400 font-semibold rounded-xl text-sm px-4 lg:px-5 py-3 lg:py-3 focus:outline-none" do %>
-                          Создать накладную
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to cart_path(@current_cart), class:"shadow border flex text-center items-center border-amber-400 transition text-slate-900 bg-amber-300 hover:bg-amber-400 font-semibold rounded-xl text-sm px-4 lg:px-5 py-3 lg:py-3 focus:outline-none" do %>
-                          Корзина
-                        <% end %>
-                      </li>
-                  </ul>
-              </nav>
-          </aside>
-
-          <main class="flex-1 p-4">
-            <% if notice.present? %>
-              <div id="notice" data-controller="hide" data-hide-target="parent" class="fixed top-1 left-1/2 -translate-x-1/2 p-2 bg-green-400 items-center text-indigo-100 leading-none lg:rounded-full flex gap-2 lg:inline-flex" role="alert">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="text-green-900">
-                    <path d="m424-408-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l114 114q12 12 28 12t28-12l226-226q11-11 11-28t-11-28q-11-11-28-11t-28 11L424-408Zm56 328q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
-                    <style xmlns="" type="text/css" id="igtranslator-color"/>
-                </svg>
-                <span class="font-semibold mr-2 text-left flex-auto text-green-900"><%= notice %></span>
-                <button class="bg-red-400 rounded-full p-1 text-xl cursor-pointer" data-action="hide#hideEl">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
-                    <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
-                    <style xmlns="" type="text/css" id="igtranslator-color"/>
-                  </svg>
-                </button>
-              </div>
-            <% elsif alert.present? %>
-              <p class="alert py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-xl inline-block" id="alert"><%= alert %></p>
-            <% end %>
-            <%= turbo_frame_tag "modal" %>
-            <%= yield %>
-          </main>
+    <header class="text-white p-4 flex justify-between items-center border-b-2 border-gray-200 bg-slate-50 px-4 lg:px-6 py-2.5 flex-wrap">
+      <div class="font-bold">
+        <a href="#" class="flex items-center">
+          <span class="text-slate-700 bg-amber-500 p-2 material-symbols-outlined rounded-s-xl">inventory</span>
+          <span class="self-center text-amber-500 px-3 py-1 bg-slate-700 text-2xl font-black whitespace-nowrap rounded-e-xl">СКЛАД</span>
+        </a>
       </div>
+      <div class="flex items-center lg:order-2">
+        <% if user_signed_in? %>
+          <span class="text-sm font-semibold text-amber-500 mr-3"><%= current_user.email %></span>
+          <%= link_to destroy_user_session_path, class:"font-semibold text-gray-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none", data: { turbo_method: :delete, turbo_confirm: 'Really?' } do %>
+            Выйти 
+          <% end %>
+        <% else %>
+          <%= link_to new_user_session_path, class:"font-semibold text-gray-800 hover:bg-slate-200 focus:ring-4 focus:ring-gray-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" do %>
+            Войти
+          <% end %>
+          <a href="#" class="font-semibold text-gray-300 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">
+            Sign Up
+          </a>
+        <% end %>
+      </div>
+      <button id="menuBtn" class="md:hidden">
+        <svg class="h-6 w-6 fill-current text-black" viewBox="0 0 24 24">
+          <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+        </svg>
+      </button>
+    </header>
 
-      <script>
-          const sidebar = document.getElementById('sidebar');
-          const menuBtn = document.getElementById('menuBtn');
+    <div class="flex-1 flex">
+      <aside id="sidebar" class="bg-slate-50 p-4 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:relative fixed inset-y-0 left-0 z-10 w-64">
+        <nav>
+          <ul class="space-y-1 text-slate-500">
+            <li>
+              <%= link_to product_movements_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
+                <span class="flex gap-3">
+                  <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+                    analytics
+                  </span>
+                  Dashboard
+                </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to invoices_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'invoices') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+                <span class="flex gap-3">
+                  <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+                    receipt_long
+                  </span>
+                  Накладные
+                  <% if Invoice.uncompleted.count > 0 %>
+                    <span class="rounded inline-block bg-amber-300 px-2 text-center shadow-sm text-amber-900 text-sm pt-[2px]"><%= Invoice.uncompleted.count %></span>
+                  <% end %>
+                </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to products_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'products') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+                <span class="flex gap-3 whitespace-nowrap">
+                  <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+                    shopping_cart
+                  </span>
+                  Продукты
+                </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to storehouses_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'storehouses') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+                <span class="flex gap-3 whitespace-nowrap">
+                  <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+                    store
+                  </span>
+                  Склады
+                </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to vendors_path, class:"transition flex items-center p-2 hover:text-slate-900 
+                                      rounded-xl hover:bg-amber-200 
+                                      #{current_page?(controller: 'vendors') ? 'bg-amber-200 text-slate-900' : ''} 
+                                      group" do %>
+                <span class="flex gap-3 whitespace-nowrap">
+                  <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
+                  Поставщики
+                </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to clients_path, class:"transition flex items-center 
+                                      p-2 hover:text-slate-900 rounded-xl 
+                                      hover:bg-amber-200  
+                                      #{current_page?(controller: 'clients') ? 'bg-amber-200 text-slate-900' : ''} 
+                                      group" do %>
+                <span class="flex gap-3 whitespace-nowrap">
+                  <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
+                  Клиенты
+                </span>
+              <% end %>
+            </li>
+            <div class="border border-slate-300"></div>
+            <li>
+              <%= link_to prices_path, class:"transition flex items-center p-2 text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
+                <svg class="flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                    <path d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z"/>
+                </svg>
+                <span class="ms-3">Price</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to product_movements_path, class:"transition flex items-center p-2 text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
+                <span class="flex gap-3 whitespace-nowrap">
+                  <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">sync_alt</span>
+                  Передвижения
+                </span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_invoice_path, class:"shadow border flex text-center items-center border-amber-400 transition text-slate-900 bg-amber-300 hover:bg-amber-400 font-semibold rounded-xl text-sm px-4 lg:px-5 py-3 lg:py-3 focus:outline-none" do %>
+                Создать накладную
+              <% end %>
+            </li>
+            <li>
+              <%= link_to cart_path(@current_cart), class:"shadow border flex text-center items-center border-amber-400 transition text-slate-900 bg-amber-300 hover:bg-amber-400 font-semibold rounded-xl text-sm px-4 lg:px-5 py-3 lg:py-3 focus:outline-none" do %>
+                Корзина
+              <% end %>
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
-          menuBtn.addEventListener('click', () => {
-              sidebar.classList.toggle('-translate-x-full');
-          });
-      </script>
+      <main class="flex-1 p-4">
+        <% if notice.present? %>
+          <div id="notice" data-controller="hide" data-hide-target="parent" class="fixed top-1 left-1/2 -translate-x-1/2 p-2 bg-green-400 items-center text-indigo-100 leading-none lg:rounded-full flex gap-2 lg:inline-flex" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" class="text-green-900">
+              <path d="m424-408-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l114 114q12 12 28 12t28-12l226-226q11-11 11-28t-11-28q-11-11-28-11t-28 11L424-408Zm56 328q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"/>
+              <style xmlns="" type="text/css" id="igtranslator-color"/>
+            </svg>
+            <span class="font-semibold mr-2 text-left flex-auto text-green-900"><%= notice %></span>
+            <button class="bg-red-400 rounded-full p-1 text-xl cursor-pointer" data-action="hide#hideEl">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16">
+                <path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/>
+                <style xmlns="" type="text/css" id="igtranslator-color"/>
+              </svg>
+            </button>
+          </div>
+        <% elsif alert.present? %>
+          <p class="alert py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-xl inline-block" id="alert"><%= alert %></p>
+        <% end %>
+        <%= turbo_frame_tag "modal" %>
+        <%= yield %>
+      </main>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('menuBtn');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+    </script>
   </body>
 </html>

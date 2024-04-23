@@ -1,23 +1,24 @@
-<button data-action="click->dropdown#toggle" onblur="hide(this);" data-dropdown-target="button" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-gray-100 rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-50" type="button"> 
-  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path></svg>
-</button>
+<%#= render "shared/dropdown", title: title, model: model %>
 
-<!-- Dropdown dropdown -->
-<div data-dropdown-target="dropdown" class="z-10 fade-in-down origin-top-right absolute right-0 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
-  <ul class="py-2 text-sm text-gray-700">
-    <li>
-      <%= link_to "Редактировать", send("edit_#{model.class.name.downcase}_path", model), data: { turbo_frame: 'modal' }, class:"block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition" %>
-    </li>
-  </ul>
-  <div class="py-2">
-    <%= link_to "Удалить", model, data: { turbo_method: :delete, turbo_frame: "_top", turbo_confirm: "Вы уверены?" }, class:"block px-4 py-2 text-sm text-gray-700 hover:text-red-700 hover:bg-red-100 transition" %>
+<div class="relative lg:w-auto sm:w-full" data-controller="dd">
+    <button data-action="click->dd#toggle" class="w-full text-amber-600 bg-amber-200 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
+    <span data-dd-target="buttonText"><%= title %></span>
+    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+    </svg>
+  </button>
+  <!-- Dropdown menu -->
+  <div id="dropdownDivider2" class="hidden scrollbar absolute z-10 top-12 w-full min-w-[15rem] max-h-[25rem] overflow-y-auto shadow-lg rounded-md bg-amber-200" data-dd-target="m">
+    <!-- Содержимое dropdown -->
+    <div class="border-b border-amber-500 bg-amber-300">
+      <%= link_to "Все", products_path, class:"block px-4 py-2 text-sm text-gray-7000 hover:bg-amber-100" %>
+    </div>
+    <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
+      <% model.each do |record| %>
+        <li data-action="click->dd#updateButtonText">
+          <%= link_to record.title, products_path("#{record.class.name.downcase}_id": record.id), class: "block px-4 py-2 hover:bg-amber-100" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
-
-<script>
-  function hide(el) {
-    setTimeout(() => { 
-      el.nextElementSibling.classList.add("hidden")
-     }, 250);
-  }
-</script>

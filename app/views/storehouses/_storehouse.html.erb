@@ -11,7 +11,7 @@
     <div class="flex flex-col justify-between p-4 leading-normal">
         <h5 class="mb-2 text text-wrap font-bold tracking-tight text-slate-900"><%= storehouse.title %></h5>
         <p class="mb-3 font-normal text-slate-700"><%= storehouse.description %></p>
-        <p class="mb-3 text-xs text-slate-700">Позиций на складе: <%= storehouse.products.count %></p>
+        <p class="mb-3 text-xs text-slate-700">Позиций на складе: <%= storehouse.products.balance_sheet.count %></p>
     </div>
   <% end %>
 </div>

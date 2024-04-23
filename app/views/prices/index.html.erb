@@ -77,6 +77,6 @@
       <%# end %>
 
   <%= turbo_frame_tag "cart" do %>
-    <%#= render 'carts/cart', locals: { cart: @current_cart } %>
+    <%= render @cart %>
   <% end %>
 </div>

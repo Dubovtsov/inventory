@@ -26,28 +26,7 @@
       </div>
     </div>
     <div class="flex flex-wrap gap-2">
-      <div class="relative lg:w-auto sm:w-full" data-controller="dd">
-         <button data-action="click->dd#toggle" class="w-full text-amber-600 bg-amber-200 hover:bg-amber-300 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
-          <span data-dd-target="buttonText">Фильтр по клиентам</span>
-          <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-          </svg>
-        </button>
-        <!-- Dropdown menu -->
-        <div id="dropdownDivider2" class="hidden scrollbar absolute z-10 top-12 w-full min-w-[15rem] max-h-[25rem] overflow-y-auto shadow-lg rounded-md bg-amber-200" data-dd-target="m">
-          <!-- Содержимое dropdown -->
-          <div class="border-b border-amber-500 bg-amber-300">
-            <%= link_to "Все", products_path, class:"block px-4 py-2 text-sm text-gray-700  hover:bg-amber-100" %>
-          </div>
-          <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
-            <% Client.all.order(title: :asc).each do |client| %>
-              <li data-action="click->dd#updateButtonText">
-                <%= link_to client.title, products_path(client_id: client.id), class: "block px-4 py-2 hover:bg-amber-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
+      <%= render "shared/dropdown", title: "Фильтр по клиентам", model: Client.all.order(title: :asc) %>
       <div class="flex items-center lg:w-auto sm:w-1/2">
         <%= link_to "Сбросить фильтр", products_path, class: "transition block rounded-full align-middle bg-slate-300 hover:bg-slate-400 px-3 py-1 text-slate-500 hover:text-slate-900 text-sm" %>
       </div>
@@ -140,6 +119,4 @@
       </table>
     </details>
   <% end %>
-    
-  
 </div>

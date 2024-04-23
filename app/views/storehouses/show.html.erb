@@ -13,24 +13,39 @@
 </div>
 
 <div data-controller="d-tabs">
-  <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+  <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
     <ul class="flex flex-wrap -mb-px">
         <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
             <a href="#" class="flex flex gap-2 items-center inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">
-            <span class="items-center flex-shrink-0 transition duration-75 material-symbols-outlined material-symbols-outlined">local_mall</span>Все позиции</a>
+            <span class="items-center flex-shrink-0 transition duration-75 material-symbols-outlined">local_mall</span>Все позиции</a>
         </li>
         <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
-            <a href="#" class="flex flex gap-2 items-center inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
-            <span class="flex items-center flex-shrink-0 transition duration-75 material-symbols-outlined material-symbols-outlined">package_2</span>ПО</a>
+            <a href="#" class="flex flex gap-2 items-center inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">
+            <span class="flex items-center flex-shrink-0 transition duration-75 material-symbols-outlined">sdk</span>ПО</a>
         </li>
         <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
-            <a href="#" class="inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Оборудовние</a>
+            <a href="#" class="flex flex gap-2 items-center inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">
+            <span class="flex items-center flex-shrink-0 transition duration-75 material-symbols-outlined">
+              devices
+            </span>
+            Оборудовние
+            </a>
         </li>
         <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
-            <a href="#" class="inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Измерительное</a>
+            <a href="#" class="flex flex gap-2 items-center inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">
+            <span class="flex items-center flex-shrink-0 transition duration-75 material-symbols-outlined">
+              settings_input_antenna
+            </span>
+            Измерительное
+            </a>
         </li>
         <li data-action="click->d-tabs#showTab" data-d-tabs-target="bat" class="me-2">
-            <a href="#" class="inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Монтаж</a>
+            <a href="#" class="flex flex gap-2 items-center inline-block p-2 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">
+            <span class="flex items-center flex-shrink-0 transition duration-75 material-symbols-outlined">
+              engineering
+            </span>
+            Монтаж
+            </a>
         </li>
     </ul>
   </div>
@@ -60,7 +75,7 @@
           </tr>
         </thead>
         <tbody class="overflow-y-auto">
-          <% @products.each do |product| %>
+          <% @products.balance_sheet.each do |product| %>
             <tr class="bg-white border-b hover:bg-gray-50 text-sm">
               <th scope="row" class="px-6 py-1 font-medium text-gray-900 dark:text-white max-w-[500px]">
                 <%= link_to product.title, product %>
