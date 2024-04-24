@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  layout false, only: [:to_print]
 
   def show
     @cart = current_cart
@@ -33,6 +34,10 @@ class CartsController < ApplicationController
     respond_to do |format|
       format.turbo_stream
     end
+  end
+
+  def to_print
+    @cart = current_cart
   end
 
   private

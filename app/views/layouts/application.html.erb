@@ -146,8 +146,11 @@
               <% end %>
             </li>
           </ul>
-          <%= turbo_frame_tag "cart" do %>
-            <%= render @cart %>
+          
+          <% if request.path == prices_path %>
+            <%= turbo_frame_tag "cart" do %>
+              <%= render @cart %>
+            <% end %>
           <% end %>
         </nav>
       </aside>

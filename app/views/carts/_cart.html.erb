@@ -5,7 +5,7 @@
       <div class="flex flex-1 flex-col mb-2 bg-gray-200 p-4 w-full">
         <div class="flex justify-between text-xs font-medium text-gray-900">
           <h3><%= cart_item.price.title %></h3>
-          <p><%= number_with_precision(cart_item.total_price, delimiter: ' ', precision: 2) %> ₽</p>
+          <p><%= number_with_precision(cart_item.total_purchase_price, delimiter: ' ', precision: 2) %> ₽</p>
         </div>
         
         <div class="flex flex-1 items-end justify-between text-sm">
@@ -27,7 +27,7 @@
       </div>
     <% end %>
   <% end %>
-  <p class="text-xl font-bold text-right">Итого: <%= number_with_precision(cart.total_price, delimiter: ' ', precision: 2) %> ₽</p>
+  <p class="text-xl font-bold text-right">Итого: <%= number_with_precision(cart.total_purchase_price, delimiter: ' ', precision: 2) %> ₽</p>
 <% else %>
   <p>Корзина пуста</p>
 <% end %>

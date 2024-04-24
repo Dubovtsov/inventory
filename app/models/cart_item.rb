@@ -23,7 +23,11 @@ class CartItem < ApplicationRecord
   belongs_to :cart
   belongs_to :price
 
-  def total_price
+  def total_retail_price
     quantity * price.retail_price
+  end
+
+  def total_purchase_price
+    quantity * price.purchase_price
   end
 end

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-amber-100 py-6">
+    <div class="mx-auto w-full grid grid-col-4 gap-6 justify-between">
+      <div class="col-span-2 max-w-[1200px] min-w-[1200px] bg-white border border-gray-200 px-7 py-6">
+        <table class="text-xs border-collapse w-full">
+          <tbody>
+            <tr>
+              <th class="border border-black px-1">#</th>
+              <th class="border border-black px-1">Наименование</th>
+              <th class="border border-black px-1">Код товара</th>
+              <th class="border border-black px-1">Кол-во</th>
+              <th class="border border-black px-1">Цена(розничная)</th>
+              <th class="border border-black px-1">Сумма</th>
+              <th class="border border-black px-1">Скидка</th>
+              <th class="border border-black px-1">Партнерская цена</th>
+              <th class="border border-black px-1">Сумма</th>
+              <th class="border border-black px-1">Контрагент</th>
+              <th class="border border-black px-1">Лицензия</th>
+            </tr>
+            <% n = 0 %>
+            <% @cart.cart_items.order(created_at: :desc).each do |cart_item| %>
+              <tr class="border border-black">
+                <td class="border border-black px-1 text-center"><%= n += 1 %></td>
+                <td class="border border-black px-1"><%= cart_item.price.title %></td>
+                <td class="border border-black px-1"><%= cart_item.price.item_number %></td>
+                <td class="border border-black px-1 text-center"><%= cart_item.quantity %></td>
+                <td class="border border-black px-1 text-end text-nowrap"><%= cart_item.price.retail_price %> ₽</td>
+                <td class="border border-black px-1 text-end text-nowrap"><%= number_with_precision(cart_item.total_retail_price, delimiter: ' ', precision: 2) %> ₽</td>
+                <td class="border border-black px-1 text-end"><%= cart_item.price.discount_percentage %> %</td>
+                <td class="border border-black px-1 text-end"><%= cart_item.price.purchase_price %> ₽</td>
+                <td class="border border-black px-1 text-end text-nowrap"><%= number_with_precision(cart_item.total_purchase_price, delimiter: ' ', precision: 2) %> ₽</td>
+                <td class="border border-black px-1 text-end"><%= cart_item.price.vendor.title %></td>
+                <td class="border border-black px-1 text-end"><%= I18n.t(cart_item.price.vat, locale: :ru) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+
+

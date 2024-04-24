@@ -37,6 +37,12 @@ class Price < ApplicationRecord
     end
   end
 
+  def discount_percentage
+    discount_amount = self.retail_price - self.purchase_price
+    discount_percentage = (discount_amount / retail_price.to_f) * 100
+    discount_percentage.round(2)
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "id", "id_value", "purchase_price", "retail_price", "title", "updated_at", "vendor_id"]
   end

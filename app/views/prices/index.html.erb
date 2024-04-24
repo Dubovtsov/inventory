@@ -71,12 +71,4 @@
       </tbody>
     </table>
   </div>
-
-      <%#= turbo_frame_tag "cart_actions_#{price.id}" do %>
-        <%#= button_to 'Добавить в корзину', cart_items_path(price_id: price.id), form: { data: { turbo_frame: "cart" } } %>
-      <%# end %>
-
-  <%= turbo_frame_tag "cart" do %>
-    <%= render @cart %>
-  <% end %>
 </div>

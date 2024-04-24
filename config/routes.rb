@@ -24,7 +24,11 @@ Rails.application.routes.draw do
     end
   end
   resources :cart_items
-  resources :carts
+  resources :carts do
+    member do
+      get :to_print
+    end
+  end
   resources :attachments, only: :destroy
   devise_for :administrators
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -1,3 +1,8 @@
 <%= turbo_frame_tag "cart" do %>
   <%= render @cart %>
 <% end %>
+<%= link_to to_print_cart_path(@cart), class: "flex items-center rounded-lg bg-amber-300 hover:bg-amber-400", method: :get do %>
+  <span class="material-symbols-outlined text-slate-900 px-2">
+    print
+  </span>
+<% end %>
