@@ -1,8 +1,15 @@
 <%= turbo_frame_tag "cart" do %>
   <%= render @cart %>
 <% end %>
-<%= link_to to_print_cart_path(@cart), class: "flex items-center rounded-lg bg-amber-300 hover:bg-amber-400", method: :get do %>
-  <span class="material-symbols-outlined text-slate-900 px-2">
-    print
-  </span>
-<% end %>
+
+<div data-controller="tooltip">
+  <%= link_to to_print_cart_path(@cart), class: "p-3 flex items-center max-w-16 rounded-lg bg-amber-300 hover:bg-amber-400", data: {action: "mouseenter->tooltip#show mouseleave->tooltip#hide"}, method: :get do %>
+    <span class="material-symbols-outlined text-slate-900 px-2 text-center">
+      print
+    </span>
+  <% end %>
+
+  <div data-tooltip-target="tooltip" class="absolute invisible px-3 py-2 my-1 text-xs text-white transition duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 dark:bg-gray-700">
+    Вывести на печать
+  </div>
+</div>
