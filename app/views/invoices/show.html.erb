@@ -52,7 +52,7 @@
         <tr>
           <th class="border border-slate-200 px-1">#</th>
           <th class="border border-slate-200 px-1">Наименование</th>
-          <th class="border border-slate-200 px-1">Инв. №</th>
+          <th class="border border-slate-200 px-1">Серийный №</th>
           <th class="border border-slate-200 px-1">Кол-во</th>
           <th class="border border-slate-200 px-1"></th>
         </tr>
@@ -61,7 +61,7 @@
           <tr class="border border-slate-200">
             <td class="border border-slate-200 px-1"><%= n += 1 %></td>
             <td class="border border-slate-200 px-1"><%= product.title %></td>
-            <td class="border border-slate-200 px-1 text-end"><%= product.inventory_number %></td>
+            <td class="border border-slate-200 px-1 text-end"><%= product.serial_number %></td>
             <td class="border border-slate-200 px-1 text-end"><%= product.amount %></td>
             <td class="px-4"><%= button_to "✖", remove_from_invoice_product_path(product), params: {invoice_id: @invoice}, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :post ,class: "transition px-2 text-amber-500 hover:underline" %></td>
           </tr>
@@ -110,7 +110,7 @@
             <td class="px-4"><%= product.serial_number %></td>
             <td class="text-slate-400 px-4"><%= product.storehouse.title %></td>
             <td class="px-4"><%= product.client.title %></td>
-            <td class="px-4"><%= product.inventory_number %></td>
+            <td class="px-4"><%= product.serial_number %></td>
             <td class="px-4 text-center"><input type="checkbox" name="" id="" <%= product.booking ? "checked disabled" : "disabled" %>></td>
             <td class="px-4"><%= button_to "добавить", add_to_invoice_product_path(product), params: {invoice_id: @invoice}, method: :post ,class: "transition px-2 py-1 bg-amber-300 hover:bg-amber-400 text-xs font-medium text-slate-900 rounded" %></td>
           </tr>
