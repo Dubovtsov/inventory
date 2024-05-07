@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :conrtactors
+  resources :customers, controller: 'conrtactors', type: 'Customer'
+  resources :suppliers, controller: 'conrtactors', type: 'Supplier'
+
   devise_for :users
 
   resources :invoice_products
