@@ -1,0 +1,132 @@
+<aside id="sidebar" class="bg-zinc-100 p-4 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:relative fixed inset-y-0 left-0 z-10 w-64">
+  <nav>
+    <ul class="space-y-1 text-slate-500">
+      <li>
+        <%= link_to product_movements_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
+          <span class="flex gap-3">
+            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+              analytics
+            </span>
+            Dashboard
+          </span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to invoices_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'invoices') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+          <span class="flex gap-3">
+            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+              receipt_long
+            </span>
+            Накладные
+            <% if Invoice.uncompleted.count > 0 %>
+              <span class="rounded inline-block bg-amber-300 px-2 text-center shadow-sm text-amber-900 text-sm pt-[2px]"><%= Invoice.uncompleted.count %></span>
+            <% end %>
+          </span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to products_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'products') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+          <span class="flex gap-3 whitespace-nowrap">
+            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+              shopping_cart
+            </span>
+            Продукты
+          </span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to storehouses_path, class:"transition flex items-center p-2 hover:text-slate-900 rounded-xl hover:bg-amber-200 #{current_page?(controller: 'storehouses') ? 'bg-amber-200 text-slate-900' : ''} group" do %>
+          <span class="flex gap-3 whitespace-nowrap">
+            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">
+              store
+            </span>
+            Склады
+          </span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to vendors_path, class:"transition flex items-center p-2 hover:text-slate-900 
+                                rounded-xl hover:bg-amber-200 
+                                #{current_page?(controller: 'vendors') ? 'bg-amber-200 text-slate-900' : ''} 
+                                group" do %>
+          <span class="flex gap-3 whitespace-nowrap">
+            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
+            Поставщики
+          </span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to suppliers_path, class:"transition flex items-center p-2 hover:text-slate-900 
+                                rounded-xl hover:bg-amber-200 
+                                #{current_page?(controller: 'vendors') ? 'bg-amber-200 text-slate-900' : ''} 
+                                group" do %>
+          <span class="flex gap-3 whitespace-nowrap">
+            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
+            Поставщики 2
+          </span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to clients_path, class:"transition flex items-center 
+                                p-2 hover:text-slate-900 rounded-xl 
+                                hover:bg-amber-200  
+                                #{current_page?(controller: 'clients') ? 'bg-amber-200 text-slate-900' : ''} 
+                                group" do %>
+          <span class="flex gap-3 whitespace-nowrap">
+            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
+            Клиенты
+          </span>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to customers_path, class:"transition flex items-center 
+                                p-2 hover:text-slate-900 rounded-xl 
+                                hover:bg-amber-200  
+                                #{current_page?(controller: 'customers') ? 'bg-amber-200 text-slate-900' : ''} 
+                                group" do %>
+          <span class="flex gap-3 whitespace-nowrap">
+            <span class="items-center flex-shrink-0 w-5 h-5 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">clinical_notes</span>
+            Клиенты 2
+          </span>
+        <% end %>
+      </li>
+
+      <div class="border border-slate-300"></div>
+      <li>
+        <%= link_to prices_path, class:"transition flex items-center p-2 text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
+          <svg class="flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+              <path d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z"/>
+          </svg>
+          <span class="ms-3">Price</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to product_movements_path, class:"transition flex items-center p-2 text-slate-900 rounded-xl hover:bg-amber-200 group" do %>
+          <span class="flex gap-3 whitespace-nowrap">
+            <span class="items-center flex-shrink-0 w-5 h-5 text-slate-700 transition duration-75 group-hover:text-slate-900 material-symbols-outlined">sync_alt</span>
+            Передвижения
+          </span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_invoice_path, class:"shadow border flex text-center items-center border-amber-400 transition text-slate-900 bg-amber-300 hover:bg-amber-400 font-semibold rounded-xl text-sm px-4 lg:px-5 py-3 lg:py-3 focus:outline-none" do %>
+          Создать накладную
+        <% end %>
+      </li>
+      <li>
+        <%= link_to cart_path(@current_cart), class:"shadow border flex text-center items-center border-amber-400 transition text-slate-900 bg-amber-300 hover:bg-amber-400 font-semibold rounded-xl text-sm px-4 lg:px-5 py-3 lg:py-3 focus:outline-none" do %>
+          Корзина
+        <% end %>
+      </li>
+    </ul>
+    
+    <% if request.path == prices_path %>
+      <%= turbo_frame_tag "cart" do %>
+        <%= render @cart %>
+      <% end %>
+    <% end %>
+  </nav>
+</aside>

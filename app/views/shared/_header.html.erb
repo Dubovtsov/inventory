@@ -1,0 +1,28 @@
+<header class="text-white p-4 flex justify-between items-center border-b-2 border-gray-200 bg-zinc-100 px-4 lg:px-6 py-2.5 flex-wrap">
+  <div class="font-bold">
+    <a href="#" class="flex items-center">
+      <span class="text-slate-700 bg-amber-500 p-2 material-symbols-outlined rounded-s-xl">inventory</span>
+      <span class="self-center text-amber-500 px-3 py-1 bg-slate-700 text-2xl font-black whitespace-nowrap rounded-e-xl">СКЛАД</span>
+    </a>
+  </div>
+  <div class="flex items-center lg:order-2">
+    <% if user_signed_in? %>
+      <span class="text-sm font-semibold text-amber-500 mr-3"><%= current_user.email %></span>
+      <%= link_to destroy_user_session_path, class:"font-semibold text-gray-800 bg-slate-200 hover:bg-slate-300 focus:ring-4 focus:ring-gray-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none", data: { turbo_method: :delete, turbo_confirm: 'Really?' } do %>
+        Выйти 
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path, class:"font-semibold text-gray-800 hover:bg-slate-200 focus:ring-4 focus:ring-gray-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none" do %>
+        Войти
+      <% end %>
+      <a href="#" class="font-semibold text-gray-300 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 rounded-xl text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">
+        Sign Up
+      </a>
+    <% end %>
+  </div>
+  <button id="menuBtn" class="md:hidden">
+    <svg class="h-6 w-6 fill-current text-black" viewBox="0 0 24 24">
+      <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
+    </svg>
+  </button>
+</header>

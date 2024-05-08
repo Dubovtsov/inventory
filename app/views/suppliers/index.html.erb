@@ -9,6 +9,28 @@
   </div>
 
   <div id="suppliers" class="min-w-full">
-    <%= render @suppliers %>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-separate border-spacing-y-2">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            Краткое наименование
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Полное наименование
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Менеджер
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Email
+          </th>
+          <th scope="col" class="px-6 py-3">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @suppliers %>
+      </tbody>
+    </table>
   </div>
 </div>
