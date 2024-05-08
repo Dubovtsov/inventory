@@ -1,0 +1,32 @@
+<div id="<%= dom_id contractor %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Type:</strong>
+    <%= contractor.type %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= contractor.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Fullname:</strong>
+    <%= contractor.fullname %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Email:</strong>
+    <%= contractor.email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Manager:</strong>
+    <%= contractor.manager %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this contractor", contractor, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this contractor", edit_contractor_path(contractor), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

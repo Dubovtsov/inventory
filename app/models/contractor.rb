@@ -11,6 +11,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Customer < Contractor
-  # Специфические атрибуты для клиентов
+class Contractor < ApplicationRecord
+  validates :name, presence: true
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :conrtactors
-  resources :customers, controller: 'conrtactors', type: 'Customer'
-  resources :suppliers, controller: 'conrtactors', type: 'Supplier'
+  resources :contractors
+  resources :customers
+  resources :suppliers
 
   devise_for :users
 
