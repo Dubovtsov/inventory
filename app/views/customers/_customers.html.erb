@@ -1,0 +1,41 @@
+<table id="customers" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border-separate border-spacing-y-2">
+  <thead class="text-xs text-gray-600 uppercase bg-gradient-to-b from-gray-50 to-gray-100 sticky top-0">
+    <tr>
+      <th scope="col" class="px-6 py-3">
+        Краткое наименование
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Полное наименование
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Менеджер
+      </th>
+      <th scope="col" class="px-6 py-3">
+        Email
+      </th>
+      <th scope="col" class="px-6 py-3">
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% customers.each do |customer| %>
+      <tr class="bg-zinc-50 transition shadow hover:shadow-md hover:bg-zinc-100 border-separate border-spacing-y-2">
+        <td class="px-6 py-4 w-1/3">
+          <%= link_to customer.name, customer, class: "" %>
+        </td>
+        <td class="px-6 py-4">
+          <%= customer.fullname %>
+        </td>
+        <td class="px-6 py-4">
+          <%= customer.manager %>
+        </td>
+        <td class="px-6 py-4">
+          <%= customer.email %>
+        </td>
+        <td class="px-6 py-4">
+          <%= link_to "Edit", edit_customer_path(customer), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

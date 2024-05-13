@@ -9,7 +9,7 @@ class SuppliersController < ApplicationController
   end
 
   def new
-    @supplier = Contractor.new(type: params[:type])
+    @supplier = Contractor.new(type: 'Supplier')
   end
 
   def edit
@@ -17,10 +17,11 @@ class SuppliersController < ApplicationController
 
   def create
     @supplier = Contractor.new(supplier_params)
-
+    @suppliers = Contractor.where(type: 'Supplier')
     respond_to do |format|
       if @supplier.save
-        format.html { redirect_to supplier_url(@supplier), notice: "supplier was successfully created." }
+        # format.html { redirect_to supplier_url(@supplier), notice: "supplier was successfully created." }
+        format.turbo_stream
         format.json { render :show, status: :created, location: @supplier }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -10,28 +10,26 @@ class ContractorsController < ApplicationController
   def show
   end
 
-  # GET /contractors/new
   def new
-    @contractor = Contractor.new
+    # @contractor = Contractor.new
   end
 
-  # GET /contractors/1/edit
   def edit
   end
 
   # POST /contractors or /contractors.json
   def create
-    @contractor = Contractor.new(contractor_params)
+    # @contractor = Contractor.new(contractor_params)
 
-    respond_to do |format|
-      if @contractor.save
-        format.html { redirect_to contractor_url(@contractor), notice: "Contractor was successfully created." }
-        format.json { render :show, status: :created, location: @contractor }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @contractor.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @contractor.save
+    #     format.html { redirect_to contractor_url(@contractor), notice: "Contractor was successfully created." }
+    #     format.json { render :show, status: :created, location: @contractor }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @contractor.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /contractors/1 or /contractors/1.json

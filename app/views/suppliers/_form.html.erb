@@ -1,10 +1,10 @@
-<%= form_with(model: contractor, class: "contents") do |form| %>
-  <% if contractor.errors.any? %>
+<%= form_with(model: supplier, class: "contents") do |form| %>
+  <% if supplier.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(contractor.errors.count, "error") %> prohibited this contractor from being saved:</h2>
+      <h2><%= pluralize(supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
 
       <ul>
-        <% contractor.errors.each do |error| %>
+        <% supplier.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

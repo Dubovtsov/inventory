@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
   end
 
   def new
-    @customer = Contractor.new(type: params[:type])
+    @customer = Contractor.new(type: 'Customer')
   end
 
   def edit
@@ -17,10 +17,11 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Contractor.new(customer_params)
-
+    @customers = Contractor.where(type: 'Customer')
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
+        format.turbo_stream
+        # format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new, status: :unprocessable_entity }
