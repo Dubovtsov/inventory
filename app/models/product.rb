@@ -20,22 +20,22 @@
 #  type_product     :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  client_id        :bigint
-#  storehouse_id    :bigint           default(1), not null
-#  vendor_id        :bigint
+#  customer_id      :bigint
+#  storehouse_id    :bigint
+#  supplier_id      :bigint
 #
 # Indexes
 #
-#  index_products_on_client_id      (client_id)
+#  index_products_on_customer_id    (customer_id)
 #  index_products_on_deleted_at     (deleted_at)
 #  index_products_on_storehouse_id  (storehouse_id)
-#  index_products_on_vendor_id      (vendor_id)
+#  index_products_on_supplier_id    (supplier_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (client_id => clients.id)
+#  fk_rails_...  (customer_id => contractors.id)
 #  fk_rails_...  (storehouse_id => storehouses.id)
-#  fk_rails_...  (vendor_id => vendors.id)
+#  fk_rails_...  (supplier_id => contractors.id)
 #
 class Product < ApplicationRecord
   extend Enumerize
@@ -49,6 +49,9 @@ class Product < ApplicationRecord
   belongs_to :storehouse
   belongs_to :vendor
   belongs_to :client
+
+  belongs_to :supplier
+  belongs_to :customer
 
   validates :title, presence: true
   validates :inventory_number, uniqueness: true

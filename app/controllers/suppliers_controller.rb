@@ -20,7 +20,11 @@ class SuppliersController < ApplicationController
     respond_to do |format|
       if @supplier.save
         # format.html { redirect_to supplier_url(@supplier), notice: "supplier was successfully created." }
-        format.turbo_stream
+        format.turbo_stream do
+          helpers.fields model: Product.new do |form|
+            @form = form
+          end
+        end
         format.json { render :show, status: :created, location: @supplier }
       else
         format.html { render :new, status: :unprocessable_entity }

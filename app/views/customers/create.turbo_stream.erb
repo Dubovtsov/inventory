@@ -1,1 +1,3 @@
 <%= turbo_stream.update "customers", partial: "customers/customers", locals: { customers: @customers } %>
+<%= turbo_stream.replace('new_client_form', partial: 'products/client_select', locals: { form: @form }) %>
+<%#= turbo_stream.prepend('clients', partial: 'clients/client',locals: { client: @client }) %>

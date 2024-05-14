@@ -10,19 +10,20 @@
 #  vat            :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  vendor_id      :bigint           not null
+#  supplier_id    :bigint
 #
 # Indexes
 #
-#  index_prices_on_vendor_id  (vendor_id)
+#  index_prices_on_supplier_id  (supplier_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (vendor_id => vendors.id)
+#  fk_rails_...  (supplier_id => contractors.id)
 #
 class Price < ApplicationRecord
   extend Enumerize
-  belongs_to :vendor
+  # belongs_to :vendor
+  belongs_to :supplier
 
   enumerize :vat, in: [ :vat_20, :no_vat ], default: :no_vat, i18n_scope: "vat", scope: :shallow
 

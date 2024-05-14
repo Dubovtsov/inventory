@@ -6,15 +6,15 @@ class ProductsController < ApplicationController
   def index
     @q = Product.ransack(params[:q])
 
-    @products = if params[:client_id].present?
-                  Product.where(client_id: params[:client_id])
+    @products = if params[:customer_id].present?
+                  Product.where(customer_id: params[:customer_id])
                 elsif params[:shipped].present?
                   @q.result.shipped
                 else
                   @q.result.balance_sheet
                 end
 
-    @partners = Client.all + Storehouse.all
+    @partners = Customer.all + Storehouse.all
     @products = @products.order('title ASC')
     @pagy, @products = pagy_arel(@products, items: 13)
     @grouped_products = @products.group_by &:title
@@ -131,7 +131,7 @@ class ProductsController < ApplicationController
 
     def product_params
       params.require(:product).permit(:title, :description, :serial_number, :inventory_number,
-                                      :accepted_at, :storehouse_id, :type_product, :picture, :vendor_id, :end_date,
-                                      :rent, :shipped, :amount, :client_id, :retail_price, :booking, :purchase_price, images: [])
+                                      :accepted_at, :storehouse_id, :type_product, :picture, :supplier_id, :end_date,
+                                      :rent, :shipped, :amount, :customer_id, :retail_price, :booking, :purchase_price, images: [])
     end
 end

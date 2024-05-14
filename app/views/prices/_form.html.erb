@@ -34,7 +34,7 @@
   <div class="flex flex-row gap-4">
     <div class="my-3 w-1/2">
       <%= form.label "Поставщик", class:"font-semibold text-sm" %>
-      <%= form.collection_select :vendor_id, Vendor.order(:title), :id, :title, {:include_blank => true}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 w-full" } %>
+      <%= form.collection_select :supplier_id, Supplier.order(:name), :id, :name, {:include_blank => true}, { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 w-full" } %>
     </div>
 
     <div class="my-3 w-1/2">

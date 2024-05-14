@@ -1,14 +1,13 @@
 class PricesController < ApplicationController
   before_action :set_price, only: %i[ show edit update destroy ]
 
-  # GET /prices or /prices.json
   def index
-    if params[:vendor_id].present?
+    if params[:supplier_id].present?
       @q = Price.ransack(params[:q])
-      @prices = Price.where(vendor_id: params[:vendor_id])
+      @prices = Price.where(supplier_id: params[:supplier_id])
     else
       @q = Price.ransack(params[:q])
-      @prices = @q.result(distinct: true).order(:vendor_id)
+      @prices = @q.result(distinct: true).order(:supplier_id)
     end
     respond_to do |format|
       format.html
@@ -17,20 +16,16 @@ class PricesController < ApplicationController
     @cart = current_cart
   end
 
-  # GET /prices/1 or /prices/1.json
   def show
   end
 
-  # GET /prices/new
   def new
     @price = Price.new
   end
 
-  # GET /prices/1/edit
   def edit
   end
 
-  # POST /prices or /prices.json
   def create
     @price = Price.new(price_params)
 
@@ -76,7 +71,7 @@ class PricesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def price_params
-      params.require(:price).permit(:title, :retail_price, :purchase_price, :vendor_id, :vat, :item_number)
+      params.require(:price).permit(:title, :retail_price, :purchase_price, :supplier_id, :vat, :item_number)
     end
 
     def current_cart

@@ -1,8 +1,8 @@
 <div class="flex items-center gap-2">
     <%= form.label "Покупатель", class:"font-semibold text-sm" %>
     |
-    <%= link_to "+", new_client_path, data: { turbo_frame: 'modal' }, class:"leading-none transition bg-green-200 hover:bg-green-300 border border-green-400 rounded-md px-1 text-xl font-semibold text-green-900" %>
+    <%= link_to "+", new_customer_path, data: { turbo_frame: 'modal' }, class:"leading-none transition bg-green-200 hover:bg-green-300 border border-green-400 rounded-md px-1 text-xl font-semibold text-green-900" %>
     <%#= link_to "Добавить", new_client_path, data: { turbo_frame: 'modal' }, class: "px-4 py-2 transition rounded-xl text-amber-600 hover:text-slate-900 hover:bg-amber-400 border border-amber-400 font-medium text-sm cursor-pointer" %>
 </div>
 
-<%= form.collection_select :client_id, Client.order(:title), :id, :title, {:include_blank => true}, { class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" } %>
+<%= form.collection_select :customer_id, Customer.order(:name), :id, :name, {:include_blank => true}, { class: "block rounded-md border border-slate-300 bg-slate-50 outline-none px-3 py-2 w-full" } %>

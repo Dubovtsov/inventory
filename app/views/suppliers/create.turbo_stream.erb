@@ -1,1 +1,2 @@
 <%= turbo_stream.update "suppliers", partial: "suppliers/suppliers", locals: { suppliers: @suppliers } %>
+<%= turbo_stream.replace('new_vendor_form', partial: 'products/vendor_select', locals: { form: @form }) %>

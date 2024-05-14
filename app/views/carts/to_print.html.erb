@@ -44,7 +44,7 @@
                 <td class="border border-black px-1 text-end"><%= cart_item.price.discount_percentage %> %</td>
                 <td class="border border-black px-1 text-end"><%= cart_item.price.purchase_price %> ₽</td>
                 <td class="border border-black px-1 text-end text-nowrap"><%= number_with_precision(cart_item.total_purchase_price, delimiter: ' ', precision: 2) %> ₽</td>
-                <td class="border border-black px-1 text-end"><%= cart_item.price.vendor.title %></td>
+                <td class="border border-black px-1 text-end"><%= cart_item.price.supplier.name %></td>
                 <td class="border border-black px-1 text-end"><%= I18n.t(cart_item.price.vat, locale: :ru) %></td>
               </tr>
             <% end %>

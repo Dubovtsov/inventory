@@ -109,7 +109,7 @@
             <td class="px-4"><%= product.title %></td>
             <td class="px-4"><%= product.serial_number %></td>
             <td class="text-slate-400 px-4"><%= product.storehouse.title %></td>
-            <td class="px-4"><%= product.client.title %></td>
+            <td class="px-4"><%= product.customer.title %></td>
             <td class="px-4"><%= product.serial_number %></td>
             <td class="px-4 text-center"><input type="checkbox" name="" id="" <%= product.booking ? "checked disabled" : "disabled" %>></td>
             <td class="px-4"><%= button_to "добавить", add_to_invoice_product_path(product), params: {invoice_id: @invoice}, method: :post ,class: "transition px-2 py-1 bg-amber-300 hover:bg-amber-400 text-xs font-medium text-slate-900 rounded" %></td>

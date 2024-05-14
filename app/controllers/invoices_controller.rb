@@ -86,6 +86,6 @@ class InvoicesController < ApplicationController
     end
 
     def invoice_params
-      params.require(:invoice).permit(:storehouse_id, :user_id, :client_id, :date, :completed, :document_number)
+      params.require(:invoice).permit(:storehouse_id, :user_id, :customer_id, :date, :completed, :document_number)
     end
 end

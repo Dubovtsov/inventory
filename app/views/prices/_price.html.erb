@@ -16,7 +16,7 @@
       <%= I18n.t(price.vat, locale: :ru) %>
     </td>
     <td class="px-6 py-4">
-      <%= price.vendor.title %>
+      <%= price.supplier.name %>
     </td>
     <td class="px-6 py-4 text-right">
       <%= link_to "Edit", edit_price_path(price), class: "font-medium text-amber-500 hover:text-amber-700 hover:underline" %>

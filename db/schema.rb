@@ -109,10 +109,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_095210) do
     t.datetime "updated_at", null: false
     t.bigint "storehouse_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "client_id", null: false
     t.boolean "completed", default: false
     t.string "document_number"
-    t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.bigint "customer_id", null: false
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
     t.index ["storehouse_id"], name: "index_invoices_on_storehouse_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
@@ -121,12 +121,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_095210) do
     t.string "title"
     t.decimal "retail_price"
     t.decimal "purchase_price"
-    t.bigint "vendor_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "item_number"
     t.string "vat"
-    t.index ["vendor_id"], name: "index_prices_on_vendor_id"
+    t.bigint "supplier_id"
+    t.index ["supplier_id"], name: "index_prices_on_supplier_id"
   end
 
   create_table "product_movements", force: :cascade do |t|
@@ -152,23 +152,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_095210) do
     t.date "accepted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "storehouse_id", default: 1, null: false
+    t.bigint "storehouse_id"
     t.string "type_product"
-    t.bigint "vendor_id"
     t.date "end_date"
     t.boolean "rent", default: false
     t.boolean "shipped", default: false
     t.integer "amount", default: 1
     t.boolean "deleted", default: false
     t.datetime "deleted_at"
-    t.bigint "client_id"
     t.decimal "retail_price"
     t.decimal "purchase_price"
     t.boolean "booking", default: false
-    t.index ["client_id"], name: "index_products_on_client_id"
+    t.bigint "customer_id"
+    t.bigint "supplier_id"
+    t.index ["customer_id"], name: "index_products_on_customer_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["storehouse_id"], name: "index_products_on_storehouse_id"
-    t.index ["vendor_id"], name: "index_products_on_vendor_id"
+    t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
   create_table "storehouses", force: :cascade do |t|
@@ -194,27 +194,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_095210) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "vendors", force: :cascade do |t|
-    t.string "title"
-    t.string "manager"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "prices"
   add_foreign_key "invoice_products", "invoices"
   add_foreign_key "invoice_products", "products"
-  add_foreign_key "invoices", "clients"
+  add_foreign_key "invoices", "contractors", column: "customer_id"
   add_foreign_key "invoices", "storehouses"
   add_foreign_key "invoices", "users"
-  add_foreign_key "prices", "vendors"
+  add_foreign_key "prices", "contractors", column: "supplier_id"
   add_foreign_key "product_movements", "products"
   add_foreign_key "product_movements", "storehouses", column: "from_storehouse_id"
   add_foreign_key "product_movements", "storehouses", column: "to_storehouse_id"
-  add_foreign_key "products", "clients"
+  add_foreign_key "products", "contractors", column: "customer_id"
+  add_foreign_key "products", "contractors", column: "supplier_id"
   add_foreign_key "products", "storehouses"
-  add_foreign_key "products", "vendors"
 end

@@ -27,9 +27,9 @@
     <!-- Dropdown menu -->
     <div id="dropdownDivider" class="z-10 hidden scrollbar max-h-[25rem] overflow-y-auto bg-amber-200 divide-y divide-amber-400 rounded-lg shadow min-w-[15rem] dark:bg-gray-700 dark:divide-gray-600">
         <ul class=" text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
-          <% Vendor.all.each do |v| %>
+          <% Supplier.all.each do |v| %>
             <li>
-              <%= link_to v.title, prices_path(vendor_id: v.id), class: "block px-4 py-2 hover:bg-amber-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+              <%= link_to v.name, prices_path(supplier_id: v.id), class: "block px-4 py-2 hover:bg-amber-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
             </li>
           <% end %>
         </ul>
