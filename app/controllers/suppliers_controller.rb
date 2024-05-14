@@ -1,8 +1,8 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: %i[ show edit update destroy ]
+  before_action :set_suppliers, only: %i[ index create update destroy ]
 
   def index
-    @suppliers = Contractor.where(type: 'Supplier')
   end
 
   def show
@@ -17,7 +17,6 @@ class SuppliersController < ApplicationController
 
   def create
     @supplier = Contractor.new(supplier_params)
-    @suppliers = Contractor.where(type: 'Supplier')
     respond_to do |format|
       if @supplier.save
         # format.html { redirect_to supplier_url(@supplier), notice: "supplier was successfully created." }
@@ -33,7 +32,8 @@ class SuppliersController < ApplicationController
   def update
     respond_to do |format|
       if @supplier.update(supplier_params)
-        format.html { redirect_to supplier_url(@supplier), notice: "supplier was successfully updated." }
+        # format.html { redirect_to supplier_url(@supplier), notice: "supplier was successfully updated." }
+        format.turbo_stream
         format.json { render :show, status: :ok, location: @supplier }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,6 +55,10 @@ class SuppliersController < ApplicationController
 
     def set_supplier
       @supplier = Supplier.find(params[:id])
+    end
+
+    def set_suppliers
+      @suppliers = Contractor.where(type: 'Supplier')
     end
 
     def supplier_params

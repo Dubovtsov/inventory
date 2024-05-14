@@ -36,9 +36,14 @@ ru:
     models:
       vendor: "Поставщик"
       price: "Цена"
+      customer: "Клиент"
     attributes:
       vendor:
         title: "Название"
+    attributes:
+      customer:
+        name: "Сокращенное наименование"
+        full_name: "Полное наименование"
     attributes:
       price:
         title: "Название"
@@ -53,3 +58,10 @@ ru:
       sign_out: "Выйти"
       sign_in: "Войти"
       sign_up: "Зарегистрироваться"
+
+  customers:
+    form:
+      name: "Сокращенное наименование"
+      fullname: "Полное наименование"
+      email: "email"
+      manager: "Менеджер"

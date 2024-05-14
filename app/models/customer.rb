@@ -13,4 +13,6 @@
 #
 class Customer < Contractor
   # Специфические атрибуты для клиентов
+  has_many :products
+  has_many :invoices
 end

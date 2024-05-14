@@ -1,8 +1,8 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :set_customers, only: %i[ index create update destroy ]
 
   def index
-    @customers = Contractor.where(type: 'Customer')
   end
 
   def show
@@ -17,7 +17,6 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Contractor.new(customer_params)
-    @customers = Contractor.where(type: 'Customer')
     respond_to do |format|
       if @customer.save
         format.turbo_stream
@@ -33,7 +32,8 @@ class CustomersController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
+        # format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
+        format.turbo_stream
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,6 +55,10 @@ class CustomersController < ApplicationController
 
     def set_customer
       @customer = Customer.find(params[:id])
+    end
+
+    def set_customers
+      @customers = Contractor.where(type: 'Customer')
     end
 
     def customer_params

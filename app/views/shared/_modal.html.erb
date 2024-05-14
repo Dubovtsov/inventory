@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="modal-full w-full" data-controller="modal" data-action="turbo:submit-end->modal#submitEnd">
     <div class="modal-background w-full" data-action="click->modal#hideModal"></div>
-    <div class="modal mx-auto border-gray-200 bg-gradient-to-t from-gray-100 to-gray-200 rounded-lg border lg:w-1/4 sm:w-full animated fade-in">
+    <div class="modal mx-auto border-gray-200 bg-gradient-to-t from-gray-100 to-gray-200 rounded-lg border lg:w-2/4 sm:w-full animated fade-in">
       <div class="border-b border-gray-400 bg-gradient-to-t from-gray-300 to-gray-400 rounded-t-lg ">
         <h2 class="text-xl text-gray-600 text-center"><%= title %></h2>
       </div>

@@ -13,4 +13,6 @@
 #
 class Supplier < Contractor
   # Специфические атрибуты для поставщиков
+  has_many :products
+  has_many :price
 end
