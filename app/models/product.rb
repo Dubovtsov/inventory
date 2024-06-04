@@ -47,8 +47,8 @@ class Product < ApplicationRecord
   has_many :invoices, through: :invoice_products
 
   belongs_to :storehouse
-  belongs_to :vendor
-  belongs_to :client
+  # belongs_to :vendor
+  # belongs_to :client
 
   belongs_to :supplier
   belongs_to :customer

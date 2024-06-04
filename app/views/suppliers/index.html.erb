@@ -8,7 +8,7 @@
     <%= link_to "New supplier", new_supplier_path, data: { turbo_frame: 'modal' },class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div class="min-w-full">
+  <div class="min-w-full max-h-[65vh] overflow-y-auto">
     <%= render partial: "suppliers", locals: { suppliers: @suppliers } %>
   </div>
 </div>
